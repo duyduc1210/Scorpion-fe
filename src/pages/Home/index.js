@@ -34,19 +34,19 @@ const HomePage = () => {
       name: 'SPECIAL',
       href: '/home'
     },
-    
+
   ]
 
   const login = [
-   
-      {
-        name: 'SIGN UP',
-        href: '/register'
-      },
-      {
-        name: 'SIGN IN',
-        href: '/login',
-      },
+
+    {
+      name: 'SIGN UP',
+      href: '/register'
+    },
+    {
+      name: 'SIGN IN',
+      href: '/login',
+    },
   ]
   const handleBooking = () => {
     setBookingMessage('Bạn đã đặt phòng thành công!');
@@ -77,20 +77,20 @@ const HomePage = () => {
           })}
         </ul>
         <div className={style.logo}>
-        {login.map((item) => {
+          {login.map((item) => {
             return (
               <div class="logoSignUp">
                 <a href={item.href}>{item.name}</a>
-                </div>
+              </div>
             )
           })}
-         
+
         </div>
       </div>
 
 
       <h2>ROOMS & SUITES</h2>
-      
+
 
       <div class="">
         {dataRoom.map((item) => {
@@ -105,7 +105,7 @@ const HomePage = () => {
                 <p>HƯỚNG NHÌN: {item.huong}</p>
                 <p>BAO GỒM: {item.baoGom}</p>
                 <button onClick={handleBooking}>VIEW DETAIL</button>
-              {bookingMessage && <p>{bookingMessage}</p>}
+                {bookingMessage && <p>{bookingMessage}</p>}
               </div>
               <div class="navbar">
                 <img class="img-responsive" src={item.image} />

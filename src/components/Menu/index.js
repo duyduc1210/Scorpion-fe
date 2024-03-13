@@ -50,13 +50,21 @@ const MenuLeft = ({ children }) => {
   } = theme.useToken();
 
   return (
-    <Layout>
-      
-    
+    <Layout>   
       <Sider trigger={null} collapsible collapsed={collapsed}>
       
         <div className="demo-logo-vertical" />
-        <div className={style.rectangle }>SCORPION HOTEL</div>
+        <p style={{
+          color: "white",
+          textAlign : "center",
+          fontWeight : "bold",
+          padding : "1rem",
+          background: "#4CA110FF",
+          marginBottom: "0px",
+          marginTop: "0px",
+          height:"64px",
+          paddingTop: "20px",
+        }}>SCORPION HOTEL</p>
         <Menu      
               mode="inline"
               defaultSelectedKeys={['1']}
