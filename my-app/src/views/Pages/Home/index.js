@@ -1,6 +1,6 @@
 import React from 'react';
-import style from '../Home/Home.module.css'
-import { dataRoom } from './helper/dataRoom';
+import style from './Home.css'
+import { dataRoom } from '../../../shared/db/dataRoom';
 
 const HomePage = () => {
   // const itemMenu = ['Home', 'ABout US','ROOMS','SERVICE' ,'CONTACT', 'GALLERY', 'SPECIAL']
