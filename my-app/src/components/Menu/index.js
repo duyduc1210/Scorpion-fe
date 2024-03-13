@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import style from '../Menu/Menu.module.css'
+
 
 import {
   MenuFoldOutlined,
@@ -55,8 +55,15 @@ const MenuLeft = ({ children }) => {
     
       <Sider trigger={null} collapsible collapsed={collapsed}>
       
-        <div className="demo-logo-vertical" />
-        <div className={style.rectangle }>SCORPION HOTEL</div>
+      <div className="demo-logo-vertical" />
+      <p style={{
+          color: "white",
+          textAlign : "center",
+          fontWeight : "bold",
+          backgroundColor : "Green",
+          padding : "1rem",
+          
+        }}>SCORPION HOTEL</p>
         <Menu      
               mode="inline"
               defaultSelectedKeys={['1']}
