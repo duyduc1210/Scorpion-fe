@@ -55,16 +55,25 @@ const MenuLeft = ({ children }) => {
     
       <Sider trigger={null} collapsible collapsed={collapsed}>
       
+        
         <div className="demo-logo-vertical" />
-        <div className={style.rectangle }>SCORPION HOTEL</div>
+      <p style={{
+          color: "white",
+          textAlign : "center",
+          fontWeight : "bold",
+          
+          padding : "1rem",
+          
+        }}>SCORPION HOTEL</p>
         <Menu      
               mode="inline"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
               style={{
+             
                 height: '100%',
-                color: 'white',
-                backgroundbackground: '#000000FF',
+                backgroundColor: 'white',
+               
               }}
               items={items}
             />
@@ -73,6 +82,7 @@ const MenuLeft = ({ children }) => {
       <Layout>
         <Header
           style={{
+            
             padding: 0,
             background: colorBgContainer,
           }}
@@ -82,6 +92,7 @@ const MenuLeft = ({ children }) => {
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
             style={{
+              
               fontSize: '16px',
               width: 64,
               height: 64,
@@ -90,10 +101,11 @@ const MenuLeft = ({ children }) => {
         </Header>
         <Content
           style={{
+            
             margin: '24px 16px',
             padding: 24,
             minHeight: 280,
-            background: colorBgContainer,
+            background : colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
