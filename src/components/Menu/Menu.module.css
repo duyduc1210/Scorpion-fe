@@ -1,0 +1,10 @@
+.rectangle {
+    display: flex;
+    align-items: center;
+    left: 0px;
+    width: 200px;
+    height:64px;
+    background-color: #4CA110FF;
+    /* tertiary4-600 */
+
+}

@@ -1,0 +1,18 @@
+.logo {
+  display: flex;
+  justify-content: space-between;
+  width: 250px;
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+
+.banner {
+  top: 0px; 
+  left: 0px; 
+  background: #1E2128FF; 
+  border-radius: 0px; 
+  display: flex;
+  justify-content: space-between;
+  color: white;
+}
+
