@@ -111,7 +111,8 @@ export const Content = () => {
                 <h3>Loại Phòng</h3>
                 <i class="fa-solid fa-dollar-sign"></i>
                 <input type="text" placeholder="Giá tiền" />
-                <input type="text" placeholder="Search" />
+                <i class="fa-solid fa-filter"></i>
+                <input type="text" placeholder="Số người" />
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Search" />
             </div>
@@ -120,7 +121,7 @@ export const Content = () => {
                     <Button type="primary" onClick={showModal}>
                         Thêm
                     </Button>
-                    <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                    <Modal title="Thêm loại phòng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                         <p>Some contents...</p>
                         <p>Some contents...</p>
                         <p>Some contents...</p>
