@@ -15,6 +15,7 @@ import Content from './pages/Quanlyloaiphong/Content';
 import LoginPage from './views/Pages/Login';
 import HomePage from './views/Pages/Home';
 import PageRegister from './views/Pages/Register';
+import LoginAdmin from './views/Admin/Login';
 function App() {
 
   return (
@@ -24,7 +25,9 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<PageRegister />} />
 
-          <Route path="/admin" element={<LayoutAdmin />} >
+          <Route path="/loginAdmin" element={<LoginAdmin />} />
+
+          <Route path="/admin" element={<LayoutAdmin/>}>
             <Route path="rooms" element={<Rooms />} />
             <Route path="room-types" element={<RoomTypes />} />
             <Route path="thong-ke" element={<ThongKe />} />
