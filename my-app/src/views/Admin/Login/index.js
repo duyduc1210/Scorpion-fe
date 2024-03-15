@@ -15,10 +15,10 @@ const LoginAdmin = () => {
     }
   };
   return (
-    <div className="container">
-      <div className="logo">
-        <div class="logo1">SIGN UP </div>
-        <div class="logo1">SIGN IN </div>
+    <div className="container1">
+      <div className="logo2">
+        
+        <div class="logo2">SIGN IN ADMIN </div>
       </div>
       <div className="form-content">
         <div className="title">
@@ -28,7 +28,7 @@ const LoginAdmin = () => {
         <div class="logout">
           <input
             type="text"
-            placeholder="Enter your email"
+            placeholder="Nhập tài khoản"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
@@ -40,7 +40,7 @@ const LoginAdmin = () => {
         <div class="logout">
           <input
             type="password"
-            placeholder="Enter your password"
+            placeholder="Nhập mật khẩu"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
