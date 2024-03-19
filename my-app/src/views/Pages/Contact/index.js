@@ -9,10 +9,10 @@ const Contact = () => {
     <main>
         <div className="container">
           <div className="header">
-            <h2>Contact Us</h2>
+            <h2>Liên hệ</h2>
             <hr />
             <p>
-              Interested in striking a partnership or do you have any complaint or feedback? Fill the form below
+              Quan tâm đến việc hợp tác hoặc bạn có bất kỳ khiếu nại hoặc phản hồi nào không? Điền vào mẫu dưới đây
             </p>
           </div>
           <div className="main">
@@ -20,31 +20,31 @@ const Contact = () => {
               <div className="contact-form">
                 <form action="#">
                   <div className="contact-detail">
-                    <label htmlFor="name" className="hide">Enter your name</label>
-                    <input type="text" className="form-control" placeholder="Name" id="name" />
-                    <label htmlFor="email" className="hide">Enter your email address</label>
+                    <label htmlFor="name" className="hide">Điền tên của bạn</label>
+                    <input type="text" className="form-control" placeholder="Điền tên của bạn" id="name" />
+                    <label htmlFor="email" className="hide">Điền địa chỉ email</label>
                     <input
                       type="email"
                       className="form-control"
-                      placeholder="Email"
+                      placeholder="Điền địa chỉ email"
                       id="email"
                       name="email"
                     />
                   </div>
-                  <label htmlFor="message" className="hide">message</label>
+                  <label htmlFor="message" className="hide">Nội dung</label>
                   <textarea
                     className="form-control"
                     rows="5"
                     id="comment"
-                    placeholder="Message"
+                    placeholder="Nội dung"
                     style={{ resize: 'none', width: '100%' }}
                     name="message"
                   ></textarea>
-                  <button type="submit" className="btn">SEND MESSAGE</button>
+                  <button type="submit" className="btn">Gửi tin nhắn</button>
                 </form>
               </div>
               <div className="contact-us">
-                <h3>Contact Us</h3>
+                <h3>Liên hệ với chúng tôi</h3>
                 <span>
                   <i style={{ fontSize: '1.5rem' }} className="fa fa-map-marker" aria-hidden="true"></i>
                   23, Fola osibo, Lekki phase 1

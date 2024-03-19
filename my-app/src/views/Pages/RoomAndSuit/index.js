@@ -9,11 +9,11 @@ const RoomAndSuit = () => {
       <main>
         <div className="container">
           <div className="page-header-container">
-            <h2 className="page-header">Scorpion Hotel Rooms</h2>
+            <h2 className="page-header">Các phòng của khách sạn Scorpion </h2>
             <hr />
             <p className="page-sub-header">
-              Get the most of our hotel specials. Enjoy the modern <br />
-              comfort and panoramic view
+            Tận dụng tối đa các ưu đãi đặc biệt của khách sạn chúng tôi. Tận hưởng sự hiện đại <br />
+            sự thoải mái và tầm nhìn toàn cảnh
             </p>
           </div>
 
@@ -62,10 +62,10 @@ const RoomAndSuit = () => {
                 </div>
               </div>
               <div className="col">
-                <h3 className="offers-title">Special Offers</h3>
+                <h3 className="offers-title">Ưu đãi đặc biệt</h3>
                 <p className="offers-sub-title">
-                  Get 10% discount off this city view- standard room. <br />{" "}
-                  Offers valid till june 31st 2020
+                Được giảm giá 10% cho phòng tiêu chuẩn nhìn ra thành phố. <br />{" "}
+                Ưu đãi có hiệu lực đến ngày 31 tháng 6 năm 2024
                 </p>
                 <ul className="offers-list">
                   <li>
@@ -75,7 +75,7 @@ const RoomAndSuit = () => {
                         alt="tick"
                         className="list-icon"
                       />
-                      <p className="list-text">Free Wi-Fi Service</p>
+                      <p className="list-text">Dịch vụ Wifi miễn phí</p>
                     </div>
                   </li>
                   <li>
@@ -85,7 +85,7 @@ const RoomAndSuit = () => {
                         alt="tick"
                         className="list-icon"
                       />
-                      <p className="list-text">Best Rate Guarantee</p>
+                      <p className="list-text">Đảm bảo giá tốt nhất</p>
                     </div>
                   </li>
                   <li>
@@ -95,12 +95,12 @@ const RoomAndSuit = () => {
                         alt="tick"
                         className="list-icon"
                       />
-                      <p className="list-text">Free DSTV Access</p>
+                      <p className="list-text">Truy cập DSTV miễn phí</p>
                     </div>
                   </li>
                 </ul>
                 <a href="#" className="btn btn-fill btn-large">
-                  View More
+                Xem thêm
                 </a>
               </div>
             </div>
@@ -115,9 +115,9 @@ const RoomAndSuit = () => {
                   alt=""
                   className="rooms-img"
                 />
-                <h3 className="room-title">Standard Economic Single</h3>
+                <h3 className="room-title">Phòng đôi</h3>
                 <p className="room-text">
-                  Designed specifically for Practicality and <br /> comfort
+                Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm<br /> sự thoải mái
                 </p>
                 <div>
                   <div className="details-container">
@@ -126,27 +126,27 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">2 Persons</p>
+                    <p className="list-text">2 người</p>
                   </div>
                   <div className="details-container">
                     <img
-                      src="assets/img/check-square.svg"
+                      src="assets/img/bed.png"
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">1 Kingsize bed</p>
+                    <p className="list-text">1 giường đôi lớn</p>
                   </div>
                 </div>
-                <p className="amount-text">NGN25,000 Per Night</p>
+                <p className="amount-text">400.000 VNĐ / ngày</p>
                 <div className="buttons-container">
                   <a href="#" className="btn btn-ghost">
-                    View More
+                    Xem thêm
                   </a>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
                   >
-                    Book Now
+                    Đặt ngay
                   </a>
                 </div>
               </div>
@@ -156,9 +156,9 @@ const RoomAndSuit = () => {
                   alt=""
                   className="rooms-img"
                 />
-                <h3 className="room-title">Standard Economic Single</h3>
+                <h3 className="room-title">Phòng Deluxe</h3>
                 <p className="room-text">
-                  Designed specifically for Practicality and <br /> comfort
+                Phòng đôi với các tiện nghi cao cấp mang lại sự sang trọng <br /> và yên tĩnh
                 </p>
                 <div>
                   <div className="details-container">
@@ -167,7 +167,7 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">2 Persons</p>
+                    <p className="list-text">2 người </p>
                   </div>
                   <div className="details-container">
                     <img
@@ -175,19 +175,19 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">1 Kingsize bed</p>
+                    <p className="list-text">1 giường đôi lớn</p>
                   </div>
                 </div>
-                <p className="amount-text">NGN35,000 Per Night</p>
+                <p className="amount-text">600.000 VNĐ / ngày</p>
                 <div className="buttons-container">
                   <a href="#" className="btn btn-ghost">
-                    View More
+                    Xem thêm
                   </a>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
                   >
-                    Book Now
+                    Đặt ngay
                   </a>
                 </div>
               </div>
@@ -197,9 +197,9 @@ const RoomAndSuit = () => {
                   alt=""
                   className="rooms-img"
                 />
-                <h3 className="room-title">Standard Economic Single</h3>
+                <h3 className="room-title">Phòng gia đình</h3>
                 <p className="room-text">
-                  Designed specifically for Practicality and <br /> comfort
+                Phòng được thiết kế cho gia đình với những tiện nghi cho cả cha mẹ<br /> và con cái
                 </p>
                 <div>
                   <div className="details-container">
@@ -208,7 +208,7 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">2 Persons</p>
+                    <p className="list-text">4 người</p>
                   </div>
                   <div className="details-container">
                     <img
@@ -216,19 +216,19 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">1 Kingsize bed</p>
+                    <p className="list-text">2 giường đôi lớn</p>
                   </div>
                 </div>
-                <p className="amount-text">NGN45,000 Per Night</p>
+                <p className="amount-text">1.000.000 VNĐ / ngày</p>
                 <div className="buttons-container">
                   <a href="#" className="btn btn-ghost">
-                    View More
+                    Xem thêm
                   </a>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
                   >
-                    Book Now
+                    Đặt ngay
                   </a>
                 </div>
               </div>
@@ -238,9 +238,9 @@ const RoomAndSuit = () => {
                   alt=""
                   className="rooms-img"
                 />
-                <h3 className="room-title">Standard Economic Single</h3>
+                <h3 className="room-title">Phòng tổng thống</h3>
                 <p className="room-text">
-                  Designed specifically for Practicality and <br /> comfort
+                  Phòng được trang bị các tiện nghi hiện đại nhất với các dịch vụ<br /> tối thượng của khách sạn
                 </p>
                 <div>
                   <div className="details-container">
@@ -249,7 +249,7 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">2 Persons</p>
+                    <p className="list-text">4 người</p>
                   </div>
                   <div className="details-container">
                     <img
@@ -257,19 +257,19 @@ const RoomAndSuit = () => {
                       alt="tick"
                       className="list-icon"
                     />
-                    <p className="list-text">1 Kingsize bed</p>
+                    <p className="list-text">2 giường đôi</p>
                   </div>
                 </div>
-                <p className="amount-text">NGN50,000 Per Night</p>
+                <p className="amount-text">2.000.000 VNĐ / ngày</p>
                 <div className="buttons-container">
                   <a href="#" className="btn btn-ghost">
-                    View More
+                    Xem thêm
                   </a>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
                   >
-                    Book Now
+                    Đặt ngay
                   </a>
                 </div>
               </div>

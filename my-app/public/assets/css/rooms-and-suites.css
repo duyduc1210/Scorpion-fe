@@ -43,7 +43,7 @@ main {
 }
 
 .small-image {
-    height: 105px;
+    height: 109px;
 }
 
 .large-image {
@@ -179,7 +179,7 @@ hr {
 
 .btn-large {
     font-size: 100%;
-    padding: 9px 22px;
+    padding: 9px 30px;
 }
 
 /* ----------------------------------------------- */
@@ -325,7 +325,7 @@ hr {
         height: 70px;
     }
     
-    .large-image {
+    .large-image {  
         height: 151px;
     }
     .side-by-side-container {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -17,8 +17,17 @@ const LoginPage = () => {
   return (
     <div className="container1">
       <div className="logo">
-        <div class="logo1">ĐĂNG NHẬP </div>
-        <div class="logo1">ĐĂNG KÝ</div>
+      <Link to={"/dang-nhap"} className="link">
+          <div class="logo1">ĐĂNG NHẬP </div>
+      </Link>
+      <Link to={"/register"} className="link">
+          <div class="logo1">ĐĂNG KÝ</div>
+      </Link>
+     
+        
+          
+       
+        
       </div>
       <div className="form-content">
         <div className="title">
@@ -54,7 +63,9 @@ const LoginPage = () => {
         <button onClick={checkAcc}>Đăng Nhập</button>
       </div>
       <div class="footer">
+        <Link to={""} className="link">
         <div className="footer-a">Quên mật khẩu?</div>
+        </Link>
       </div>
     </div>
   );

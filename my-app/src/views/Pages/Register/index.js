@@ -1,10 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const PageRegister = () => {
   return (
     <div className="containerr">
       <div className="logo">
-        <div class="logo1">SIGN UP </div>
-        <div class="logo1">SIGN IN </div>
+      <Link to={"/dang-nhap"} className="link">
+          <div class="logo1">ĐĂNG NHẬP </div>
+      </Link>
+      <Link to={"/register"} className="link">
+          <div class="logo1">ĐĂNG KÝ</div>
+      </Link>
+      
+        
       </div>
       <div className="form-content">
         <div className="title">Họ và tên</div>
@@ -28,11 +35,11 @@ const PageRegister = () => {
           <input type="radio" />
           Nữ
         </div>
-        <div className="title">Mật khảu </div>
+        <div className="title">Mật khẩu </div>
         <div class="logout">
           <input type="text" />
         </div>
-        <div className="title">Xác nhậm mật khẩu</div>
+        <div className="title">Xác nhận mật khẩu</div>
         <div class="logout">
           <input type="text" />
         </div>
