@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -7,11 +8,21 @@ const LoginPage = () => {
   const handleLogin = () => {
     navigate("/");
   };
-  const checkAcc = () => {
-    if (email === "duc123" && password === "12345678") {
-      handleLogin();
-    } else {
-      alert("Tài khoản hoặc mật khẩu không đúng");
+  const checkAcc = async () => {
+    const body = {
+      soDienThoai: email,
+      password
+    }
+    try {
+      const response = await axios.post("http://localhost:8080/khach/login", body)
+      if (response.status === 200) {
+        // push vào màn home
+        // lưu thông tin ngừoi dùng
+        handleLogin();
+      }
+      // console.log("response", response);
+    } catch (error) {
+      console.log("error", error);
     }
   };
   return (

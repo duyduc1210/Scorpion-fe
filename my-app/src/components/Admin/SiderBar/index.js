@@ -8,17 +8,20 @@ const SiderBar = ({collapsed, items}) => {
     <>
       <Sider trigger={null} collapsible collapsed={collapsed}>
         {/* <div className="demo-logo-vertical" /> */}
-        {/* <p
+        <p
           style={{
             color: "white",
             textAlign: "center",
             fontWeight: "bold",
             backgroundColor: "Green",
-            padding: "1rem",
+            marginTop: "0px",
+            marginBottom: "0px",
+            height:"64px",
+            paddingTop:"20px",
           }}
         >
           SCORPION HOTEL
-        </p> */}
+        </p>
         <Menu
           onClick={({key}) => {
             if(key){
@@ -30,7 +33,8 @@ const SiderBar = ({collapsed, items}) => {
           defaultOpenKeys={["sub1"]}
           style={{
             height: "100vh",
-            paddingTop: "4rem"
+            // color: "white",         
+            // backgroundColor: "Black",
           }}
           items={items}
         />
