@@ -55,7 +55,16 @@ export const Content = () => {
     //     status: item.status,
     //     act: item.act,
     //   }));
-
+    <>
+    <Button type="primary" onClick={showModal}>
+        Thêm
+    </Button>
+    <Modal title="Thêm loại phòng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+        <p>Some contents...</p>
+    </Modal>
+</>
     const columns = [
         {
             title: '#',
@@ -117,16 +126,7 @@ export const Content = () => {
                 <input type="text" placeholder="Search" />
             </div>
             <div>
-                <>
-                    <Button type="primary" onClick={showModal}>
-                        Thêm
-                    </Button>
-                    <Modal title="Thêm loại phòng" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                    </Modal>
-                </>
+               
                 <div className={style.table}>
                     {/* <table>
                         <thead>
