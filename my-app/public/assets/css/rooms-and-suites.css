@@ -179,7 +179,11 @@ hr {
 
 .btn-large {
     font-size: 100%;
-    padding: 9px 30px;
+    padding: 5px 30px;
+}
+.btn-large1 {
+    font-size: 100%;
+    padding: 1px 20px;
 }
 
 /* ----------------------------------------------- */

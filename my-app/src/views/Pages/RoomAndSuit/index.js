@@ -1,19 +1,31 @@
-
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
-
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
 const RoomAndSuit = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <>
-    <HeaderPage/>
+      <HeaderPage />
       <main>
         <div className="container">
           <div className="page-header-container">
             <h2 className="page-header">Các phòng của khách sạn Scorpion </h2>
             <hr />
             <p className="page-sub-header">
-            Tận dụng tối đa các ưu đãi đặc biệt của khách sạn chúng tôi. Tận hưởng sự hiện đại <br />
-            sự thoải mái và tầm nhìn toàn cảnh
+              Tận dụng tối đa các ưu đãi đặc biệt của khách sạn chúng tôi. Tận
+              hưởng sự hiện đại <br />
+              sự thoải mái và tầm nhìn toàn cảnh
             </p>
           </div>
 
@@ -64,8 +76,8 @@ const RoomAndSuit = () => {
               <div className="col">
                 <h3 className="offers-title">Ưu đãi đặc biệt</h3>
                 <p className="offers-sub-title">
-                Được giảm giá 10% cho phòng tiêu chuẩn nhìn ra thành phố. <br />{" "}
-                Ưu đãi có hiệu lực đến ngày 31 tháng 6 năm 2024
+                  Được giảm giá 10% cho phòng tiêu chuẩn nhìn ra thành phố.{" "}
+                  <br /> Ưu đãi có hiệu lực đến ngày 31 tháng 6 năm 2024
                 </p>
                 <ul className="offers-list">
                   <li>
@@ -99,15 +111,25 @@ const RoomAndSuit = () => {
                     </div>
                   </li>
                 </ul>
-                <a href="#" className="btn btn-fill btn-large">
-                Xem thêm
-                </a>
+               
+                <Button type="text" onClick={showModal} className="btn btn-fill btn-large1">
+                    Xem Thêm
+                  </Button>
+                  <Modal
+                    title="Basic Modal"
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
               </div>
             </div>
           </section>
 
           <section className="rooms-section">
-            
             <div className="row center-lg">
               <div className="rooms col col-2">
                 <img
@@ -117,7 +139,8 @@ const RoomAndSuit = () => {
                 />
                 <h3 className="room-title">Phòng đôi</h3>
                 <p className="room-text">
-                Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm<br /> sự thoải mái
+                  Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm
+                  <br /> sự thoải mái
                 </p>
                 <div>
                   <div className="details-container">
@@ -139,9 +162,20 @@ const RoomAndSuit = () => {
                 </div>
                 <p className="amount-text">400.000 VNĐ / ngày</p>
                 <div className="buttons-container">
-                  <a href="#" className="btn btn-ghost">
-                    Xem thêm
-                  </a>
+              
+                  <Button type="text" onClick={showModal} className="btn btn-ghost">
+                    Xem Thêm
+                  </Button>
+                  <Modal
+                    title="Basic Modal"
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
@@ -158,7 +192,8 @@ const RoomAndSuit = () => {
                 />
                 <h3 className="room-title">Phòng Deluxe</h3>
                 <p className="room-text">
-                Phòng đôi với các tiện nghi cao cấp mang lại sự sang trọng <br /> và yên tĩnh
+                  Phòng đôi với các tiện nghi cao cấp mang lại sự sang trọng{" "}
+                  <br /> và yên tĩnh
                 </p>
                 <div>
                   <div className="details-container">
@@ -180,9 +215,19 @@ const RoomAndSuit = () => {
                 </div>
                 <p className="amount-text">600.000 VNĐ / ngày</p>
                 <div className="buttons-container">
-                  <a href="#" className="btn btn-ghost">
-                    Xem thêm
-                  </a>
+                   <Button type="text" onClick={showModal} className="btn btn-ghost">
+                    Xem Thêm
+                  </Button>
+                  <Modal
+                    title="Basic Modal"
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
@@ -199,7 +244,9 @@ const RoomAndSuit = () => {
                 />
                 <h3 className="room-title">Phòng gia đình</h3>
                 <p className="room-text">
-                Phòng được thiết kế cho gia đình với những tiện nghi cho cả cha mẹ<br /> và con cái
+                  Phòng được thiết kế cho gia đình với những tiện nghi cho cả
+                  cha mẹ
+                  <br /> và con cái
                 </p>
                 <div>
                   <div className="details-container">
@@ -221,9 +268,20 @@ const RoomAndSuit = () => {
                 </div>
                 <p className="amount-text">1.000.000 VNĐ / ngày</p>
                 <div className="buttons-container">
-                  <a href="#" className="btn btn-ghost">
-                    Xem thêm
-                  </a>
+                
+                  <Button type="text" onClick={showModal} className="btn btn-ghost">
+                    Xem Thêm
+                  </Button>
+                  <Modal
+                    title="Basic Modal"
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
@@ -240,7 +298,9 @@ const RoomAndSuit = () => {
                 />
                 <h3 className="room-title">Phòng tổng thống</h3>
                 <p className="room-text">
-                  Phòng được trang bị các tiện nghi hiện đại nhất với các dịch vụ<br /> tối thượng của khách sạn
+                  Phòng được trang bị các tiện nghi hiện đại nhất với các dịch
+                  vụ
+                  <br /> tối thượng của khách sạn
                 </p>
                 <div>
                   <div className="details-container">
@@ -262,9 +322,19 @@ const RoomAndSuit = () => {
                 </div>
                 <p className="amount-text">2.000.000 VNĐ / ngày</p>
                 <div className="buttons-container">
-                  <a href="#" className="btn btn-ghost">
-                    Xem thêm
-                  </a>
+                <Button type="text" onClick={showModal} className="btn btn-ghost">
+                    Xem Thêm
+                  </Button>
+                  <Modal
+                    title="Basic Modal"
+                    open={isModalOpen}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                  </Modal>
                   <a
                     href="https://timbu.com/search?query=hotel"
                     className="btn btn-fill"
@@ -277,7 +347,7 @@ const RoomAndSuit = () => {
           </section>
         </div>
       </main>
-    <FooterPage/>
+      <FooterPage />
     </>
   );
 };

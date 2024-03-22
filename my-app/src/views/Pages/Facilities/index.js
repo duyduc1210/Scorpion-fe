@@ -22,10 +22,7 @@ const Facilities = () => {
             <div className="col image-col right-marg">
               <div className="large-image-container">
                 <img
-                  src="./assets/img/telephone.webp"
-                  alt="room-image-large"
-                  className="large-image"
-                />
+                  src="./assets/img/telephone.webp" alt="room-image-large" className="large-image"/>
               </div>
             </div>
 
