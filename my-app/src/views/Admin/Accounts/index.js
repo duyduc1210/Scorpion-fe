@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Tabs } from 'antd';
 import Children from  "../../../pages/Taikhoan/quanli"
-
+import Children1 from "../../../pages/Taikhoan/khachhang"
 const onChange = (key) => {
     console.log(key);
   };
@@ -9,12 +9,12 @@ const onChange = (key) => {
     {
       key: '1',
       label: 'Quản Lí',
-      children: () => <Children /> ,
+      children: <Children />,
     },
     {
       key: '2',
       label: 'Khách hàng',
-      children: 'Content of Tab Pane 2',
+      children: <Children1 />,
     },
   ];
 
