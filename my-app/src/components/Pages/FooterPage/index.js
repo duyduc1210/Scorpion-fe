@@ -13,7 +13,7 @@ const FooterPage = () => {
                 <p className="footer-description-detail"> 
                   <img src="./assets/img/map-pin.svg" className="footer-description-icon" alt="scorpion hotel location" />
 
-                  <span>23, Fola Osibo, Lekki Phase 1</span></p>
+                  <span>23, Hoàn Kiếm, Hà Nội</span></p>
                 <p className="footer-description-detail">
                   <img src="./assets/img/phone.svg" className="footer-description-icon" alt="scorpion hotels phone number" /> 
                   <span>
