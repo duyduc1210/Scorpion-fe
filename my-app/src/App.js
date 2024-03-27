@@ -19,6 +19,7 @@ import RoomAndSuit from "./views/Pages/RoomAndSuit";
 import LayoutPages from "./components/Pages/LayoutPages";
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
+import RoomDiagram from "./views/Admin/RoomDiagram";
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
             <Route path="thong-ke" element={<ThongKe />} />
             <Route path="accounts" element={<Accounts />} />
             <Route path="quanlyloaiphong" element={<Content />} />
+            <Route path="room-diagram" element={<RoomDiagram/>}/>
           </Route>
 
           <Route path="/register" element={<PageRegister />} />

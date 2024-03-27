@@ -34,7 +34,7 @@ const items = [
     getItem("Giao Dịch", "6"),
     getItem("Danh Sách Đặt Phòng", "7"),
     getItem("Thông tin khách ở ", "8"),
-    getItem("Sơ đồ phòng", "9"),
+    getItem("Sơ đồ phòng", "room-diagram"),
   ]),
 ];
 const LayoutAdmin = () => {

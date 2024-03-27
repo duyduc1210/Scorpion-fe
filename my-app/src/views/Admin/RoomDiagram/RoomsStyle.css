@@ -1,0 +1,74 @@
+.layout{
+  display: flex;
+  flex-direction: column;
+}
+.layout > * {
+  margin-bottom: 1rem;
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.short-static-rooms {
+    display: flex;
+    background-color:#dea8b9;
+    border-radius: 10px;
+    padding-bottom: 3rem;
+    padding-top: 0.5rem;
+}
+
+.short-static-rooms h6 {
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+
+.room-status {
+    display: flex;  
+    flex-direction: column;
+}
+
+.rooms {
+  top: 162px; 
+  left: 24px; 
+  width: 328px; 
+  height: 117px; 
+  background: #a8b9de; /* white */
+  border-radius: 15px; 
+  display: flex;
+  margin-right: 1rem;
+  margin-bottom: 2rem
+}
+
+/* Adjust styles for the info and status sections */
+.info {
+    flex: 1; /* Allow the info section to grow to fill available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    padding: 1rem; /* Add padding as needed */    
+    border-radius:  15px;
+  }
+  .room-empty .info{
+    background-color: #b9dea8; /* Set background color */
+  }
+  .room-using .info{
+    background-color: #de1024; /* Set background color */
+  }
+  .room-overtime .info{
+    background-color: #e5650a; /* Set background color */
+  }
+  .status {
+    flex: 1; /* Allow the status section to grow to fill available space */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 1rem; /* Add padding as needed */
+  }
+.info > *{
+    padding-bottom: 1rem;
+}
+
