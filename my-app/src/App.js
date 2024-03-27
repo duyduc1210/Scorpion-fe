@@ -17,9 +17,6 @@ import LoginPage from './views/Pages/Login';
 import HomePage from './views/Pages/Home';
 import PageRegister from './views/Pages/Register';
 import LoginAdmin from './views/Admin/Login';
-
-
-
 import RoomDiagram from "./views/Admin/RoomDiagram";
 function App() {
   return (
