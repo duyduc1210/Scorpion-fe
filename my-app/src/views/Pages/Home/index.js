@@ -3,6 +3,7 @@ import { dataRoom } from "../../../shared/db/dataRoom";
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
 
+
 const HomePage = () => {
   // const itemMenu = ['Home', 'ABout US','ROOMS','SERVICE' ,'CONTACT', 'GALLERY', 'SPECIAL']
   const [bookingMessage, setBookingMessage] = React.useState("");
@@ -74,22 +75,7 @@ const HomePage = () => {
            Đặt ngay
           </a>
         </div>
-         <div class="jumbotron-right">
-			<form action="" class="jumbotron-form">
-			
-					<h3>Scared you can't afford it?</h3><br/>
-					<p>Don't worry, our hotel offers the best<br/> affordable rates you can ever find.</p>
-					<label class="hide" for="arrival">arrival date</label>
-					<input type="text" id="arrival" name="arrival_date" placeholder="Arrival Date" onfocus="(this.type='date')" /><br/>
-					<label class="hide" for="departure">departure date</label>
-					<input type="text"  id="departure" name="departure_date" placeholder="Departure Date" onfocus="(this.type='date')" /><br/>
-					<label class="hide" for="guests">how many guests</label>
-					<input type="text" id="guests" name="guests" placeholder="Guests"/><br/>
-					<label class="hide" for="children">children</label>
-					<input type="text" id="children" name="children" placeholder="Children"/><br/>
-					<button type="button" class="rates">CHECK RATES</button>
-			</form>
-		</div>
+      
       </div>
 
      
