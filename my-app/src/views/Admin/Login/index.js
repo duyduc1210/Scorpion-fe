@@ -1,21 +1,46 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { useMutation, } from '@tanstack/react-query';
+
+// import * as UserService from "../../../services/UserService"
+import axios from "axios";
+
+
 const LoginAdmin = () => {
+
+  // const mutation = useMutation({
+  //   mutationFn: data => UserService.loginUser(data)
+  // })
+
+  // console.log(mutation);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleLogin = () => {
+    // mutation.mutate({
+    //   email,
+    //   password
+    // })
     navigate("/admin");
   };
-  const checkAcc = () => {
-    if (email === "admin" && password === "123456") {
-      handleLogin();
-    } else {
-      alert("Tài khoản hoặc mật khẩu không đúng");
+  const checkAcc = async () => {
+    const body = {
+      soDienThoai: email,
+      password
+    }
+    try {
+      const response = await axios.post("http://localhost:8080/admin/login", body)
+      if (response.status === 200) {
+        // push vào màn home
+        handleLogin();
+      }
+      // console.log("response", response);
+    } catch (error) {
+      console.log("error", error);
     }
   };
   return (
-    <div className="container1">
+    <div className="container">
       <div className="logo2">
         
         <div class="logo2">SIGN IN ADMIN </div>

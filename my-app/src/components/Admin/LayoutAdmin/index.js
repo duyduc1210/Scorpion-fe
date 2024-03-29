@@ -31,10 +31,14 @@ const items = [
     getItem("Dịch vụ tiện ích", "5"),
   ]),
   getItem("Staff", "sub2", <TeamOutlined />, [
-    getItem("Giao Dịch", "6"),
-    getItem("Danh Sách Đặt Phòng", "7"),
+    getItem("Giao Dịch", "6",null,[
+      getItem('Tạo giao dịch', 'create-transaction'),
+      getItem('Danh sách giao dịch', '62'),
+      getItem('Lịch sử', '63'),
+    ]),
+    getItem("Danh Sách Đặt Phòng", "reservation-list"),
     getItem("Thông tin khách ở ", "8"),
-    getItem("Sơ đồ phòng", "9"),
+    getItem("Sơ đồ phòng", "room-diagram"),
   ]),
 ];
 const LayoutAdmin = () => {

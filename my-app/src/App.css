@@ -43,8 +43,9 @@
   align-items: center;
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
   height: 870px;
+  height: 730px;
 }
-.container1 {
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,6 +53,7 @@
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
   max-width: 100%;
   height: 870px;
+  height: 730px;
 }
 .logo{
   display: flex;
@@ -60,21 +62,8 @@
   margin-bottom: 60px;
   margin-top: 40px;
 }
-.logo2{
-  display: flex;
-  justify-content: center;
-  width: 250px;
-  margin-bottom: 30px;
-  margin-top: 40px;
-  font-weight: bold;
-  font-size: 18px;
-  
-}
-.link{
-  text-decoration: none;
-}
 .logo1:hover {
-  text-decoration: none;
+  text-decoration: underline;
   color: orange;
   
 }
@@ -140,7 +129,5 @@ button {
 }
 
 .footer-a:hover {
-  text-decoration: none;
+  text-decoration: underline;
 }
-
-
