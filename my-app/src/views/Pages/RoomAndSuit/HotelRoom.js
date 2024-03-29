@@ -47,7 +47,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
   }
   return (
     <>
-      <div className="rooms col col-2">
+      <div className="room col col-2">
         <img
           width={size}
           src={roomType.image}

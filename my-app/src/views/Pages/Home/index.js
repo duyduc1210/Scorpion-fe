@@ -3,6 +3,7 @@ import { dataRoom } from "../../../shared/db/dataRoom";
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
 
+
 const HomePage = () => {
   // const itemMenu = ['Home', 'ABout US','ROOMS','SERVICE' ,'CONTACT', 'GALLERY', 'SPECIAL']
   const [bookingMessage, setBookingMessage] = React.useState("");

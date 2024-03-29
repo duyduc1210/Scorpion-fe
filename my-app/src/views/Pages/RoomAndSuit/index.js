@@ -9,6 +9,7 @@ import { roomTypes, uuDais } from "../../../shared/db/dataRoom";
 
 import CsModal from "./CsModal";
 import UuDaiDetail from "./UuDaiDetail";
+
 import RoomTypeDetail from "./RoomTypeDetail";
 
 const RoomAndSuit = () => {

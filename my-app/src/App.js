@@ -10,21 +10,27 @@ import Rooms from "./views/Admin/Rooms";
 import RoomTypes from "./views/Admin/RoomTypes";
 import ThongKe from "./views/Admin/ThongKe";
 import Accounts from "./views/Admin/Accounts";
-import Content from "./pages/Quanlyloaiphong/Content";
+
 import LoginPage from "./views/Pages/Login";
 import HomePage from "./views/Pages/Home";
 import PageRegister from "./views/Pages/Register";
 import LoginAdmin from "./views/Admin/Login";
 import RoomAndSuit from "./views/Pages/RoomAndSuit";
-import LayoutPages from "./components/Pages/LayoutPages";
+
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
+import Reservationlist from "./views/Admin/Reservationlist";
+import Createtransaction from "./views/Admin/TaoGiaoDich"
+import RoomDiagram from "./views/Admin/RoomDiagram"
+import { Content } from "antd/es/layout/layout";
+import HotelBookingForm from "./views/Pages/Booking";
+
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/dang-nhap" element={<LoginPage />} />
           <Route path="/register" element={<PageRegister />} />
 
           <Route path="/loginAdmin" element={<LoginAdmin />} />
@@ -36,12 +42,15 @@ function App() {
             <Route path="accounts" element={<Accounts />} />
             <Route path="create-transaction" element={<Createtransaction />} />
             <Route path="reservation-list" element={<Reservationlist/>} />
-            {/* <Route path="quanlyloaiphong" element={<Content />} /> */}
+            <Route path="quanlyloaiphong" element={<Content />} />
             <Route path="room-diagram" element={<RoomDiagram/>}/>
+           
           </Route>
 
           <Route path="/" element={<HomePage />} />
           <Route path="room-and-suit" element={<RoomAndSuit />} />
+          <Route path="booking" element={<HotelBookingForm />} />
+
           <Route path="facilities" element={<Facilities />} />
           <Route path="contact" element={<Contact />} />
         </Routes>
