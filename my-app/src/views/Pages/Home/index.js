@@ -7,47 +7,7 @@ import FooterPage from "../../../components/Pages/FooterPage";
 const HomePage = () => {
   // const itemMenu = ['Home', 'ABout US','ROOMS','SERVICE' ,'CONTACT', 'GALLERY', 'SPECIAL']
   const [bookingMessage, setBookingMessage] = React.useState("");
-  const itemMenu = [
-    {
-      name: "Home",
-      href: "/home",
-    },
-    {
-      name: "ABout US",
-      href: "/login",
-    },
-    {
-      name: "ROOMS",
-      href: "/home",
-    },
-    {
-      name: "SERVICE",
-      href: "/home",
-    },
-    {
-      name: "CONTACT",
-      href: "/home",
-    },
-    {
-      name: "GALLERY",
-      href: "/home",
-    },
-    {
-      name: "SPECIAL",
-      href: "/home",
-    },
-  ];
-
-  const login = [
-    {
-      name: "SIGN UP",
-      href: "/register",
-    },
-    {
-      name: "SIGN IN",
-      href: "/login",
-    },
-  ];
+  
   const handleBooking = () => {
     setBookingMessage("Bạn đã đặt phòng thành công!");
   };

@@ -51,7 +51,7 @@
   justify-content: center;
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
   max-width: 100%;
-  height: 870px;
+  height: 760px;
 }
 .logo{
   display: flex;
@@ -59,6 +59,7 @@
   width: 250px;
   margin-bottom: 60px;
   margin-top: 40px;
+  
 }
 .logo2{
   display: flex;
@@ -73,6 +74,9 @@
 .link{
   text-decoration: none;
 }
+
+
+
 .logo1:hover {
   text-decoration: none;
   color: orange;
@@ -81,6 +85,7 @@
 .logo1 {
   font-size: 18px;
   font-weight: bold;
+  text-decoration: none;
 }
 .form-content {
   font-size: 15px;
