@@ -31,16 +31,16 @@
   select,
   input[type="date"],
   input[type="number"],
-  button {
+  .button1 {
     padding: 0.5rem;
     margin-bottom: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 12px;
-    width: 100%;
+    width: 11%;
   }
   
-  button {
+  .button1 {
     background-color: #007bff;
     color: white;
     cursor: pointer;
