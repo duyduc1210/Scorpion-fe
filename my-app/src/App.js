@@ -19,6 +19,8 @@ import RoomAndSuit from "./views/Pages/RoomAndSuit";
 import LayoutPages from "./components/Pages/LayoutPages";
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
+import Booking from "./views/Pages/Booking";
+import HotelBookingForm from "./views/Pages/Booking";
 function App() {
   return (
     <div className="App">
@@ -37,6 +39,7 @@ function App() {
           <Route path="/dang-nhap" element={<LoginPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="room-and-suit" element={<RoomAndSuit />} />
+          <Route path="booking" element={<HotelBookingForm />} />
           <Route path="facilities" element={<Facilities />} />
           <Route path="contact" element={<Contact />} />
         </Routes>

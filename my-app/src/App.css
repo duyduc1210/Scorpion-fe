@@ -42,7 +42,7 @@
   flex-direction: column;
   align-items: center;
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
-  height: 760px;
+  height: 870px;
 }
 .container1 {
   display: flex;
@@ -51,7 +51,7 @@
   justify-content: center;
   background-image: linear-gradient(to right, #fc5c7d, #6a82fb);
   max-width: 100%;
-  height: 760px;
+  height: 870px;
 }
 .logo{
   display: flex;
@@ -85,7 +85,7 @@
 .form-content {
   font-size: 15px;
   
-  margin-bottom: 90px;
+  margin-bottom: 115px;
   height: 70px;
 }
 .title{
