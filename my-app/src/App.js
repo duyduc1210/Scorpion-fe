@@ -19,8 +19,8 @@ import RoomAndSuit from "./views/Pages/RoomAndSuit";
 
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
-import Reservationlist from "./views/Admin/Reservationlist";
-import Createtransaction from "./views/Admin/TaoGiaoDich"
+import Reservationlist from "./views/Admin/ReservationList"
+import Createtransaction from "./views/Admin/CreateTransaction"
 import RoomDiagram from "./views/Admin/RoomDiagram"
 import { Content } from "antd/es/layout/layout";
 import HotelBookingForm from "./views/Pages/Booking";
