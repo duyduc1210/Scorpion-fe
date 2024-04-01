@@ -1,152 +1,124 @@
-.layout-room-diagram{
+/* Layout adjustments */
+.layout-room-diagram {
   display: flex;
   flex-direction: column;
 }
+
 .layout-room-diagram > * {
   margin-bottom: 1rem;
 }
 
-.flex-row-room-diagram{
+.flex-row-room-diagram {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
+/* Styling for short static rooms */
 .short-static-rooms {
-    display: flex;
-    background-color:#dea8b9;
-    border-radius: 10px;
-    padding-bottom: 3rem;
-    padding-top: 0.5rem;
+  display: flex;
+  background-color: #dea8b9;
+  border-radius: 10px;
+  padding-bottom: 3rem;
+  padding-top: 0.5rem;
 }
 
+/* Styling for room status */
 .room-status-room-diagram {
-    display: flex;  
-    flex-direction: column;
-    height: 70vh; /* 70% of the viewport height */
-    max-height: 900px; /* Maximum height to prevent it from growing too large on larger screens */
-    overflow-y: auto; /* This will make the div scrollable vertically if content overflows */
+  display: flex;
+  flex-direction: column;
+  height: 70vh; /* 70% of the viewport height */
+  max-height: 900px; /* Maximum height to prevent it from growing too large on larger screens */
+  overflow-y: auto; /* This will make the div scrollable vertically if content overflows */
 }
 
+/* Styling for rooms */
 .rooms {
-  top: 162px; 
-  left: 24px; 
-  width: 328px; 
-  height: 117px; 
-  background: #a8b9de; /* white */
-  border-radius: 15px; 
+  position: relative;
+  width: 328px;
+  height: 117px;
+  background: #a8b9de;
+  border-radius: 15px;
   display: flex;
   margin-right: 1rem;
   margin-bottom: 2rem;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.rooms:hover {
   box-shadow: 10px 20px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Adjust styles for the info and status sections */
+/* Styling for room info and status sections */
 .info {
-    flex: 1; /* Allow the info section to grow to fill available space */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    padding: 1rem; /* Add padding as needed */    
-    border-radius:  15px;
-  }
-  .room-empty .info{
-    background-color: #b9dea8; /* Set background color */
-  }
-  .room-using .info{
-    background-color: #de1024; /* Set background color */
-  }
-
-  .status {
-    flex: 1; /* Allow the status section to grow to fill available space */
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    padding: 1rem; /* Add padding as needed */
-  }
-.info > *{
-    padding-bottom: 1rem;
-}
-/* -------------------------------------------------pop-up-display-by-click------------------------ */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
-  z-index: 9999; /* Ensure the overlay is on top */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 15px;
 }
 
-.small-pop-up {
-  position: absolute;
-  max-width: 220px; /* Adjust width as needed */
-  max-height: 220px;
-  background-color: lightgray;
-  border: 1px solid black;
-  border-radius: 1rem;
-  padding: 10px; /* Add padding for better readability */
-  overflow-y: auto; /* Add scrollbar if content overflows vertically */
-  z-index: 10000; /* Ensure the pop-up is on top of the overlay */
+.room-empty .info {
+  background-color: #b9dea8; /* Set background color */
 }
-.small-pop-up > div {
-  cursor: pointer;
-  border-bottom: 1px solid black;
+
+.room-using .info {
+  background-color: #de1024; /* Set background color */
 }
-.small-pop-up > div:not(:last-child) {
-  margin-bottom: 5px; /* Adjust margin as needed */
+
+.status {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
-.small-pop-up {
-  margin: 0; /* Remove default margins of h6 */
+
+/* Styling for modal update info guest */
+.modal-update-info-guest > * {
+  padding: 1rem;
 }
-/* modal-detail */
-/* -----------------------------------------navbar-detail------------------------------------ */
-.navbar-detail{
+
+/* Styling for modal content */
+.modal-content {
+  padding: 1rem;
+}
+
+/* Styling for navbar detail */
+.navbar-detail {
   display: flex;
   flex-direction: row;
-  border-bottom: black solid 1px;
+  border-bottom: 1px solid black;
   margin-bottom: 1rem;
 }
+
 .navbar-detail > div {
-  padding-right: 10px; 
+  padding-right: 10px;
 }
-/* -------------------------------------------------content---------------------------- */
-.info-room > div:not(:last-child) {
-  border-bottom: 1px solid black;
-  padding: 1rem 1rem; /* Optional: Add padding for better spacing */
-}
+
+/* Styling for larger text */
 .larger-text-room-diagram {
   font-size: 20px;
   font-weight: bold;
 }
-.medium-text-room-diagram{
+
+/* Styling for medium text */
+.medium-text-room-diagram {
   font-size: 16px;
   font-weight: bold;
-  padding: 1rem 1rem;
+  padding: 1rem;
 }
-.border-table{
-  border: black solid 1px;
+
+/* Styling for table borders */
+.border-table {
+  border: 1px solid black;
 }
-.font-table > *{
+
+/* Styling for table font */
+.font-table > * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   padding-top: 1rem;
 }
-/* --------------------------------------------modal-update-info-guest-------------------------------- */
-.modal-update-info-guest > *{
-  padding: 1rem 1rem;
-}
-
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
-/* ----------------------------------------------------------------------------- */
