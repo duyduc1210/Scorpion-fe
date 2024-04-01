@@ -28,7 +28,7 @@ const items = [
     getItem("Danh sách phòng", "rooms"),
     getItem("Thống kê", "thong-ke"),
     getItem("Tài  khoản", "accounts"),
-    getItem("Dịch vụ tiện ích", "5"),
+    getItem("Dịch vụ tiện ích", "covenient-service"),
   ]),
   getItem("Staff", "sub2", <TeamOutlined />, [
     getItem("Giao Dịch", "6",null,[

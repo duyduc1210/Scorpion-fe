@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, Flex, Tooltip, Popconfirm, Modal} from 'antd'
+import { Table, Button, Flex, Tooltip, Popconfirm, Modal } from 'antd'
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
-import { Content } from "../../pages/Loaiphong/AddRoom"
-import { Content1 } from "../../pages/Loaiphong/EditRoom"
 
- export const Children = () => {
+import { Content1 } from "../../pages/Loaiphong/EditRoom"
+import { Content3 } from './addcontact';
+
+export const Children = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -37,9 +38,10 @@ import { Content1 } from "../../pages/Loaiphong/EditRoom"
             <Button type="primary" onClick={() => setModal1Open(true)}>
                 Thêm
             </Button>
-            <Modal title="Thêm phòng" open={modal1Open} onOk={() => setModal1Open(false)}
+            <Modal
+                title="Tạo tài khoản" open={modal1Open} onOk={() => setModal1Open(false)}
                 onCancel={() => setModal1Open(false)} width={600}>
-                <Content />
+                <Content3 />
             </Modal>
             <>
                 <Table dataSource={data} loading={loading}>
@@ -47,7 +49,7 @@ import { Content1 } from "../../pages/Loaiphong/EditRoom"
                     <Column title="Tên tài khoản" dataIndex="name" key="name" />
                     <Column title="Mật khẩu" dataIndex="pass" key="pass" />
                     <Column title="Quyền" dataIndex="type" key="type" />
-                   
+
                     <Column title="Hành Động" render={(props) => (
                         <>
                             <Flex justify={"flex-start"}>

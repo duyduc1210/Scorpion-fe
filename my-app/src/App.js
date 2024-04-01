@@ -10,8 +10,9 @@ import Rooms from './views/Admin/Rooms';
 import RoomTypes from './views/Admin/RoomTypes';
 import ThongKe from './views/Admin/ThongKe';
 import Accounts from './views/Admin/Accounts';
-import Createtransaction from './views/Admin/TaoGiaoDich';
-import Reservationlist from './views/Admin/Reservationlist'
+import Covenientservice from './views/Admin/CovenientService';
+import Createtransaction from './views/Admin/CreateTransaction';
+import Reservationlist from './views/Admin/ReservationList';
 // import Content from './pages/Quanlyloaiphong/Content';
 import LoginPage from './views/Pages/Login';
 import HomePage from './views/Pages/Home';
@@ -37,6 +38,8 @@ function App() {
             <Route path="accounts" element={<Accounts />} />
             <Route path="create-transaction" element={<Createtransaction />} />
             <Route path="reservation-list" element={<Reservationlist/>} />
+            <Route path="covenient-service" element={<Covenientservice/>} />
+
             {/* <Route path="quanlyloaiphong" element={<Content />} /> */}
           </Route>
 
