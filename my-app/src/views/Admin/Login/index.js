@@ -33,6 +33,12 @@ const LoginAdmin = () => {
       if (response.status === 200) {
         // push vào màn home
         handleLogin();
+
+        // luu response vào localstorage
+
+        // nếu localstorage có tenTaiKhoan && idQuyenHan thì mới được vào màn trong
+        // không thì push sang màn login
+        
       }
       // console.log("response", response);
     } catch (error) {

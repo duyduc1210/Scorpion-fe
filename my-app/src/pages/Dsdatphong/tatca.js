@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Switch, Button, Flex, Tooltip, Popconfirm, Modal, Tag } from 'antd'
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
+import {Detail} from  '../Danhsachdatphong/Detail'
 export const Children2 = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const [modal1Open, setModal1Open] = useState(false);
 
     const { Column } = Table;
-    const onChange = (checked) => {
-        console.log(`switch to ${checked}`);
-    };
+   
     const data2 = [
 
         {
@@ -65,15 +64,18 @@ export const Children2 = () => {
                     <>
                         <Flex justify={"flex-start"}>
 
-                            <Tooltip title={"Sửa"}>
-                                <Button type="text" >
-                                    {<EditOutlined />}
-                                </Button>
+                            <Tooltip title={"Thông tin" }>
+                            <Button type="text" onClick={() => setModal1Open(true)}>
+                                {<EditOutlined />}
+                            </Button>
+                            <Modal title="Thông tin" open={modal1Open} onOk={() => setModal1Open(false)}
+                                onCancel={() => setModal1Open(false)} width={1000}>
+                                <Detail />
+                            </Modal>
 
-
-                            </Tooltip>
-                        </Flex>
-                    </>
+                        </Tooltip>
+                    </Flex>
+                </>
                 )} />
             </Table>
         </>

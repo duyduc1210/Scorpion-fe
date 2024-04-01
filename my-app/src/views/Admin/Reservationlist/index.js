@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Tabs } from 'antd';
-import Children2 from "../../../pages/Tgiaodich/tatca";
+import Children2 from "../../../pages/Dsdatphong/tatca";
+
 const onChange = (key) => {
     console.log(key);
   };
