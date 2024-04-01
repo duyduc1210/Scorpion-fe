@@ -35,7 +35,7 @@ const HeaderPage = () => {
               </Link>
             </li>
             <li className="header-nav-list">
-              <Link className="header-btn header-btn-custom" to="/login">
+              <Link className="header-btn header-btn-custom" to="/dang-nhap">
                 Đăng Nhập
               </Link>
             </li>

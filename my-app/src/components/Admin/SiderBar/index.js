@@ -35,7 +35,7 @@ const SiderBar = ({collapsed, items}) => {
           defaultSelectedKeys={["1"]}
           defaultOpenKeys={["sub1"]}
           style={{
-            height: "100vh",
+            height: "100%",
             paddingTop: "0px"
           }}
           items={items}

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+ import React, { useState, useEffect } from 'react';
 import { Table, Switch, Button, Flex, Tooltip, Popconfirm, Modal} from 'antd'
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
+import axios from "axios";
 export const Children1 = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -10,22 +11,37 @@ export const Children1 = () => {
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
-    const data2 = [
+    // const data2 = [
 
-        {
-            id: 1,
-            name: "Nguyen van A",
-            pass: "123456",
-            type: "admin",
-        },
-    ]
+    //     {
+    //         id: 1,
+    //         name: "Nguyen van A",
+    //         pass: "123456",
+    //         type: "admin",
+    //     },
+    // ]
+    const apiString = 'http://localhost:8080/khach/hien-thi-list'
     useEffect(() => {
         const getData = async () => {
-            setData(data2)
-        }
+            try {
+                const response = await axios.get(apiString);
+                const decodedData = response.data.map((item) => ({
+                    id: decodeURIComponent(item.thongTinKhachDatIdKhachDat.soDienThoai),
+                    name: decodeURIComponent(item.thongTinKhachDatIdKhachDat.hoTen),
+                    pass: decodeURIComponent(item.thongTinKhachDatIdKhachDat.ngaySinh),
+                    type: decodeURIComponent(item.thongTinKhachDatIdKhachDat.email),
+                    status: decodeURIComponent(item.trangThai),
+                }));
+                setData(decodedData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false); // Ensure loading state is set to false even on errors
+            }
+        };
 
         getData();
-    }, [])
+    }, []);
     const deleteRoomtype = (props) => {
         console.log(data)
         const filterData = data.filter(item => item.id !== props.id);

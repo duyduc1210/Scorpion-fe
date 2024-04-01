@@ -36,9 +36,14 @@ const ServiceCategory = () => {
         <div>
             {data.length > 0 ? (
                 <Table dataSource={data} loading={loading}>
-                    <Column title="Số thứ Tự" dataIndex={(rowIndex) => rowIndex + 1} key="index" />
+                     <Column
+                    title="STT"
+                    dataIndex="index"
+                    key="index"
+                    render={(text, record, index) => <span>{index + 1}</span>}
+                />
                     <Column title="Tên Loại Dịch Vụ" dataIndex="tenLoaiDichVu" key="tenLoaiDichVu" />
-                    <Column title="Chức Năng" key="id" /> {/* Assuming "id" is unique in your data */}
+                    <Column title="Chức Năng" dataIndex={"id"} key="id" /> {/* Assuming "id" is unique in your data */}
                 </Table>
 
             ) : (

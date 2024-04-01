@@ -16,34 +16,47 @@ const RoomTypes = () => {
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
-    const data2 = [
-        {
-            id: 1,
-            name: "Phòng VIP",
-            price: 1000000,
-            status: true
-        },
-        {
-            id: 2,
-            name: "Phòng PIV",
-            price: 5000000,
-            status: false
-        },
-        {
-            id: 3,
-            name: "Phòng LỎ",
-            price: 800000,
-            status: true
-        }
-    ]
-
+    // const data2 = [
+    //     {
+    //         id: 1,
+    //         name: "Phòng VIP",
+    //         price: 1000000,
+    //         status: true
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Phòng PIV",
+    //         price: 5000000,
+    //         status: false
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Phòng LỎ",
+    //         price: 800000,
+    //         status: true
+    //     }
+    // ]
+    const apiString = 'http://localhost:8080/admin/phong/hien-thi';
     useEffect(() => {
         const getData = async () => {
-            setData(data2)
-        }
+            try {
+                const response = await axios.get(apiString);
+                const decodedData = response.data.map((item) => ({
+                    // id: decodeURIComponent(item.id),
+                    name: decodeURIComponent(item.loaiPhongIdLoaiPhong.tenLoaiPhong),
+                    price: decodeURIComponent(item.loaiPhongIdLoaiPhong.giaTien),
+                    status: decodeURIComponent(item.trangThai),
+                }));
+                setData(decodedData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false); // Ensure loading state is set to false even on errors
+            }
+        };
 
         getData();
-    }, [])
+    }, []);
 
     const editRoomType = (props) => {
         console.log(props.id)
@@ -79,7 +92,12 @@ const RoomTypes = () => {
         </Modal>
         <>
             <Table dataSource={data} loading={loading}>
-                <Column title="STT" dataIndex="id" key="id" />
+                <Column
+                    title="STT"
+                    dataIndex="index"
+                    key="index"
+                    render={(text, record, index) => <span>{index + 1}</span>}
+                />
                 <Column title="Tên loại phòng" dataIndex="name" key="name" />
                 <Column title="Giá" dataIndex="price" key="price" />
                 <Column title="Trạng thái" key="status" render={(props) => (

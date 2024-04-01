@@ -4,7 +4,7 @@ import { EditOutlined, RestOutlined } from '@ant-design/icons';
 
 import { Content1 } from "../../pages/Loaiphong/EditRoom"
 import { Content3 } from './addcontact';
-
+import axios from "axios";
 export const Children = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -12,22 +12,34 @@ export const Children = () => {
     const [modal1Open, setModal1Open] = useState(false);
     const [modal2Open, setModal2Open] = useState(false);
     const { Column } = Table;
-    const data2 = [
+    // const data2 = [
 
-        {
-            id: 1,
-            name: "Nguyen van A",
-            pass: "123456",
-            type: "admin",
-        },
-    ]
+    //     {
+    //         id: 1,
+    //         name: "Nguyen van A",
+    //         pass: "123456",
+    //         type: "admin",
+    //     },
+    // ]
+    const apiString = 'http://localhost:8080/admin/hien-thi-list'
     useEffect(() => {
         const getData = async () => {
-            setData(data2)
-        }
+            try {
+                const response = await axios.get(apiString);
+                const decodedData = response.data.map((item) => ({
+                    name: decodeURIComponent(item.tenTaiKhoan),
+                    type: decodeURIComponent(item.quyenHanIdQuyenHan.tenQuyenHan),
+                }));
+                setData(decodedData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false); // Ensure loading state is set to false even on errors
+            }
+        };
 
         getData();
-    }, [])
+    }, []);
     const deleteRoomtype = (props) => {
         console.log(data)
         const filterData = data.filter(item => item.id !== props.id);
@@ -45,9 +57,14 @@ export const Children = () => {
             </Modal>
             <>
                 <Table dataSource={data} loading={loading}>
-                    <Column title="STT" dataIndex="id" key="id" />
+                <Column
+                    title="STT"
+                    dataIndex="index"
+                    key="index"
+                    render={(text, record, index) => <span>{index + 1}</span>}
+                />
                     <Column title="Tên tài khoản" dataIndex="name" key="name" />
-                    <Column title="Mật khẩu" dataIndex="pass" key="pass" />
+                    
                     <Column title="Quyền" dataIndex="type" key="type" />
 
                     <Column title="Hành Động" render={(props) => (

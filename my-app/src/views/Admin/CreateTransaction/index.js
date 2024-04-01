@@ -12,6 +12,7 @@ const Createtransaction = () => {
         selectedRowKeys: [],
         roomCount: 0
     });
+   
 
     const data2 = [
         {
@@ -24,6 +25,7 @@ const Createtransaction = () => {
             price: "75,000 VND",
             khach: "2",
             room: 0,
+            soLuong: 20
         },
         {
             key: "2",
@@ -35,6 +37,7 @@ const Createtransaction = () => {
             price: "95,000 VND",
             khach: "3",
             room: 0,
+            soLuong: 10
         }
     ];
 
@@ -61,7 +64,7 @@ const Createtransaction = () => {
             cartData: newCartData
         }));
     };
-    console.log('state', state);
+ 
     return (
         <>
             <div>
@@ -83,15 +86,15 @@ const Createtransaction = () => {
                         <Column title="Phòng" key="status" render={(text, record, index) => (
                             <>
                                 <div style={{ display: "flex", height:"30px", justifyContent: "space-between" }}>
-                                    <button onClick={() => {
-                                        const newState = { ...state }
-                                        handleAddToCart({ ...record, room: newState.roomCount - 1 }, index)
-                                        setState(prevState => {
-                                            return ({ ...prevState, roomCount: prevState.roomCount - 1 })
-                                        })
-                                    } }
-                                    > - </button>
-                                    <div> {state.roomCount}</div>
+                                    {record.soLuong > 1 && (
+                                        <button onClick={() => {
+                                            const dataClone = [...data]
+                                            dataClone[index].soLuong = record.soLuong -1
+                                            setData(dataClone)
+                                        } }
+                                        > - </button>
+                                    )}
+                                    <div> {record.soLuong}</div>
                                     <button onClick={() => {
                                         const newState = { ...state }
                                         handleAddToCart({ ...record, room: newState.roomCount + 1 }, index)

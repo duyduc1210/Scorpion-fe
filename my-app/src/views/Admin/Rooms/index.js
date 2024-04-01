@@ -4,7 +4,7 @@ import { SelectComponent } from '../../../components/Selectcomponent/SelectCompo
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
 import { Content } from "../../../pages/Loaiphong/AddRoom"
 import { Content1 } from "../../../pages/Loaiphong/EditRoom"
-
+import axios from "axios";
 const Rooms = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -15,35 +15,49 @@ const Rooms = () => {
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
     };
-    const data2 = [
-        {
-            id: 1,
-            name: "Phòng 101",
-            tang: "1",
-            type: "Phòng VIP",
-            status: true
-        },
-        {
-            id: 2,
-            name: "Phòng PIV",
-            type: 5000000,
-            status: false
-        },
-        {
-            id: 3,
-            name: "Phòng LỎ",
-            type: 800000,
-            status: true
-        }
-    ]
-
+    // const data2 = [
+    //     {
+    //         id: 1,
+    //         name: "Phòng 101",
+    //         tang: "1",
+    //         type: "Phòng VIP",
+    //         status: true
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Phòng PIV",
+    //         type: 5000000,
+    //         status: false
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Phòng LỎ",
+    //         type: 800000,
+    //         status: true
+    //     }
+    // ]
+    const apiString = 'http://localhost:8080/admin/phong/hien-thi'
     useEffect(() => {
         const getData = async () => {
-            setData(data2)
-        }
+            try {
+                const response = await axios.get(apiString);
+                const decodedData = response.data.map((item) => ({
+                    // id: decodeURIComponent(item.id),
+                    name: decodeURIComponent(item.soPhong),
+                    tang: decodeURIComponent(item.soTang),
+                    type: decodeURIComponent(item.loaiPhongIdLoaiPhong.tenLoaiPhong),
+                    status: decodeURIComponent(item.trangThai),
+                }));
+                setData(decodedData);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            } finally {
+                setLoading(false); // Ensure loading state is set to false even on errors
+            }
+        };
 
         getData();
-    }, [])
+    }, []);
 
     const editRoomType = (props) => {
         console.log(props.id)
@@ -55,23 +69,28 @@ const Rooms = () => {
         setData(filterData);
     }
     return (<>
-     <h3>Phòng</h3>
-     <SelectComponent />
-     <Button type="primary" onClick={() => setModal1Open(true)}>
+        <h3>Phòng</h3>
+        <SelectComponent />
+        <Button type="primary" onClick={() => setModal1Open(true)}>
             Thêm
         </Button>
         <Modal title="Thêm phòng" open={modal1Open} onOk={() => setModal1Open(false)}
             onCancel={() => setModal1Open(false)} width={600}>
             <Content />
         </Modal>
-     <>
+        <>
             <Table dataSource={data} loading={loading}>
-                <Column title="STT" dataIndex="id" key="id" />
+                <Column
+                    title="STT"
+                    dataIndex="index"
+                    key="index"
+                    render={(text, record, index) => <span>{index + 1}</span>}
+                />
                 <Column title="Tên phòng" dataIndex="name" key="name" />
                 <Column title="Tầng" dataIndex="tang" key="tang" />
                 <Column title="Loại Phòng" dataIndex="type" key="type" />
                 <Column title="Trạng thái" key="status" render={(props) => (
-                    <Switch defaultChecked onChange={onChange}/>
+                    <Switch defaultChecked onChange={onChange} />
                 )} />
                 <Column title="Thao tác" render={(props) => (
                     <>
@@ -98,7 +117,7 @@ const Rooms = () => {
                 )} />
             </Table>
         </>
-     </>);
+    </>);
 }
 
 export default Rooms;
