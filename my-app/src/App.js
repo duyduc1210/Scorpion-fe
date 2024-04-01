@@ -24,6 +24,7 @@ import Createtransaction from "./views/Admin/TaoGiaoDich"
 import RoomDiagram from "./views/Admin/RoomDiagram"
 import { Content } from "antd/es/layout/layout";
 import HotelBookingForm from "./views/Pages/Booking";
+import UtilityService from "./views/Admin/UtilityService/UtilityService";
 
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
             <Route path="reservation-list" element={<Reservationlist/>} />
             <Route path="quanlyloaiphong" element={<Content />} />
             <Route path="room-diagram" element={<RoomDiagram/>}/>
-           
+            <Route path="utility-service" element={<UtilityService/>}/>     
           </Route>
 
           <Route path="/" element={<HomePage />} />
