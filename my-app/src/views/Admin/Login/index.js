@@ -46,7 +46,7 @@ const LoginAdmin = () => {
     }
   };
   return (
-    <div className="container">
+    <div className="container1">
       <div className="logo2">
         
         <div class="logo2">SIGN IN ADMIN </div>

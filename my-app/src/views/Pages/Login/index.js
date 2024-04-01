@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const LoginPage = () => {
@@ -27,10 +27,14 @@ const LoginPage = () => {
     }
   };
   return (
-    <div className="container">  
+    <div className="container1">  
     <div className="logo">
-    <div class="logo1">SIGN UP </div> 
-    <div class="logo1">SIGN IN </div> 
+    <div ><Link class="logo1"  to="/dang-nhap">
+                ĐĂNG NHẬP
+              </Link> </div> 
+    <div > <Link class="logo1"  to="/register">
+                ĐĂNG KÝ
+              </Link> </div> 
   </div> 
   <div className="form-content">
   <div className="title">

@@ -28,7 +28,7 @@ const items = [
     getItem("Danh sách phòng", "rooms"),
     getItem("Thống kê", "thong-ke"),
     getItem("Tài  khoản", "accounts"),
-    getItem("Dịch vụ tiện ích", "covenient-service"),
+    getItem("Dịch vụ tiện ích", "utility-service"),
   ]),
   getItem("Staff", "sub2", <TeamOutlined />, [
     getItem("Giao Dịch", "6",null,[
@@ -38,7 +38,7 @@ const items = [
     ]),
     getItem("Danh Sách Đặt Phòng", "reservation-list"),
     getItem("Thông tin khách ở ", "8"),
-    getItem("Sơ đồ phòng", "9"),
+    getItem("Sơ đồ phòng", "room-diagram"),
   ]),
 ];
 const LayoutAdmin = () => {
