@@ -20,11 +20,6 @@
     padding-top: 0.5rem;
 }
 
-.short-static-rooms h6 {
-    margin-left: 2rem;
-    margin-bottom: 2rem;
-}
-
 .room-status-room-diagram {
     display: flex;  
     flex-direction: column;
@@ -102,7 +97,7 @@
 .small-pop-up > div:not(:last-child) {
   margin-bottom: 5px; /* Adjust margin as needed */
 }
-.small-pop-up h6 {
+.small-pop-up {
   margin: 0; /* Remove default margins of h6 */
 }
 /* modal-detail */
@@ -121,9 +116,14 @@
   border-bottom: 1px solid black;
   padding: 1rem 1rem; /* Optional: Add padding for better spacing */
 }
-.larger-text {
+.larger-text-room-diagram {
   font-size: 20px;
   font-weight: bold;
+}
+.medium-text-room-diagram{
+  font-size: 16px;
+  font-weight: bold;
+  padding: 1rem 1rem;
 }
 .border-table{
   border: black solid 1px;

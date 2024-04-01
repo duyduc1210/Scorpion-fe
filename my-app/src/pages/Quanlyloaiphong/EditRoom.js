@@ -102,7 +102,7 @@ export const Content1 = () => {
             </div>
             
         </div>
-        <TextArea rows={2} style={{ width: 520, mảginleft: "20px"}} />
+        <TextArea rows={2} style={{ width: 520, marginleft: "20px"}} />
         </div>
     )
 }

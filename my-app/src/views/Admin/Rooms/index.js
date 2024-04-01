@@ -71,7 +71,7 @@ const Rooms = () => {
                 <Column title="Tầng" dataIndex="tang" key="tang" />
                 <Column title="Loại Phòng" dataIndex="type" key="type" />
                 <Column title="Trạng thái" key="status" render={(props) => (
-                    <><Switch checked={props.status} onChange={onChange} /></>
+                    <Switch defaultChecked onChange={onChange}/>
                 )} />
                 <Column title="Thao tác" render={(props) => (
                     <>

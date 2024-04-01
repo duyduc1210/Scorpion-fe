@@ -69,10 +69,10 @@ const RoomDiagram = () => {
     return (
         <div className="layout-room-diagram">
             {/* statistic temp*/}
-            <div className="short-static-rooms">
-                <h6 >Phòng Trống(10)</h6>
-                <h6>Có Khách(10)</h6>
-            </div>
+            <Row className="short-static-rooms">
+                <Col  className="medium-text-room-diagram" >Phòng Trống(10)</Col>
+                <Col  className="medium-text-room-diagram" >Có Khách(10)</Col>
+            </Row>
 
             {/* filter */}
 
@@ -81,7 +81,7 @@ const RoomDiagram = () => {
             {/* display status of rooms */}
             <div className="room-status-room-diagram">
                 <div>
-                    <h6>Phòng Trống(10)</h6>
+                    <div className="medium-text-room-diagram">Phòng Trống(10)</div>
                 </div>
                 <div className="room-empty flex-row-room-diagram">
                     <div className="rooms" onClick={handleRoomClick}>
@@ -94,7 +94,7 @@ const RoomDiagram = () => {
 
                 </div>
                 <div>
-                    <h6>Có Khách(10)</h6>
+                    <div className="medium-text-room-diagram">Có Khách(10)</div>
                 </div>
                 <div className="room-using flex-row-room-diagram">
                     <div className="rooms" onClick={handleRoomClick}>
@@ -120,10 +120,10 @@ const RoomDiagram = () => {
                     className="small-pop-up"
                     style={{ top: `${popUpPosition.y}px`, left: `${popUpPosition.x}px` }}
                 >
-                    <div onClick={() => handleSmallPopUpClick(1)}><h6>chi tiết</h6></div>
-                    <div onClick={() => handleSmallPopUpClick(2)}><h6>trả phòng</h6></div>
-                    <div onClick={() => handleSmallPopUpClick(3)}><h6>chuyển phòng</h6></div>
-                    <div onClick={() => handleSmallPopUpClick(4)}><h6>Thêm dịch vụ</h6></div>
+                    <div onClick={() => handleSmallPopUpClick(1)}><div>chi tiết</div></div>
+                    <div onClick={() => handleSmallPopUpClick(2)}><div>trả phòng</div></div>
+                    <div onClick={() => handleSmallPopUpClick(3)}><div>chuyển phòng</div></div>
+                    <div onClick={() => handleSmallPopUpClick(4)}><div>Thêm dịch vụ</div></div>
                 </div>
             )}
             {/* Modals */}
@@ -138,34 +138,34 @@ const RoomDiagram = () => {
                 height="auto"
             >
                 <div className="navbar-detail">
-                    <div>Phòng</div>
-                    <div>Thanh Toán</div>
+                    <div className="medium-text-room-diagram" >Phòng</div>
+                    <div className="medium-text-room-diagram" >Thanh Toán</div>
                 </div>
                 <Row justify="space-evenly" className="content">
                     <Col span={8} style={{ borderRight: '5px solid #ccc', padding: '1rem 1rem' }} className="info-detail">
                         <Flex className="info-room" vertical>
                             <div>
                                 <Row justify="space-between">
-                                    <Col className="larger-text">Phòng - Loại Phòng</Col>
+                                    <Col className="larger-text-room-diagram">Phòng - Loại Phòng</Col>
                                     <Col><button className="button">Trả Phòng</button></Col>
                                 </Row>
                             </div>
                             <div>
                                 <Row justify="space-evenly">
-                                    <Col className="larger-text">Thời gian check in</Col>
-                                    <Col className="larger-text"> - </Col>
-                                    <Col className="larger-text">Thời gian check out</Col>
+                                    <Col className="larger-text-room-diagram">Thời gian check in</Col>
+                                    <Col className="larger-text-room-diagram"> - </Col>
+                                    <Col className="larger-text-room-diagram">Thời gian check out</Col>
                                 </Row>
                             </div>
-                            <div className="larger-text">Giá trong tuần Tổng: 900000 VND</div>
+                            <div className="larger-text-room-diagram">Giá trong tuần Tổng: 900000 VND</div>
                             <div>
                                 <Row justify="space-between">
-                                    <Col className="larger-text" >2 người lớn , 1 trẻ em </Col>
+                                    <Col className="larger-text-room-diagram" >2 người lớn , 1 trẻ em </Col>
                                     <Col ><Button type="primary" shape="circle">+</Button></Col>
                                 </Row>
                                 <Row justify="space-evenly">
-                                    <Col className="larger-text">Khách</Col>
-                                    <Col className="larger-text">Action</Col>
+                                    <Col className="larger-text-room-diagram">Khách</Col>
+                                    <Col className="larger-text-room-diagram">Action</Col>
                                 </Row>
                                 <Row justify="space-evenly" className="font-table">
                                     <Col>JAVa</Col>
@@ -185,8 +185,8 @@ const RoomDiagram = () => {
                     </Col>
                     <Col span={8} style={{ borderRight: '5px solid #ccc' }} className="take-note">
                         <Row justify="space-evenly">
-                            <Col className="larger-text">Dịch Vụ</Col>
-                            <Col className="larger-text">Tổng Số (0)</Col>
+                            <Col className="larger-text-room-diagram">Dịch Vụ</Col>
+                            <Col className="larger-text-room-diagram">Tổng Số (0)</Col>
                             <Col><Button type="primary" shape="circle">+</Button></Col>
                         </Row>
                     </Col>
@@ -229,7 +229,7 @@ const RoomDiagram = () => {
                 height="auto"
             >
                 <Flex className="modal-update-info-guest" vertical>
-                    <Row className="larger-text" justify='center'>Thông tin khách ở</Row>
+                    <Row className="larger-text-room-diagram" justify='center'>Thông tin khách ở</Row>
                     <div><Input placeholder="Họ và Tên" /></div>
                     <div><Input placeholder="CCCD" /></div>
                     <div><Input placeholder="Tên giấy tờ" /></div>
