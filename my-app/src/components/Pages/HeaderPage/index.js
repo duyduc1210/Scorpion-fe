@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HeaderPage = () => {
+  const navigate = useNavigate();
+
+  let btnAuth;
+
+  const handleLogOut = async () => {
+    await localStorage.clear();
+    navigate("/")
+  }
+
+  const guest_id = localStorage.getItem('guest_id');
+  if(guest_id){
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    btnAuth = (<li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>);
+  }else{
+    btnAuth = 
+    (<><li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Nhập</Link></li>
+       <li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Ký</Link></li></>);
+  }
+
   return (
     <>
       <div className="header-container">
@@ -34,16 +53,7 @@ const HeaderPage = () => {
                 Liên hệ
               </Link>
             </li>
-            <li className="header-nav-list">
-              <Link className="header-btn header-btn-custom" to="/dang-nhap">
-                Đăng Nhập
-              </Link>
-            </li>
-            <li className="header-nav-list">
-              <Link className="header-btn header-btn-custom" to="/register">
-                Đăng Ký
-              </Link>
-            </li>
+            {btnAuth}
           </ul>
 
           <div className="header-hamburger-icon">

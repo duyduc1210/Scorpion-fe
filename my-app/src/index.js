@@ -5,16 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from '../src/redux/store';
 import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const queryClient = new QueryClient();
 
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>,
-  document.getElementById('root')
-);
+   <App />
+  </QueryClientProvider>
+)
+
+// ReactDOM.render(
+//   <QueryClientProvider client={queryClient}>
+//     <App />
+//   </QueryClientProvider>,
+//   document.getElementById('root')
+// );
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -100,18 +100,16 @@
   margin-bottom: 20px;
 }
 
-.logout input[type="text"] {
+.logout input {
   margin-left: 10px;
-  width: 500px;
+  width: 500px !important;
   height: 30px;
   border:rgba(0, 0, 0, 0.177);
+  border-radius: 5px;
+  padding-left: 0.5rem !important;
+  font-size: 12px !important;
 }
-.logout input[type="password"] {
-  margin-left: 10px;
-  width: 500px;
-  height: 30px;
-  border:rgba(0, 0, 0, 0.177);
-}
+
 .check{
   margin-right: 380px;
 }

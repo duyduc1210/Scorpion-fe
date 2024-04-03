@@ -1,24 +1,32 @@
 import Sider from "antd/es/layout/Sider";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
+  const navigate = useNavigate();
   const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
   let size = null;
   let btn = null;
-  if (mode === "RoomAndSuit") {
-    btn = (
-      <Link className="btn btn-fill" to="/booking">
-        Đặt ngay
-      </Link>
-    );
-  } else {
-    size = "300";
-  }
- 
+  const guest_id = localStorage.getItem("guest_id");
 
+
+  const onClickDP = () =>{
+    if (guest_id) {
+      navigate("/booking");
+    } else {
+      alert("Bạn phải đăng nhập");
+    }
+  }
+  if (mode === "RoomAndSuit") {
+  btn = ( 
+    <span className="btn btn-fill cursor" onClick={onClickDP}>
+    
+      Đặt ngay
+    </span>
+  );
+  }
   let content = null;
   if (mode === "RoomAndSuit") {
     content = (
@@ -56,7 +64,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
         />
         {content}
         <div className="buttons-container">
-          <span className="btn btn-ghost" onClick={onClick}>
+          <span className="btn btn-ghost cursor" onClick={onClick}>
             Xem thêm
           </span>
           {btn}

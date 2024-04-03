@@ -159,7 +159,9 @@ hr {
     background-color: green;
     color: #fff;
 }
-
+.cursor{
+    cursor: pointer;
+}
 .btn-fill:hover,
 .btn-fill:active {
     background-color: rgb(11, 187, 40);
