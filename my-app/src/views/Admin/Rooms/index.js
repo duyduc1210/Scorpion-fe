@@ -4,6 +4,7 @@ import { SelectComponent } from '../../../components/Selectcomponent/SelectCompo
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
 import { Content } from "../../../pages/Loaiphong/AddRoom"
 import { Content1 } from "../../../pages/Loaiphong/EditRoom"
+import axios from 'axios';
 
 const Rooms = () => {
     const [data, setData] = useState([]);
@@ -37,11 +38,11 @@ const Rooms = () => {
         }
     ]
 
+    
     useEffect(() => {
         const getData = async () => {
             setData(data2)
         }
-
         getData();
     }, [])
 
