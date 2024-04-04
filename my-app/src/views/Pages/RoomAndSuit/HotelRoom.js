@@ -1,12 +1,17 @@
 import Sider from "antd/es/layout/Sider";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import RoomApi from "../../../shared/api/RoomApi";
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
   const navigate = useNavigate();
   const formatNumber = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+    if (number !== undefined) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    return "";
+};
+
   let size = null;
   let btn = null;
   const guest_id = localStorage.getItem("guest_id");
@@ -27,12 +32,13 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
     </span>
   );
   }
+ 
   let content = null;
   if (mode === "RoomAndSuit") {
     content = (
       <>
-        <h3 className="room-title">{roomType.ten_loai_phong}</h3>
-        <p className="room-text">{roomType.mo_ta}</p>
+        <h3 className="room-title">{roomType.tenLoaiPhong}</h3>
+        <p className="room-text">{roomType.moTa}</p>
         <div>
           <div className="details-container">
             <img
@@ -40,7 +46,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
               alt="tick"
               className="list-icon"
             />
-            <p className="list-text">{roomType.so_luong_nguoi_o} người</p>
+            <p className="list-text">{roomType.soLuongNguoiO} người</p>
           </div>
           {/* <div className="details-container">
             <img src="assets/img/bed.png" alt="tick" className="list-icon" />
@@ -48,19 +54,20 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
           </div> */}
         </div>
         <p className="amount-text">
-          {formatNumber(roomType.gia_tien)} VNĐ / ngày
+          {formatNumber(roomType.giaTien)} VNĐ / ngày
         </p>
       </>
     );
   }
+  console.log('roomeType',roomType);
   return (
     <>
       <div className="room col col-2">
         <img
           width={size}
-          src={roomType.image}
+          src={`data:image/png;base64,${roomType.hinhAnh[0].hinhAnhLoaiPhong}`}
           alt="anh_loai_phong"
-          className="rooms-img"
+          className="img2 rooms-img"
         />
         {content}
         <div className="buttons-container">

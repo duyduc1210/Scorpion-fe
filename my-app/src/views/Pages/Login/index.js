@@ -95,7 +95,7 @@ const LoginPage = () => {
       </div>
 
       <div className="footer">
-        <div className="footer-a">Quên mật khẩu?</div>
+        <div className="footer-a"><a href="#">Quên mật khẩu?</a></div>
       </div>
 
     </div>

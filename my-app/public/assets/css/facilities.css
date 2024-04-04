@@ -207,6 +207,11 @@ img {
 	max-width: 100%;
 }
 
+.img2 {
+	max-width: 454px;
+	max-height: 237px;
+}
+
 .gallery {
 	display: flex;
 	flex-wrap: wrap;

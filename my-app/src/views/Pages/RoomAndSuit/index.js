@@ -5,12 +5,13 @@ import { Button } from "antd";
 
 import HotelRoom from "./HotelRoom";
 
-import { roomTypes, uuDais } from "../../../shared/db/dataRoom";
+import { uuDais } from "../../../shared/db/dataRoom";
 
 import CsModal from "./CsModal";
 import UuDaiDetail from "./UuDaiDetail";
 
 import RoomTypeDetail from "./RoomTypeDetail";
+import RoomApi from "../../../shared/api/RoomApi";
 
 const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
@@ -21,8 +22,16 @@ const RoomAndSuit = () => {
   let content = null;
 
   useEffect(() => {
-    const getData = () => {
-      setRoomTypes(roomTypes);
+    const getData = async () => {
+      
+      try {
+        const result = await RoomApi.getAll();
+        setRoomTypes(result.data);
+        console.log(result.data)
+      } catch (error) {
+        
+      }
+      
     };
     getData();
   }, []);
@@ -35,7 +44,6 @@ const RoomAndSuit = () => {
       title: "Text",
     };
 
-    console.log(data);
     if (data) {
       newData.title = data.ten_loai_phong;
       newData.param = data;

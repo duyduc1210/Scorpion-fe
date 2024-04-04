@@ -26,52 +26,6 @@ export const dataRoom = [
   },
 ];
 
-export const roomTypes = [
-  {
-    id: 1,
-    ten_loai_phong: "Standard Room",
-    huong_nhin: "Hướng lung tung",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_42_nastdj.png",
-    gia_tien: 400000,
-    so_luong_nguoi_o: 2,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 2,
-    ten_loai_phong: "Deluxe",
-    huong_nhin: "Hướng View biển",
-    dien_tich: "50m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_43_d9eepu.png",
-    gia_tien: 600000,
-    so_luong_nguoi_o: 4,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 3,
-    ten_loai_phong: "Family",
-    huong_nhin: "Hướng view thành phố",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_44_anerdv.png",
-    gia_tien: 800000,
-    so_luong_nguoi_o: 2,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 4,
-    ten_loai_phong: "President",
-    huong_nhin: "Hướng biển + thành phố",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_45_mtl458.png",
-    gia_tien: 1000000,
-    so_luong_nguoi_o: 4,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-];
 
 
 export const uuDais = [

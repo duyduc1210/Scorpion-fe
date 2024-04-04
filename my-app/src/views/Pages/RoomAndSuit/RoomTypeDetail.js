@@ -8,11 +8,11 @@ const RoomTypeDetail = (props) => {
 
   return (
     <>
-        <p>{data.param.dien_tich}</p>
-        <p>{data.param.gia_tien}</p>
-        <p>{data.param.huong_nhin}</p>
-        <p>{data.param.mo_ta}</p>
-        <p>{data.param.trang_thai}</p>
+        <p>{data.param.dienTich}</p>
+        <p>{data.param.giaTien}</p>
+        <p>{data.param.huongNhin}</p>
+        <p>{data.param.moTa}</p>
+        <p>{data.param.trangThai}</p>
     </>
   );
 };

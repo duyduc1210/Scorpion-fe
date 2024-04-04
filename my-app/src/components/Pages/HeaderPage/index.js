@@ -17,7 +17,7 @@ const HeaderPage = () => {
   }else{
     btnAuth = 
     (<><li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Nhập</Link></li>
-       <li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Ký</Link></li></>);
+       <li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/register">Đăng Ký</Link></li></>);
   }
 
   return (
