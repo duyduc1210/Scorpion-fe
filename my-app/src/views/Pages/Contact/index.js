@@ -77,7 +77,7 @@ const Contact = () => {
                 <h3>Liên hệ với chúng tôi</h3>
                 <span>
                   <i style={{ fontSize: '1.5rem' }} className="fa fa-map-marker" aria-hidden="true"></i>
-                  23, Fola osibo, Lekki phase 1
+                  Muine Bay Resort, Thành Phố Phan Thiết, Bình Thuận
                 </span>
                 <span>
                   <i style={{ fontSize: '1.5rem' }} className="fa fa-phone" aria-hidden="true"></i>

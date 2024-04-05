@@ -12,6 +12,8 @@ import RoomApi from "../../../shared/api/RoomApi";
 import apiRequest from "../../../shared/api/loginApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import HeaderPage from "../../../components/Pages/HeaderPage";
+import FooterPage from "../../../components/Pages/FooterPage";
 
 
 
@@ -111,7 +113,9 @@ const formatNumber = (number) => {
   return (
     
     <>
+    
    <center>
+   <h2>Đặt Phòng</h2>
    <div style={{ marginBottom: 16, marginTop: 16}}>
             <DatePicker
                 placeholder="Check in"
@@ -157,7 +161,7 @@ const formatNumber = (number) => {
         )}/>
         <Column title="Mức giá hôm nay"  key="gia_tien" render={(roomType) => (
          <>
-          {formatNumber(roomType.giaTien)} <span>VNĐ</span>
+          {formatNumber(roomType.giaTien)} <span>VNĐ / ngày</span>
          </>
         )}/>
        
@@ -173,7 +177,7 @@ const formatNumber = (number) => {
         )} />
         
       </Table>
-      
+      <FooterPage/>
     </>
     
   );

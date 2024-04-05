@@ -35,18 +35,7 @@ const RoomTypeDetail = (props) => {
 
   return (
     <>
-      <div className="textForm">
-        <h3 className="textTTCT">Thông tin chi tiết </h3>
-
-        <p>- Loại phòng: {data.param.tenLoaiPhong}</p>
-        <p>- Diện tích : {data.param.dienTich}m2</p>
-        <p>- Giá tiền : {formatNumber(data.param.giaTien)} VNĐ / ngày</p>
-        <p>- Hướng nhìn : {data.param.huongNhin}</p>
-        <p>- Mô tả : {data.param.moTa}</p>
-        <p>- Số lượng ở tối đa : {data.param.soLuongNguoiO}</p>
-        <h3>Các hình ảnh của phòng :</h3>
-      </div>
-      <center>
+    <center>
         <Carousel afterChange={onChange}>
           {data.param.hinhAnh.map((image) => (
             <div>
@@ -62,6 +51,18 @@ const RoomTypeDetail = (props) => {
           ))}
         </Carousel>
       </center>
+      <div className="textForm">
+        <h3 className="textTTCT">Thông tin chi tiết </h3>
+
+        <p>- Loại phòng: {data.param.tenLoaiPhong}</p>
+        <p>- Diện tích : {data.param.dienTich}m2</p>
+        <p>- Giá tiền : {formatNumber(data.param.giaTien)} VNĐ / ngày</p>
+        <p>- Hướng nhìn : {data.param.huongNhin}</p>
+        <p>- Mô tả : {data.param.moTa}</p>
+        <p>- Số lượng ở tối đa : {data.param.soLuongNguoiO}</p>
+       
+      </div>
+      
     </>
   );
 };
