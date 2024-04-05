@@ -1,9 +1,13 @@
 import Sider from "antd/es/layout/Sider";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import RoomApi from "../../../shared/api/RoomApi";
+import { Button, message, Space } from 'antd';
+
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
+
+
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const formatNumber = (number) => {
     if (number !== undefined) {
@@ -21,9 +25,17 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
     if (guest_id) {
       navigate("/booking");
     } else {
-      alert("Bạn phải đăng nhập");
+    messageApi.open({
+      type: 'warning',
+      content: 'Bạn phải đăng nhập để đặt phòng',
+    });
+     
+        
+     
     }
-  }
+  };
+  
+  
   if (mode === "RoomAndSuit") {
   btn = ( 
     <span className="btn btn-fill cursor" onClick={onClickDP}>
@@ -59,9 +71,12 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
       </>
     );
   }
+  
   console.log('roomeType',roomType);
   return (
     <>
+      {contextHolder}
+
       <div className="room col col-2">
         <img
           width={size}
@@ -77,6 +92,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
           {btn}
         </div>
       </div>
+  
     </>
   );
 };

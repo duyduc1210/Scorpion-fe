@@ -9,11 +9,34 @@ import CsModal from "../RoomAndSuit/CsModal";
 import moment from 'moment';
 import RoomTypeDetail from "../RoomAndSuit/RoomTypeDetail";
 import RoomApi from "../../../shared/api/RoomApi";
-
+import apiRequest from "../../../shared/api/loginApi";
+import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 
 
 const HotelBookingForm = () => {
+  const [messageApi, contextHolder] = message.useMessage();
+  const {  setError, formState: { errors } } = useForm();
+  const navigate = useNavigate();
+  const onHandleLogin = async (data) =>{
+  
+    try {
+      const result = await apiRequest.loginGuest(data);
+      if(result.data){
+        localStorage.setItem('guest_id', JSON.stringify(result.data));
+        navigate("/booking");
+      } else{
+        messageApi.open({
+          type: 'warning',
+          content: 'Bạn phải đăng nhập để đặt phòng',
+        });
+         
+      }
+    } catch (error) {
+      
+    }
+  }
   const [dateTime, setDateTime] = useState(null);
 
 
