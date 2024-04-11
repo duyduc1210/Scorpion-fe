@@ -113,7 +113,7 @@ const CheckOut = () => {
       ...register("totalPrice", { required: true }),
     },
   };
-  
+
   setValue("totalPrice", 0);
   setValue("quantity", 0);
 
@@ -125,15 +125,16 @@ const CheckOut = () => {
           
           <form onSubmit={handleSubmit(onHandleBooking)}>
             <label>Tên khách hàng: </label>
-            <input type="text" {...validatorForm.customerName} />
+            <input  className = "customerNameCss" type="text" {...validatorForm.customerName} />
 
             <label>Email: </label>
-            <input type="email" {...validatorForm.email} />
+            <input className = "emailCss" type="email" {...validatorForm.email} />
 
             <label>Số điện thoại: </label>
             <input
               type="text"
               name="phoneNumber"
+              className = "phoneNumberCss"
               {...validatorForm.phoneNumber}
             />
 
@@ -142,14 +143,15 @@ const CheckOut = () => {
               type="text"
               name="hinhThucDat"
               placeholder="Online"
+              className = "hinhThucDatCss"
               readOnly
             />
 
             <label>Thời gian check in: </label>
-            <input type="text" name="checkIn" {...validatorForm.checkIn} />
+            <input type="text" className = "checkInCss"  name="checkIn" {...validatorForm.checkIn} />
 
             <label>Thời gian check out: </label>
-            <input type="text" name="checkOut" {...validatorForm.checkOut} />
+            <input type="text" name="checkOut"  className = "checkOutCss" {...validatorForm.checkOut} />
             <div />
 
             
@@ -204,7 +206,7 @@ const CheckOut = () => {
       <center>
       <label className="tongTien">Tổng tiền: <span>VNĐ</span></label>
               <br />
-              <button type="submit">Đặt phòng</button>
+              <button type="submit" className="buttonDatPhong">Đặt phòng</button>
               <br />
             </center>
     </>
