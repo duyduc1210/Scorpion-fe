@@ -5,59 +5,43 @@ import { EditOutlined, RestOutlined } from '@ant-design/icons';
 import { Content } from "../../../pages/Loaiphong/AddRoom"
 import { Content1 } from "../../../pages/Loaiphong/EditRoom"
 import axios from 'axios';
+import * as api from '../../../services/RoomService';
 
 const Rooms = () => {
     const [data, setData] = useState([]);
+
+    console.log("data", data);
     const [loading, setLoading] = useState(false);
 
     const [modal1Open, setModal1Open] = useState(false);
     const [modal2Open, setModal2Open] = useState(false);
     const { Column } = Table;
-    const onChange = (checked) => {
-        console.log(`switch to ${checked}`);
-    };
-    // const data2 = [
-    //     {
-    //         id: 1,
-    //         name: "Phòng 101",
-    //         tang: "1",
-    //         type: "Phòng VIP",
-    //         status: true
-    //     },
-    //     {
-    //         id: 2,
-    //         name: "Phòng PIV",
-    //         type: 5000000,
-    //         status: false
-    //     },
-    //     {
-    //         id: 3,
-    //         name: "Phòng LỎ",
-    //         type: 800000,
-    //         status: true
-    //     }
-    // ]
-    const apiString = 'http://localhost:8080/admin/phong/hien-thi'
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await axios.get(apiString);
-                const decodedData = response.data.map((item) => ({
-                    // id: decodeURIComponent(item.id),
-                    name: decodeURIComponent(item.soPhong),
-                    tang: decodeURIComponent(item.soTang),
-                    type: decodeURIComponent(item.loaiPhongIdLoaiPhong.tenLoaiPhong),
-                    status: decodeURIComponent(item.trangThai),
-                }));
-                setData(decodedData);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false); // Ensure loading state is set to false even on errors
-            }
-        };
+    const handleStatusChange = (record, status) => {
+        const cloneData = [...data]
+        const indexItem = cloneData.findIndex(item => item.id === record.id)
+        cloneData[indexItem].status = status;
+        setData(cloneData)
+    }
 
-        getData();
+    const fecthdata = async () => {
+        const res = await api.getRoom();
+        const decodedData = res.data.map((item) => {
+            console.log("item", item);
+            return {
+                id: item.id,
+                name: item.soPhong,
+                tang: item.soTang,
+                type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
+                status: item.trangThai,
+
+            }
+        });
+
+        setData(decodedData)
+        console.log(decodedData)
+    }
+    useEffect(() => {
+        fecthdata()
     }, []);
 
     const editRoomType = (props) => {
@@ -90,9 +74,17 @@ const Rooms = () => {
                 <Column title="Tên phòng" dataIndex="name" key="name" />
                 <Column title="Tầng" dataIndex="tang" key="tang" />
                 <Column title="Loại Phòng" dataIndex="type" key="type" />
-                <Column title="Trạng thái" key="status" render={(props) => (
-                    <Switch defaultChecked onChange={onChange} />
-                )} />
+                <Column
+                    title="Trạng thái"
+                    dataIndex="status"
+                    key="status"
+                    render={(text, record) => (
+                        <Switch
+                            checked={record.status} // Assuming status is stored as string 'true' or 'false'
+                            onChange={(checked) => handleStatusChange(record, checked)}
+                        />
+                    )}
+                />
                 <Column title="Thao tác" render={(props) => (
                     <>
                         <Flex justify={"flex-start"}>

@@ -1,70 +1,70 @@
 import React, { useState, useEffect } from 'react';
-import { Table, Button, DatePicker, Select } from 'antd';
+import { Table, Button, DatePicker, Modal } from 'antd';
 import { EditOutlined } from '@ant-design/icons';
+import * as api from '../../../services/RoomService';
+import AddCart from './AddCart';
 
 const Createtransaction = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const { Column } = Table;
-
     const [state, setState] = useState({
         cartData: [],
         selectedRowKeys: [],
-        roomCount: 0
+        soLuong: 0
     });
-   
 
-    const data2 = [
-        {
-            key: "1",
-            id: "Đơn",
-            name: 4,
-            status: false,
-            tang: "1",
-            text: " ",
-            price: "75,000 VND",
-            khach: "2",
-            room: 0,
-            soLuong: 20
-        },
-        {
-            key: "2",
-            id: "Đôi",
-            name: 2,
-            status: true,
-            tang: "2",
-            text: " ",
-            price: "95,000 VND",
-            khach: "3",
-            room: 0,
-            soLuong: 10
+    const [timeVao, setTimeVao] = useState();
+    const [timeRa, setTimeRa] = useState();
+
+    const [modal1Open, setModal1Open] = useState(false);
+
+    const handleSearchDate = async () => {
+        try {
+            let body = {};
+
+            if (timeVao) {
+                body.thoiGianVao = `${timeVao} 12:00:00`;
+            }
+            if (timeRa) {
+                body.thoiGianRa = `${timeRa} 12:00:00`;
+            }
+
+            const res = await api.searchDateCt(body);
+            const decodedData = res.data.map(i => ({
+                id: i.tenLoaiPhong,
+                name: i.soLuongTrong,
+                price: i.giaTien,
+                khach: i.soLuongNguoiO,
+                soLuong: 0
+            }));
+
+            setData(decodedData);
+        } catch (error) {
+            console.error('Error:', error);
         }
-    ];
+    }
 
     useEffect(() => {
-        const getData = async () => {
-            setData(data2);
-        }
-        getData();
+        handleSearchDate();
     }, []);
 
-    const onChange = (date, dateString) => {
-        console.log(date, dateString);
-    };
-
-    const onChange1 = (value) => {
-        console.log('changed', value);
-    };
-
-    const handleAddToCart = (record, index) => {
-        const newCartData = [...state.cartData]
-        newCartData[index] = { ...record }
+    const handleAddToCart = (record, index, action) => {
+        const newCartData = [...state.cartData];
+        const updatedRecord = { ...record }; // Copy the record to update
+        if (action === 'plus') {
+            updatedRecord.soLuong += 1;
+        } else if (action === 'minus' && updatedRecord.soLuong > 0) {
+            updatedRecord.soLuong -= 1;
+        }
+        newCartData[index] = updatedRecord;
         setState(prevState => ({
             ...prevState,
-            cartData: newCartData
+            cartData: newCartData.filter(item => item.soLuong > 0)
         }));
+        setData(newCartData);
     };
- 
+    console.log(data);
+
     return (
         <>
             <div>
@@ -73,69 +73,60 @@ const Createtransaction = () => {
                 <input type="text" placeholder="Tìm tên phòng& tên khách đặt" />
             </div>
             <div style={{ display: "flex" }}>
-                <DatePicker onChange={onChange} placeholder='Ngày bắt đầu' />
-                <DatePicker onChange={onChange} placeholder="Ngày kết thúc" />
-                <Button type="primary">
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu' />
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
+                <Button style={{ marginLeft: "10px" }} type="primary" onClick={handleSearchDate}>
                     Tìm kiếm
                 </Button>
             </div>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                 <div>
                     <Table dataSource={data} loading={loading}>
-                        <Column title="Loại Phòng" dataIndex="id" key="id" />
-                        <Column title="Phòng" key="status" render={(text, record, index) => (
+                        <Table.Column title="Loại Phòng" dataIndex="id" key="id" />
+                        <Table.Column title="Phòng" key="status" render={(text, record, index) => (
                             <>
-                                <div style={{ display: "flex", height:"30px", justifyContent: "space-between" }}>
-                                    {record.soLuong > 1 && (
-                                        <button onClick={() => {
-                                            const dataClone = [...data]
-                                            dataClone[index].soLuong = record.soLuong -1
-                                            setData(dataClone)
-                                        } }
-                                        > - </button>
+                                <div style={{ display: "flex", height: "30px", justifyContent: "space-between" }}>
+                                    {record.soLuong > 0 && (
+                                        <button onClick={() => handleAddToCart(record, index, 'minus')}>-</button>
                                     )}
-                                    <div> {record.soLuong}</div>
-                                    <button onClick={() => {
-                                        const newState = { ...state }
-                                        handleAddToCart({ ...record, room: newState.roomCount + 1 }, index)
-                                        setState(prevState => {
-                                            return ({ ...prevState, roomCount: prevState.roomCount + 1 })
-                                        })
-                                    } }
-                                    > + </button>
+                                    <div>{record.soLuong}</div>
+                                    {record.soLuong < record.name && (
+                                        <button onClick={() => handleAddToCart(record, index, 'plus')}>+</button>
+                                    )}
                                 </div>
-                                <span>{record?.name - state.roomCount} / {record.name} số phòng còn lại</span>
+                                <span>{record.name - record.soLuong} / {record.name} số phòng còn lại</span>
                             </>
                         )} />
-                        <Column title="Tầng" dataIndex="tang" key="tang" />
-                        <Column title="Text" dataIndex="text" key="text" />
-                        <Column title="Giá Phòng" dataIndex="price" key="price" />
-                        <Column title="Khách" dataIndex="khach" key="khach" />
+                        <Table.Column title="Giá Phòng" dataIndex="price" key="price" />
+                        <Table.Column title="Khách" dataIndex="khach" key="khach" />
                     </Table>
                 </div>
-                {state.roomCount !== 0 && (
+                {state.cartData.length > 0 && (
                     <div style={{ display: "flex", flexDirection: "column" }}>
-                        <Button type="primary">Tiếp tục</Button>
+                        <Button type="primary" onClick={() => setModal1Open(true)}>
+                            Tiếp Tục
+                        </Button>
+                        <Modal title="Chi tiết" open={modal1Open} onOk={() => setModal1Open(false)}
+                            width={800}>
+                            <AddCart/>
+                        </Modal>
                         <div style={{ fontWeight: "bold", marginBottom: "10px", border: "1px solid black", height: "100%", marginTop: "10px" }}>
                             Thông tin chi tiết ngày
                             <div>
                                 {state.cartData.map(item => (
                                     <div key={item.key} style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }} >
-                                        {/* Display shopping cart item details */}
                                         <div style={{ fontWeight: "bold" }}>
                                             <p>{item.id}</p>
-                                            <p><i class="fa-solid fa-user"></i>{item.khach}
-                                            <i class="fa-solid fa-house-circle-xmark"></i>{item.tang}</p></div>
-                                        <p>{item.price}*{item.room}</p>
-                                        <p></p>
-                                        {/* Add more details as needed */}
+                                            <p><i className="fa-solid fa-user"></i>{item.khach} <i className="fa-solid fa-house-circle-xmark"></i>{item.tang}</p>
+                                        </div>
+                                        <p>{item.price} * {item.soLuong}</p>
                                     </div>
                                 ))}
                             </div>
                             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                 <p>Tổng tiền</p>
                                 <span>500000 đ</span>
-                            </div>      
+                            </div>
                         </div>
                     </div>
                 )}

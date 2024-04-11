@@ -26,11 +26,11 @@ export const Children1 = () => {
             try {
                 const response = await axios.get(apiString);
                 const decodedData = response.data.map((item) => ({
-                    id: decodeURIComponent(item.thongTinKhachDatIdKhachDat.soDienThoai),
-                    name: decodeURIComponent(item.thongTinKhachDatIdKhachDat.hoTen),
-                    pass: decodeURIComponent(item.thongTinKhachDatIdKhachDat.ngaySinh),
-                    type: decodeURIComponent(item.thongTinKhachDatIdKhachDat.email),
-                    status: decodeURIComponent(item.trangThai),
+                    id: (item.thongTinKhachDatIdKhachDat.soDienThoai),
+                    name: (item.thongTinKhachDatIdKhachDat.hoTen),
+                    pass: (item.thongTinKhachDatIdKhachDat.ngaySinh),
+                    type: (item.thongTinKhachDatIdKhachDat.email),
+                    status: (item.trangThai),
                 }));
                 setData(decodedData);
             } catch (error) {

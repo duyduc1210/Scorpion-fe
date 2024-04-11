@@ -71,7 +71,7 @@ export const Content = () => {
             <div>
             <div style={{justifyContent: "none" }}>
                 <p>Tên Loại phòng</p>
-                <input type="text" />
+                <input  style={{ width: "339px" }}  type="text" />
                 </div>
                 <SelectComponent />
                
@@ -83,13 +83,15 @@ export const Content = () => {
                     dataSource={data}
                     pagination={false}
                 />
-                <input type="text" />
-                <input type="text" />   
+                <div style={{ display: "flex", justifyContent: "space-around"}}>
+                <input style={{ width: '40%' }} type="text" placeholder="Số người" />
+                <input style={{ width: '40%' }} type="text" placeholder="Diện tích"/>   
+                </div>
             </div>
 
             <div>
                 <p>Hướng nhìn</p>
-                <TextArea rows={2} style={{ width: 340 }} />
+                <TextArea rows={2} style={{ width: 339 }} />
                 <Table 
                     rowSelection={{
                         type: rowSelection,
@@ -98,11 +100,11 @@ export const Content = () => {
                     dataSource={datas}
                     pagination={false}
                 />
-                <input type="text" />  
+                <input style={{ width: "339px" }} type="text" placeholder="Giá tiền"/>  
             </div>
             
         </div>
-        <TextArea rows={2} style={{ width: 520}} />
+        <TextArea rows={2} style={{marginLeft: "30px", width: 720, marginleft: "20px"}} placeholder="Mô tả"/>
         </div>
     )
 }

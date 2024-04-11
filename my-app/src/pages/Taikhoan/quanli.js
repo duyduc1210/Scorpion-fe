@@ -27,8 +27,8 @@ export const Children = () => {
             try {
                 const response = await axios.get(apiString);
                 const decodedData = response.data.map((item) => ({
-                    name: decodeURIComponent(item.tenTaiKhoan),
-                    type: decodeURIComponent(item.quyenHanIdQuyenHan.tenQuyenHan),
+                    name: (item.tenTaiKhoan),
+                    type: (item.quyenHanIdQuyenHan.tenQuyenHan),
                 }));
                 setData(decodedData);
             } catch (error) {

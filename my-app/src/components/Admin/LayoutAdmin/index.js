@@ -37,7 +37,7 @@ const items = [
       getItem('Lịch sử', '63'),
     ]),
     getItem("Danh Sách Đặt Phòng", "reservation-list"),
-    getItem("Thông tin khách ở ", "8"),
+    getItem("Thông tin khách ở ", "guest-information"),
     getItem("Sơ đồ phòng", "room-diagram"),
   ]),
 ];
