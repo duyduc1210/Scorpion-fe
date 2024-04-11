@@ -257,8 +257,7 @@ const HomePage = () => {
             <h2 className="card-title">Mark Essien</h2>
             <h3 className="card-subtitle">Lagos, Nigeria.</h3>
             <p className="card-desc">
-              Words can't explain the kind of treatment I received from the
-              management of star hotels. They are the best in the country.
+              Đây là khách sạn tuyệt vời nhất từ trước đến nay. Tôi đã đi 15 nước và ở hơn 50 khách sạn khác nhau nhưng ở đây cho tôi trải nghiệm tuyệt vời nhất
             </p>
           </div>
           <div className="card">
@@ -268,10 +267,9 @@ const HomePage = () => {
               className="card-avi"
             />
             <h2 className="card-title">Seyi Onifade</h2>
-            <h3 className="card-subtitle">Lagos, Nigeria.</h3>
+            <h3 className="card-subtitle">ShangHai, China.</h3>
             <p className="card-desc">
-              Star hotels makes you feel the best room quality that makes you
-              feel the comfort of a home.
+              Khách sạn Scorpion cho bạn các phòng với chất lượng tuyệt vời nhất và cho tôi có cảm giác thoải mái như ở nhà.
             </p>
           </div>
           <div className="card">
@@ -280,11 +278,11 @@ const HomePage = () => {
               alt=""
               className="card-avi"
             />
-            <h2 className="card-title">Fayemi David</h2>
-            <h3 className="card-subtitle">Lagos, Nigeria.</h3>
+            <h2 className="card-title">Fayemi Alexa</h2>
+            <h3 className="card-subtitle">BangKok, ThaiLand.</h3>
             <p className="card-desc">
-              My Family and I are very happy when we lodge into star hotels.
-              They are by far the best in the universe.
+              Gia đình tôi và tôi rất vui và thoải mái tại khách sạn này.
+              Chắc chắn chúng tôi sẽ trở lại vào lần tới.
             </p>
           </div>
         </div>

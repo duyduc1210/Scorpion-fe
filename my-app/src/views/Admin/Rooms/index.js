@@ -4,7 +4,8 @@ import { SelectComponent } from '../../../components/Selectcomponent/SelectCompo
 import { EditOutlined, RestOutlined } from '@ant-design/icons';
 import { Content } from "../../../pages/Loaiphong/AddRoom"
 import { Content1 } from "../../../pages/Loaiphong/EditRoom"
-import axios from "axios";
+import axios from 'axios';
+
 const Rooms = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);

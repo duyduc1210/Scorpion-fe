@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 const ServiceCategory = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-
+    const rowIndex = 1;
     const { Column } = Table;
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
@@ -36,16 +36,15 @@ const ServiceCategory = () => {
         <div>
             {data.length > 0 ? (
                 <Table dataSource={data} loading={loading}>
-                     <Column
+                <Column
                     title="STT"
                     dataIndex="index"
                     key="index"
                     render={(text, record, index) => <span>{index + 1}</span>}
                 />
                     <Column title="Tên Loại Dịch Vụ" dataIndex="tenLoaiDichVu" key="tenLoaiDichVu" />
-                    <Column title="Chức Năng" dataIndex={"id"} key="id" /> {/* Assuming "id" is unique in your data */}
+                    <Column title="Chức Năng" dataIndex="id" key="id" /> {/* Assuming "id" is unique in your data */}
                 </Table>
-
             ) : (
                 <p>Loading data...</p>
             )}
