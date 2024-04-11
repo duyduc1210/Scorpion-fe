@@ -13,7 +13,7 @@ const FooterPage = () => {
                 <p className="footer-description-detail"> 
                   <img src="./assets/img/map-pin.svg" className="footer-description-icon" alt="scorpion hotel location" />
 
-                  <span>23, Hoàn Kiếm, Hà Nội</span></p>
+                  <span> Muine Bay Resort, Thành Phố Phan Thiết, Bình Thuận</span></p>
                 <p className="footer-description-detail">
                   <img src="./assets/img/phone.svg" className="footer-description-icon" alt="scorpion hotels phone number" /> 
                   <span>

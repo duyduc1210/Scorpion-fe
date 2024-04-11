@@ -1,6 +1,36 @@
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
+import { Button, message, Space } from 'antd';
 const HeaderPage = () => {
+  const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage();
+  let btnAuth;
+
+  const handleLogOut = async () => {
+    await localStorage.clear();
+    navigate("/")
+  }
+  const onClickDP = () =>{
+    if (guest_id) {
+      navigate("/booking")
+      }
+    else {
+    messageApi.open({
+      type: 'warning',
+      content: 'Bạn phải đăng nhập để đặt phòng',
+    });           
+    }
+  };
+
+  const guest_id = localStorage.getItem('guest_id');
+  if(guest_id){
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    btnAuth = (<li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>);
+  }else{
+    btnAuth = 
+    (<><li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Nhập</Link></li>
+       <li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/register">Đăng Ký</Link></li></>);
+  }
+
   return (
     <>
       <div className="header-container">
@@ -35,15 +65,11 @@ const HeaderPage = () => {
               </Link>
             </li>
             <li className="header-nav-list">
-              <Link className="header-btn header-btn-custom" to="/dang-nhap">
-                Đăng Nhập
+              <Link className="header-nav-link" to="/booking">
+                Giỏ hàng
               </Link>
             </li>
-            <li className="header-nav-list">
-              <Link className="header-btn header-btn-custom" to="/register">
-                Đăng Ký
-              </Link>
-            </li>
+            {btnAuth}
           </ul>
 
           <div className="header-hamburger-icon">

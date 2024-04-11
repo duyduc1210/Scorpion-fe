@@ -26,68 +26,30 @@ export const dataRoom = [
   },
 ];
 
-export const roomTypes = [
-  {
-    id: 1,
-    ten_loai_phong: "Standard Room",
-    huong_nhin: "Hướng lung tung",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_42_nastdj.png",
-    gia_tien: 400000,
-    so_luong_nguoi_o: 2,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 2,
-    ten_loai_phong: "Deluxe",
-    huong_nhin: "Hướng View biển",
-    dien_tich: "50m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_43_d9eepu.png",
-    gia_tien: 600000,
-    so_luong_nguoi_o: 4,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 3,
-    ten_loai_phong: "Family",
-    huong_nhin: "Hướng view thành phố",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638448/Rectangle_44_anerdv.png",
-    gia_tien: 800000,
-    so_luong_nguoi_o: 2,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-  {
-    id: 4,
-    ten_loai_phong: "President",
-    huong_nhin: "Hướng biển + thành phố",
-    dien_tich: "60m2",
-    image: "https://res.cloudinary.com/start-ng/image/upload/v1591638449/Rectangle_45_mtl458.png",
-    gia_tien: 1000000,
-    so_luong_nguoi_o: 4,
-    mo_ta: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    trang_thai: true
-  },
-];
 
 
 export const uuDais = [
   {
     id: 1,
     title: "Ưu đãi đặc biệt",
-    description: "Được giảm giá 10% cho phòng tiêu chuẩn nhìn ra thành phố. Ưu đãi có hiệu lực đến ngày 31 tháng 6 năm 2024",
+    description: "Được giảm giá 10% cho các dịp nghỉ lễ. Ưu đãi có hiệu lực đến ngày 31 tháng 12 năm 2024",
     attribute: [
-      { service: "Dịch vụ wifi miễn phí" },
+      { service: "Wifi miễn phí" },
       { service: "Đảm bảo giá tốt" },
-      { service: "Truy cập DSTV miễn phí" },
+      { service: "Truy cập dịch vụ tiện ích miễn phí" },
+      { service: "Trải nghiệm cao cấp, sang trọng và thoải mái" },
     ],
-    price: 400000,
-    number_stay: '2-4 người',
-    detail: "Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
-    status: true
+    welcome: "🌟 Khám phá Ưu đãi đặc biệt tại Khách sạn Scorpion 🌟",
+    number_stay: "🌴 Bạn đang tìm kiếm một kỳ nghỉ hoàn hảo, đầy đủ tiện nghi và dịch vụ chất lượng vượt trội? Đừng bỏ lỡ cơ hội trải nghiệm ưu đãi đặc biệt tại Khách sạn Scorpion!",
+    content1: "🎉 Chào mừng quý khách đến với Khách sạn Scorpion- điểm đến lý tưởng cho mọi hành trình!",
+    content2: "🏨 Tận hưởng không gian thoải mái và sang trọng trong các phòng nghỉ được thiết kế đẹp mắt, đầy đủ tiện nghi, từ phòng tiêu chuẩn đến suite cao cấp. Mỗi căn phòng đều được trang bị đồ nội thất hiện đại và tiện ích đầy đủ, hứa hẹn mang lại cho quý khách những giây phút nghỉ ngơi thư giãn tuyệt vời.",
+    content3: "🍽️ Ngoài ra, hãy thưởng thức các món ăn ngon miệng tại nhà hàng của chúng tôi, với đội ngũ đầu bếp chuyên nghiệp sẽ mang lại cho bạn trải nghiệm ẩm thực độc đáo và đầy hấp dẫn.",
+    content4: "🎁 Đừng quên khám phá các ưu đãi đặc biệt dành cho quý khách khi đặt phòng trực tuyến! Nhận ngay những ưu đãi hấp dẫn, giảm giá đặc biệt và các gói dịch vụ khuyến mãi khi bạn đặt trực tuyến tại website của chúng tôi.",
+    content5: "🌟 Khám phá và đặt ngay hôm nay để tận hưởng kỳ nghỉ tuyệt vời nhất tại Khách sạn Scorpion! 🌟",
+    wifi: "📶 Dịch vụ Wifi miễn phí không giới hạn 24/24 trong phạm vi khách sạn",
+    price: '💰 Đảm bảo mức giá tốt nhất cho khách hàng và dịch vụ cao cấp nhất',
+    detail: "🛎️ Đầy đủ các tiện nghi giúp cho chuyến nghỉ dưỡng của bạn thêm sự thoải mái",
+    
   },
 
 ];

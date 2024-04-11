@@ -1,10 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-// import LoginPage from './pages/Login';
-// import HomePage from './pages/Home'
-// import RegisterPage from './pages/Register';
-// import AdminPage from './pages/Admin';
-// import QuanlyloaiphongPage from  "./pages/Quanlyloaiphong";
+
 import LayoutAdmin from "./components/Admin/LayoutAdmin";
 import Rooms from "./views/Admin/Rooms";
 import RoomTypes from "./views/Admin/RoomTypes";
@@ -26,10 +22,12 @@ import RoomDiagram from "./views/Admin/RoomDiagram"
 import { Content } from "antd/es/layout/layout";
 import HotelBookingForm from "./views/Pages/Booking";
 import UtilityService from "./views/Admin/UtilityService/UtilityService";
+import CheckOut from "./views/Pages/Booking/CheckOut";
 
 function App() {
   return (
     <div className="App">
+    
       <BrowserRouter>
         <Routes>
           <Route path="/dang-nhap" element={<LoginPage />} />
@@ -48,12 +46,13 @@ function App() {
             <Route path="quanlyloaiphong" element={<Content />} />
             <Route path="room-diagram" element={<RoomDiagram/>}/>
             <Route path="utility-service" element={<UtilityService/>}/>     
+            
           </Route>
 
           <Route path="/" element={<HomePage />} />
           <Route path="room-and-suit" element={<RoomAndSuit />} />
           <Route path="booking" element={<HotelBookingForm />} />
-
+          <Route path="check-out" element={<CheckOut/>}/>  
           <Route path="facilities" element={<Facilities />} />
           <Route path="contact" element={<Contact />} />
         </Routes>

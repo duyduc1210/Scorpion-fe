@@ -1,30 +1,75 @@
-import Sider from "antd/es/layout/Sider";
+
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, message } from 'antd';
+
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
+
+
+  const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
   const formatNumber = (number) => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  };
+    if (number !== undefined) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+    return "";
+};
+
   let size = null;
   let btn = null;
+  const guest_id = localStorage.getItem("guest_id");
+
+
+  const onClickDP = () =>{
+    if (guest_id) {
+      let gioHang = [];
+      let giohangStore = localStorage.getItem("gioHang");
+      if(giohangStore){
+        gioHang = JSON.parse(giohangStore);
+      }
+      // kiem tra loai phong nay chua dc dat moi them vao gio hang
+      if(gioHang.some(g=>g.id === roomType.id)){
+        messageApi.open({
+          type: 'warning',
+          content: 'Sản phẩm đã có trong giỏ hàng',
+        });     
+      }else{
+        gioHang.push({
+          id: roomType.id,
+          soluong: 1
+        });
+        messageApi.open({
+          type: 'success',
+          content: 'Đã thêm vào giỏ hàng thành công',
+        });     
+     
+        localStorage.setItem("gioHang", JSON.stringify(gioHang));
+      }
+    } else {
+    messageApi.open({
+      type: 'warning',
+      content: 'Bạn phải đăng nhập để đặt phòng',
+    });           
+    }
+  };
+  
+  
   if (mode === "RoomAndSuit") {
-    btn = (
-      <Link className="btn btn-fill" to="/booking">
-        Đặt ngay
-      </Link>
-    );
-  } else {
-    size = "300";
+  btn = ( 
+    <span className="btn btn-fill cursor" onClick={onClickDP}>
+    
+      Thêm vào giỏ hàng
+    </span>
+  );
   }
  
-
   let content = null;
   if (mode === "RoomAndSuit") {
     content = (
       <>
-        <h3 className="room-title">{roomType.ten_loai_phong}</h3>
-        <p className="room-text">{roomType.mo_ta}</p>
+        <h3 className="room-title">{roomType.tenLoaiPhong}</h3>
+        <p className="room-text">{roomType.moTa}</p>
         <div>
           <div className="details-container">
             <img
@@ -32,7 +77,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
               alt="tick"
               className="list-icon"
             />
-            <p className="list-text">{roomType.so_luong_nguoi_o} người</p>
+            <p className="list-text">{roomType.soLuongNguoiO} người</p>
           </div>
           {/* <div className="details-container">
             <img src="assets/img/bed.png" alt="tick" className="list-icon" />
@@ -40,28 +85,33 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
           </div> */}
         </div>
         <p className="amount-text">
-          {formatNumber(roomType.gia_tien)} VNĐ / ngày
+          {formatNumber(roomType.giaTien)} VNĐ / ngày
         </p>
       </>
     );
   }
+  
+  console.log('roomeType',roomType);
   return (
     <>
+      {contextHolder}
+
       <div className="room col col-2">
         <img
           width={size}
-          src={roomType.image}
+          src={`data:image/png;base64,${roomType.hinhAnh[0].hinhAnhLoaiPhong}`}
           alt="anh_loai_phong"
-          className="rooms-img"
+          className="img2 rooms-img"
         />
         {content}
         <div className="buttons-container">
-          <span className="btn btn-ghost" onClick={onClick}>
+          <span className="btn btn-ghost cursor" onClick={onClick}>
             Xem thêm
           </span>
           {btn}
         </div>
       </div>
+  
     </>
   );
 };

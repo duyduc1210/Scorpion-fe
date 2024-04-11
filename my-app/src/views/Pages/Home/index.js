@@ -2,6 +2,7 @@ import React from "react";
 import { dataRoom } from "../../../shared/db/dataRoom";
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
+import { Link } from "react-router-dom";
 
 
 const HomePage = () => {
@@ -28,12 +29,10 @@ const HomePage = () => {
             <br />
            với sự thoải mái và giá cả phải chăng tuyệt vời
           </p>
-          <a
-            href="https://timbu.com/search?query=hotel"
-            className="btn btn-fill btn-large"
-          >
-           Đặt ngay
-          </a>
+          <Link  className="btn btn-fill btn-large" to={"/room-and-suit"}>
+            Đặt ngay
+            </Link>
+          
         </div>
       
       </div>
@@ -227,12 +226,10 @@ const HomePage = () => {
                 </div>
               </li>
             </ul>
-            <a
-              href="https://timbu.com/search?query=hotel"
-              className="btn btn-fill btn-large centered"
-            >
-              Đặt ngay
-            </a>
+            <Link  className="btn btn-fill btn-large centered" to={"/room-and-suit"}>
+            Đặt ngay
+            </Link>
+          
           </div>
         </div>
       </section>
