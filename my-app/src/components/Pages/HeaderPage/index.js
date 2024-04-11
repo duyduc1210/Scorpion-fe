@@ -1,14 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
-
+import { Button, message, Space } from 'antd';
 const HeaderPage = () => {
   const navigate = useNavigate();
-
+  const [messageApi, contextHolder] = message.useMessage();
   let btnAuth;
 
   const handleLogOut = async () => {
     await localStorage.clear();
     navigate("/")
   }
+  const onClickDP = () =>{
+    if (guest_id) {
+      navigate("/booking")
+      }
+    else {
+    messageApi.open({
+      type: 'warning',
+      content: 'Bạn phải đăng nhập để đặt phòng',
+    });           
+    }
+  };
 
   const guest_id = localStorage.getItem('guest_id');
   if(guest_id){
@@ -51,6 +62,11 @@ const HeaderPage = () => {
             <li className="header-nav-list">
               <Link className="header-nav-link" to="/contact">
                 Liên hệ
+              </Link>
+            </li>
+            <li className="header-nav-list">
+              <Link className="header-nav-link" to="/booking">
+                Giỏ hàng
               </Link>
             </li>
             {btnAuth}

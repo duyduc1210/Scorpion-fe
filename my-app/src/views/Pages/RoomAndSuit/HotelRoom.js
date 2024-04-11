@@ -1,7 +1,7 @@
-import Sider from "antd/es/layout/Sider";
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, message, Space } from 'antd';
+import { Button, message } from 'antd';
 
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
@@ -23,15 +23,34 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
 
   const onClickDP = () =>{
     if (guest_id) {
-      navigate("/booking");
+      let gioHang = [];
+      let giohangStore = localStorage.getItem("gioHang");
+      if(giohangStore){
+        gioHang = JSON.parse(giohangStore);
+      }
+      // kiem tra loai phong nay chua dc dat moi them vao gio hang
+      if(gioHang.some(g=>g.id === roomType.id)){
+        messageApi.open({
+          type: 'warning',
+          content: 'Sản phẩm đã có trong giỏ hàng',
+        });     
+      }else{
+        gioHang.push({
+          id: roomType.id,
+          soluong: 1
+        });
+        messageApi.open({
+          type: 'success',
+          content: 'Đã thêm vào giỏ hàng thành công',
+        });     
+     
+        localStorage.setItem("gioHang", JSON.stringify(gioHang));
+      }
     } else {
     messageApi.open({
       type: 'warning',
       content: 'Bạn phải đăng nhập để đặt phòng',
-    });
-     
-        
-     
+    });           
     }
   };
   
@@ -40,7 +59,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
   btn = ( 
     <span className="btn btn-fill cursor" onClick={onClickDP}>
     
-      Đặt ngay
+      Thêm vào giỏ hàng
     </span>
   );
   }
