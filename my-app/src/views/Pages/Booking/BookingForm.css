@@ -13,12 +13,7 @@
     margin-bottom: 10px;
   }
   
-  /* input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="datetime-local"],
-  select,
-  input[type="number"] {
+  .customerNameCss, .emailCss, .phoneNumberCss, .hinhThucDatCss, .checkInCss, .checkOutCss {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -32,7 +27,7 @@
       font-weight: bold;
       
   }
-  button[type="submit"] {
+.buttonDatPhong {
     background-color: #4caf50;
     color: white;
     padding: 10px 20px;
@@ -41,7 +36,7 @@
     cursor: pointer;
   }
   
-  button[type="submit"]:hover {
+  .buttonDatPhong :hover {
     background-color: #45a049;
   }
   .buttonXoa{
