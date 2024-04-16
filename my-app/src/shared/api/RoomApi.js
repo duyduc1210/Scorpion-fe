@@ -4,6 +4,8 @@ const getAll = () => {
     return http.get("/admin/loai-phong/all")
 }
 
+
+
 const RoomApi = {
     getAll
 }

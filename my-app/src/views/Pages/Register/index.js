@@ -28,11 +28,11 @@ const PageRegister = () => {
         </div>
         <div className="tittle">Giới tính </div>
         <div class="logout">
-          <input type="radio" />
+          <input type="radio" name="gender" />
           Nam
         </div>
         <div class="logout">
-          <input type="radio" />
+          <input type="radio" name="gender" />
           Nữ
         </div>
         <div className="title">Mật khẩu </div>

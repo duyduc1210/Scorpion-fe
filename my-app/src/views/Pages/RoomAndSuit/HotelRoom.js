@@ -1,13 +1,15 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, message } from 'antd';
+import { Button, DatePicker, message } from 'antd';
+import moment from "moment";
 
 
 const HotelRoom = ({ roomType, onClick, mode = null }) => {
 
 
   const [messageApi, contextHolder] = message.useMessage();
+  const [dateTime, setDateTime] = useState(null);
   const navigate = useNavigate();
   const formatNumber = (number) => {
     if (number !== undefined) {
@@ -37,7 +39,8 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
       }else{
         gioHang.push({
           id: roomType.id,
-          soluong: 1
+          soluong: 1, 
+          soLuongTrong: roomType.soLuongTrong
         });
         messageApi.open({
           type: 'success',
@@ -78,6 +81,8 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
               className="list-icon"
             />
             <p className="list-text">{roomType.soLuongNguoiO} người</p>
+            {roomType.soLuongTrong > 0 ? 
+              <><br/><p className="amount-text">Số lượng phòng trống : {roomType.soLuongTrong} / {roomType.soLuongTrong} phòng </p></>  : null}  
           </div>
           {/* <div className="details-container">
             <img src="assets/img/bed.png" alt="tick" className="list-icon" />
@@ -92,8 +97,10 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
   }
   
   console.log('roomeType',roomType);
+  
   return (
     <>
+     
       {contextHolder}
 
       <div className="room col col-2">

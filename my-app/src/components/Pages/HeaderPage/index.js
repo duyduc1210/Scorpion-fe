@@ -24,7 +24,10 @@ const HeaderPage = () => {
   const guest_id = localStorage.getItem('guest_id');
   if(guest_id){
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    btnAuth = (<li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>);
+    btnAuth = (<>
+     <li className="header-nav-list"> <Link className="header-nav-link" to="/booking"> Giỏ hàng</Link></li>
+<li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>
+    </>);
   }else{
     btnAuth = 
     (<><li className="header-nav-list"><Link className="header-btn header-btn-custom" to="/dang-nhap">Đăng Nhập</Link></li>
@@ -64,12 +67,9 @@ const HeaderPage = () => {
                 Liên hệ
               </Link>
             </li>
-            <li className="header-nav-list">
-              <Link className="header-nav-link" to="/booking">
-                Giỏ hàng
-              </Link>
-            </li>
+          
             {btnAuth}
+            
           </ul>
 
           <div className="header-hamburger-icon">

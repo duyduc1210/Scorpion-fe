@@ -1,7 +1,7 @@
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
 import React, { useState, useEffect } from "react";
-import { Button } from "antd";
+import { Button, DatePicker } from "antd";
 
 import HotelRoom from "./HotelRoom";
 
@@ -9,16 +9,20 @@ import { uuDais } from "../../../shared/db/dataRoom";
 
 import CsModal from "./CsModal";
 import UuDaiDetail from "./UuDaiDetail";
+import * as api from '../../../services/RoomService';
 
 import RoomTypeDetail from "./RoomTypeDetail";
 import RoomApi from "../../../shared/api/RoomApi";
+import moment from "moment";
 
 const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [mode, setMode] = useState("");
   const [getData, setData] = useState({});
-
+  const [timeVao, setTimeVao] = useState();
+  const [timeRa, setTimeRa] = useState();
+  
   let content = null;
 
   useEffect(() => {
@@ -51,6 +55,27 @@ const RoomAndSuit = () => {
     }
   };
 
+  const handleSearchDate = async () => {
+    try {
+        let body = {};
+
+        if (timeVao) {
+            body.thoiGianVao = `${timeVao} 12:00:00`;
+        }
+        if (timeRa) {
+            body.thoiGianRa = `${timeRa} 12:00:00`;
+        }
+
+        const res = await api.searchDateCt(body);
+      
+        setRoomTypes(res.data);
+        
+        console.log(res);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
   const showModalUuDai = (data = null) => {
     setIsModalOpen(true);
     setMode("uuDai");
@@ -81,6 +106,7 @@ const RoomAndSuit = () => {
 
   return (
     <>
+    
       <CsModal
         open={isModalOpen}
         title={getData.title}
@@ -148,12 +174,12 @@ const RoomAndSuit = () => {
               </div>
 
               {uuDais.map((uuDai) => (
-                <div className="col">
+                <div className="col" key={uuDai.id}>
                   <h3 className="offers-title">{uuDai.title}</h3>
                   <p className="offers-sub-title">{uuDai.description}</p>
                   <ul className="offers-list">
                     {uuDai.attribute.map((item) => (
-                      <li>
+                      <li key={item.id}>
                         <div>
                           <img
                             src="assets/img/check-square.svg"
@@ -178,14 +204,27 @@ const RoomAndSuit = () => {
             </div>
           </section>
 
+          <center>
+         <div style={{marginBottom: 16 }}>
+         <h2> Tìm kiếm</h2>
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu' />
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
+                <Button style={{ marginLeft: "10px" }} type="primary" onClick={handleSearchDate}>
+                    Tìm kiếm
+                </Button>
+            </div>
+          </center>
+
           <section className="rooms-section">
             <div className="row center-lg">
               {getRoomTypes.map((roomType) => (
-                <HotelRoom
+               <span key={roomType.id}>
+               <HotelRoom
                   mode={"RoomAndSuit"}
                   roomType={roomType}
                   onClick={() => showRoomType(roomType)}
                 />
+               </span>
               ))}
             </div>
           </section>
