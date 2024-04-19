@@ -26,6 +26,8 @@ const HeaderPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     btnAuth = (<>
      <li className="header-nav-list"> <Link className="header-nav-link" to="/booking"> Giỏ hàng</Link></li>
+     <li className="header-nav-list"> <Link className="header-nav-link" to="/historyBook">Lịch sử đặt</Link></li>
+
 <li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>
     </>);
   }else{

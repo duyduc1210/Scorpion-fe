@@ -200,7 +200,7 @@ const CheckOut = () => {
 
       messageApi.open({
         type: 'success',
-        content: 'Tạo đơn thành công',
+        content: 'Đặt phòng thành công',
       });     
   
       setTimeout(() => {
@@ -222,7 +222,7 @@ const CheckOut = () => {
     <>
     {contextHolder}
       <center>
-        <div className="datPhongBooking">Thông tin đặt phòng</div>
+        <h2>Thông tin đặt phòng</h2>
       </center>
       <div style={{ display: "flex", gap: "20px" }}>
         <div style={{ flex: "1", marginRight: "20px", marginLeft: "10px" }}>

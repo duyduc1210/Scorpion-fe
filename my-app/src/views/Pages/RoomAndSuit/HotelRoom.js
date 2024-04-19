@@ -2,14 +2,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button, DatePicker, message } from 'antd';
-import moment from "moment";
 
 
-const HotelRoom = ({ roomType, onClick, mode = null }) => {
-
+const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
 
   const [messageApi, contextHolder] = message.useMessage();
-  const [dateTime, setDateTime] = useState(null);
+
   const navigate = useNavigate();
   const formatNumber = (number) => {
     if (number !== undefined) {
@@ -31,6 +29,15 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
         gioHang = JSON.parse(giohangStore);
       }
       // kiem tra loai phong nay chua dc dat moi them vao gio hang
+
+      if(!timeVao || !timeRa){
+        messageApi.open({
+          type: 'warning',
+          content: 'Vui lòng tìm kiếm ngày đặt phòng',
+        });    
+        return
+      }
+
       if(gioHang.some(g=>g.id === roomType.id)){
         messageApi.open({
           type: 'warning',
@@ -49,6 +56,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
      
         localStorage.setItem("gioHang", JSON.stringify(gioHang));
       }
+
     } else {
     messageApi.open({
       type: 'warning',

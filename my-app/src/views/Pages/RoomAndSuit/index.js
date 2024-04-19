@@ -1,7 +1,7 @@
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
 import React, { useState, useEffect } from "react";
-import { Button, DatePicker } from "antd";
+import { Button, DatePicker, message } from "antd";
 
 import HotelRoom from "./HotelRoom";
 
@@ -18,6 +18,8 @@ import moment from "moment";
 const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const [mode, setMode] = useState("");
   const [getData, setData] = useState({});
   const [timeVao, setTimeVao] = useState();
@@ -25,6 +27,7 @@ const RoomAndSuit = () => {
   
   let content = null;
 
+  
   useEffect(() => {
     const getData = async () => {
       
@@ -59,7 +62,14 @@ const RoomAndSuit = () => {
     try {
         let body = {};
 
-        if (timeVao) {
+        if(!timeVao || !timeRa){
+          messageApi.open({
+            type: 'warning',
+            content: 'Vui lòng điền ngày',
+          });    
+          return
+        }else{
+          if (timeVao) {
             body.thoiGianVao = `${timeVao} 12:00:00`;
         }
         if (timeRa) {
@@ -69,8 +79,13 @@ const RoomAndSuit = () => {
         const res = await api.searchDateCt(body);
       
         setRoomTypes(res.data);
-        
+        messageApi.open({
+          type: 'success',
+          content: 'Tìm kiếm thành công vui lòng kiểm tra các phòng còn trống',
+        });  
         console.log(res);
+        }
+       
     } catch (error) {
         console.error('Error:', error);
     }
@@ -106,7 +121,7 @@ const RoomAndSuit = () => {
 
   return (
     <>
-    
+    {contextHolder}
       <CsModal
         open={isModalOpen}
         title={getData.title}
@@ -207,12 +222,16 @@ const RoomAndSuit = () => {
           <center>
          <div style={{marginBottom: 16 }}>
          <h2> Tìm kiếm</h2>
+         <hr />
+         <br/>
                 <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu' />
                 <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
                 <Button style={{ marginLeft: "10px" }} type="primary" onClick={handleSearchDate}>
                     Tìm kiếm
                 </Button>
             </div>
+            <br/>
+            
           </center>
 
           <section className="rooms-section">
@@ -223,6 +242,8 @@ const RoomAndSuit = () => {
                   mode={"RoomAndSuit"}
                   roomType={roomType}
                   onClick={() => showRoomType(roomType)}
+                  timeVao={timeVao}
+                  timeRa={timeRa}
                 />
                </span>
               ))}

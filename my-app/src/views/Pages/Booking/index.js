@@ -253,7 +253,7 @@ const HotelBookingForm = () => {
           )}
         />
         <Column
-          title="Mức giá hôm nay"
+          title="Mức giá"
           key="gia_tien"
           render={(roomType) => (
             <>
