@@ -223,6 +223,7 @@ const CheckOut = () => {
     {contextHolder}
       <center>
         <h2>Thông tin đặt phòng</h2>
+        <hr />
       </center>
       <div style={{ display: "flex", gap: "20px" }}>
         <div style={{ flex: "1", marginRight: "20px", marginLeft: "10px" }}>

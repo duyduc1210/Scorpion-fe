@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Button, message, Space } from 'antd';
 const HeaderPage = () => {
   const navigate = useNavigate();
@@ -25,8 +25,8 @@ const HeaderPage = () => {
   if(guest_id){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     btnAuth = (<>
-     <li className="header-nav-list"> <Link className="header-nav-link" to="/booking"> Giỏ hàng</Link></li>
-     <li className="header-nav-list"> <Link className="header-nav-link" to="/historyBook">Lịch sử đặt</Link></li>
+     <li className="header-nav-list"> <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/booking" activeClassName="header-active" > Giỏ hàng</NavLink></li>
+     <li className="header-nav-list"> <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/historyBook" activeClassName="header-active" >Lịch sử đặt</NavLink></li>
 
 <li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>
     </>);
@@ -50,24 +50,24 @@ const HeaderPage = () => {
           </div>
           <ul className="header-nav-lists">
             <li className="header-nav-list">
-              <Link className="header-nav-link header-active" to="/">
-                Trang chủ
-              </Link>
+                <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/" >
+                  Trang chủ
+                </NavLink>
             </li>
             <li className="header-nav-list">
-              <Link className="header-nav-link" to="/room-and-suit">
+              <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/room-and-suit" >
                 Phòng và dãy phòng
-              </Link>
+              </NavLink>
             </li>
             <li className="header-nav-list">
-              <Link className="header-nav-link" to="/facilities">
+              <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/facilities" >
                 Cơ sở vật chất
-              </Link>
+              </NavLink>
             </li>
             <li className="header-nav-list">
-              <Link className="header-nav-link" to="/contact">
+              <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/contact" >
                 Liên hệ
-              </Link>
+              </NavLink>
             </li>
           
             {btnAuth}

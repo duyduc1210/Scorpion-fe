@@ -42,18 +42,6 @@ const HistoryBook = () => {
 
   }, [getCurrentUserId]);
 
-  //GET API chi tiết lịch sử đặt phòng
-  // useEffect(() => {
-  //   const getHistoryDetail = async () => {
-  //     try {
-  //       const results = await historyBookDetail.get();
-  //       setRooms(results.data);
-  //       console.log(results.data);
-  //     } catch (error) {}
-  //   };
-
-  //   getHistoryDetail();
-  // }, []);
 
   const showModal = (data) => {
     const newData = {
@@ -96,6 +84,7 @@ const HistoryBook = () => {
       <HeaderPage />
       <center>
         <h2 className="lsdpcss">Lịch sử đặt phòng</h2>
+        <hr /> 
         <br />
       </center>
       <Table pagination={false} dataSource={getRoomTypes}>
