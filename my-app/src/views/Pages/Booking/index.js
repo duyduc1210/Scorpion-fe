@@ -210,14 +210,19 @@ const HotelBookingForm = () => {
       {contextHolder}
       <center>
         <h2>Giỏ hàng</h2>
+        
     
+        <hr />
+        <p >
+                Chọn ngày
+            </p>
         <div style={{marginBottom: 16, marginTop : 16 }} >
         
                 <DatePicker  style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu'  />
                 <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
               
             </div>
-            
+           
       </center>
 
       <CsModal
