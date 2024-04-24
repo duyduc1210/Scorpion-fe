@@ -23,8 +23,9 @@ const Rooms = () => {
         setData(cloneData)
     }
 
-    const fecthdata = async () => {
-        const res = await api.getRoom();
+    const fecthdata = async (value) => {
+        const res = await api.getRoom(value);
+
         const decodedData = res.data.map((item) => {
             console.log("item", item);
             return {
@@ -47,15 +48,44 @@ const Rooms = () => {
     const editRoomType = (props) => {
         console.log(props.id)
     }
+    const apiDeleteRoom = 'http://localhost:8080/admin/phong/xoa/';
+    const deleteRoomtype = async (props) => {
+        // console.log(data)
+        // const filterData = data.filter(item => item.id !== props.id);
+        // setData(filterData);
+        try {
+            const response = axios.delete(`${apiDeleteRoom}${props.id}`);
+            if (response.status === 200) {
+                console.log("Room deleted successfully");
+                // Reload data after successful deletion
+                const res = await api.getRoom(null);
 
-    const deleteRoomtype = (props) => {
-        console.log(data)
-        const filterData = data.filter(item => item.id !== props.id);
-        setData(filterData);
+                const decodedData = res.data.map((item) => {
+                    console.log("item", item);
+                    return {
+                        id: item.id,
+                        name: item.soPhong,
+                        tang: item.soTang,
+                        type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
+                        status: item.trangThai,
+
+                    }
+                });
+
+                setData(decodedData)
+                console.log(decodedData)
+            } else {
+                console.error("Failed to delete room");
+            }
+        } catch (error) {
+            console.error("Error occurred while deleting room:", error);
+        }
     }
     return (<>
         <h3>Phòng</h3>
-        <SelectComponent />
+
+        <SelectComponent onChangeData={fecthdata} />
+
         <Button type="primary" onClick={() => setModal1Open(true)}>
             Thêm
         </Button>

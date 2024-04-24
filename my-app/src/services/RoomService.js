@@ -1,8 +1,13 @@
 import axios from  'axios';
 import { useState,useEffect } from "react";
 
-export const getRoom = async() => {
-    const res = await axios.get('http://localhost:8080/admin/phong/hien-thi');
+export const getRoom = async(id) => {
+    var res = null;
+    if(id){
+        res = await axios.get(`http://localhost:8080/admin/phong/loc?id=${id}`);
+    }else{
+        res = await axios.get(`http://localhost:8080/admin/phong/loc`);
+    }
     return res;
 }
 
