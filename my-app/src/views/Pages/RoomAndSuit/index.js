@@ -1,7 +1,7 @@
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import FooterPage from "../../../components/Pages/FooterPage";
 import React, { useState, useEffect } from "react";
-import { Button } from "antd";
+import { Button, DatePicker, message } from "antd";
 
 import HotelRoom from "./HotelRoom";
 
@@ -9,18 +9,25 @@ import { uuDais } from "../../../shared/db/dataRoom";
 
 import CsModal from "./CsModal";
 import UuDaiDetail from "./UuDaiDetail";
+import * as api from '../../../services/RoomService';
 
 import RoomTypeDetail from "./RoomTypeDetail";
 import RoomApi from "../../../shared/api/RoomApi";
+import moment from "moment";
 
 const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+
   const [mode, setMode] = useState("");
   const [getData, setData] = useState({});
-
+  const [timeVao, setTimeVao] = useState();
+  const [timeRa, setTimeRa] = useState();
+  
   let content = null;
 
+  
   useEffect(() => {
     const getData = async () => {
       
@@ -50,6 +57,39 @@ const RoomAndSuit = () => {
       setData(newData);
     }
   };
+
+  const handleSearchDate = async () => {
+    try {
+        let body = {};
+
+        if(!timeVao || !timeRa){
+          messageApi.open({
+            type: 'warning',
+            content: 'Vui lòng điền ngày',
+          });    
+          return
+        }else{
+          if (timeVao) {
+            body.thoiGianVao = `${timeVao} 12:00:00`;
+        }
+        if (timeRa) {
+            body.thoiGianRa = `${timeRa} 12:00:00`;
+        }
+
+        const res = await api.searchDateCt(body);
+      
+        setRoomTypes(res.data);
+        messageApi.open({
+          type: 'success',
+          content: 'Tìm kiếm thành công vui lòng kiểm tra các phòng còn trống',
+        });  
+        console.log(res);
+        }
+       
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
 
   const showModalUuDai = (data = null) => {
     setIsModalOpen(true);
@@ -81,6 +121,7 @@ const RoomAndSuit = () => {
 
   return (
     <>
+    {contextHolder}
       <CsModal
         open={isModalOpen}
         title={getData.title}
@@ -148,12 +189,12 @@ const RoomAndSuit = () => {
               </div>
 
               {uuDais.map((uuDai) => (
-                <div className="col">
+                <div className="col" key={uuDai.id}>
                   <h3 className="offers-title">{uuDai.title}</h3>
                   <p className="offers-sub-title">{uuDai.description}</p>
                   <ul className="offers-list">
                     {uuDai.attribute.map((item) => (
-                      <li>
+                      <li key={item.id}>
                         <div>
                           <img
                             src="assets/img/check-square.svg"
@@ -178,14 +219,33 @@ const RoomAndSuit = () => {
             </div>
           </section>
 
+          <center>
+         <div style={{marginBottom: 16 }}>
+         <h2> Tìm kiếm</h2>
+         <hr />
+         <br/>
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu' />
+                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
+                <Button style={{ marginLeft: "10px" }} type="primary" onClick={handleSearchDate}>
+                    Tìm kiếm
+                </Button>
+            </div>
+            <br/>
+            
+          </center>
+
           <section className="rooms-section">
             <div className="row center-lg">
               {getRoomTypes.map((roomType) => (
-                <HotelRoom
+               <span key={roomType.id}>
+               <HotelRoom
                   mode={"RoomAndSuit"}
                   roomType={roomType}
                   onClick={() => showRoomType(roomType)}
+                  timeVao={timeVao}
+                  timeRa={timeRa}
                 />
+               </span>
               ))}
             </div>
           </section>

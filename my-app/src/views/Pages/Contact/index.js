@@ -31,7 +31,7 @@ const Contact = () => {
           <div className="header">
             <h2>Liên hệ</h2>
             <hr />
-            <p>
+            <p className="page-sub-header">
               Quan tâm đến việc hợp tác hoặc bạn có bất kỳ khiếu nại hoặc phản hồi nào không? Điền vào mẫu dưới đây
             </p>
           </div>

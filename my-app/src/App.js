@@ -24,6 +24,7 @@ import { Content } from "antd/es/layout/layout";
 import HotelBookingForm from "./views/Pages/Booking";
 import UtilityService from "./views/Admin/UtilityService/UtilityService";
 import CheckOut from "./views/Pages/Booking/CheckOut";
+import HistoryBook from "./views/Pages/HistoryBook";
 
 function App() {
   return (
@@ -46,7 +47,8 @@ function App() {
             <Route path="guest-information" element={<Guestinformation/>} />
             <Route path="quanlyloaiphong" element={<Content />} />
             <Route path="room-diagram" element={<RoomDiagram/>}/>
-            <Route path="utility-service" element={<UtilityService/>}/>     
+            <Route path="utility-service" element={<UtilityService/>}/>  
+
             
           </Route>
 
@@ -56,6 +58,8 @@ function App() {
           <Route path="booking" element={<HotelBookingForm />} />
           <Route path="check-out" element={<CheckOut/>}/>  
           <Route path="facilities" element={<Facilities />} />
+          <Route path="historyBook" element={<HistoryBook/>}/>     
+
           <Route path="contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>

@@ -3,6 +3,7 @@ import { Input } from 'antd';
 import { SelectComponent } from '../../components/Selectcomponent/SelectComponent'
 
 export const Content = () => {
+
     return (
         <div>
             <div style={{}}>

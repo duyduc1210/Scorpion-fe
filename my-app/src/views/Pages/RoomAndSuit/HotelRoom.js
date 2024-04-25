@@ -1,13 +1,13 @@
 
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, message } from 'antd';
+import { Button, DatePicker, message } from 'antd';
 
 
-const HotelRoom = ({ roomType, onClick, mode = null }) => {
-
+const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
 
   const [messageApi, contextHolder] = message.useMessage();
+
   const navigate = useNavigate();
   const formatNumber = (number) => {
     if (number !== undefined) {
@@ -29,6 +29,15 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
         gioHang = JSON.parse(giohangStore);
       }
       // kiem tra loai phong nay chua dc dat moi them vao gio hang
+
+      if(!timeVao || !timeRa){
+        messageApi.open({
+          type: 'warning',
+          content: 'Vui lòng tìm kiếm ngày đặt phòng',
+        });    
+        return
+      }
+
       if(gioHang.some(g=>g.id === roomType.id)){
         messageApi.open({
           type: 'warning',
@@ -37,7 +46,8 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
       }else{
         gioHang.push({
           id: roomType.id,
-          soluong: 1
+          soluong: 1, 
+          soLuongTrong: roomType.soLuongTrong
         });
         messageApi.open({
           type: 'success',
@@ -46,6 +56,7 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
      
         localStorage.setItem("gioHang", JSON.stringify(gioHang));
       }
+
     } else {
     messageApi.open({
       type: 'warning',
@@ -78,6 +89,8 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
               className="list-icon"
             />
             <p className="list-text">{roomType.soLuongNguoiO} người</p>
+            {roomType.soLuongTrong > 0 ? 
+              <><br/><p className="amount-text">Số lượng phòng trống : {roomType.soLuongTrong} / {roomType.soLuongTrong} phòng </p></>  : null}  
           </div>
           {/* <div className="details-container">
             <img src="assets/img/bed.png" alt="tick" className="list-icon" />
@@ -92,8 +105,10 @@ const HotelRoom = ({ roomType, onClick, mode = null }) => {
   }
   
   console.log('roomeType',roomType);
+  
   return (
     <>
+     
       {contextHolder}
 
       <div className="room col col-2">
