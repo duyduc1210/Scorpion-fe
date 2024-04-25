@@ -6,6 +6,7 @@ import Rooms from "./views/Admin/Rooms";
 import RoomTypes from "./views/Admin/RoomTypes";
 import ThongKe from "./views/Admin/ThongKe";
 import Accounts from "./views/Admin/Accounts";
+import Transaction from "./components/Admin/Transaction";
 
 import LoginPage from "./views/Pages/Login";
 import HomePage from "./views/Pages/Home";
@@ -15,7 +16,7 @@ import RoomAndSuit from "./views/Pages/RoomAndSuit";
 
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
-import Reservationlist from "./views/Admin/Reservationlist"
+import Reservationlist from "./views/Admin/ReservationList";
 import Createtransaction from "./views/Admin/CreateTransaction"
 import Guestinformation from "./views/Admin/GuestInformation"
 import RoomDiagram from "./views/Admin/RoomDiagram"
@@ -50,6 +51,7 @@ function App() {
           </Route>
 
           <Route path="/" element={<HomePage />} />
+          <Route path="transaction" element={<Transaction/>} />
           <Route path="room-and-suit" element={<RoomAndSuit />} />
           <Route path="booking" element={<HotelBookingForm />} />
           <Route path="check-out" element={<CheckOut/>}/>  
