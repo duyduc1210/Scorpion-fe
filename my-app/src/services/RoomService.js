@@ -32,6 +32,10 @@ export const searchPriceRoom = async(price) => {
     const res = await axios.get(`http://localhost:8080/admin/loai-phong/tim-kiem-theo-gia/${price}`);
     return res;
 }
+export const searchNameRoom = async(name) => {
+    const res = await axios.get(`http://localhost:8080/admin/loai-phong/tim-kiem-theo-ten/${name}`);
+    return res;
+}
 
 export const searchDateCt = async(params) => {
     const res = await axios.get(`http://localhost:8080/admin/loai-phong/search`,{ params: params });

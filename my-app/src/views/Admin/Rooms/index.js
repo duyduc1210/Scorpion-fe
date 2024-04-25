@@ -24,21 +24,24 @@ const Rooms = () => {
     }
 
     const fecthdata = async () => {
-        const res = await api.getRoom();
-        const decodedData = res.data.map((item) => {
-            console.log("item", item);
-            return {
-                id: item.id,
-                name: item.soPhong,
-                tang: item.soTang,
-                type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
-                status: item.trangThai,
+        try {
+            const res = await api.getRoom();
+            const decodedData = res.data.map((item) => {
+                console.log("item", item);
+                return {
+                    id: item.id,
+                    name: item.soPhong,
+                    tang: item.soTang,
+                    type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
+                    status: item.trangThai,
 
-            }
-        });
-
-        setData(decodedData)
-        console.log(decodedData)
+                }
+            });
+            setData(decodedData)
+            console.log(decodedData)
+        } catch (error) {
+            console.error('Error ', error);
+        }
     }
     useEffect(() => {
         fecthdata()

@@ -110,7 +110,7 @@ export const Content1 = ({ roomId, handleSave }) => {
                         dataSource={tienIchData}
                         pagination={false}
                     />
-                    <input style={{ width: "339px" }} type="number" placeholder="Giá tiền" value={giaTien} onChange={(e) => setGiaTien(e.target.value)} />
+                    <input style={{marginTop: "50px", width: "339px" }} type="number" placeholder="Giá tiền" value={giaTien} onChange={(e) => setGiaTien(e.target.value)} />
                 </div>
 
             </div>

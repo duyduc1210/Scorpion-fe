@@ -8,6 +8,7 @@ const RoomTypes = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [price, setPrice] = useState();
+    const [name, setName] = useState();
 
     const [selectedId, setSelectedId] = useState(0);
     const [modal1Open, setModal1Open] = useState(false);
@@ -38,6 +39,20 @@ const RoomTypes = () => {
             setData(decodedData);
         } catch (error) {
             console.error('Error searching by price:', error);
+        }
+    }
+    const handleSearchName = async () => {
+        try {
+            const res = await api.searchNameRoom(price);
+            const decodedData = res.data.map((item) => ({
+                id: decodeURIComponent(item.id),
+                name: decodeURIComponent(item.tenLoaiPhong),
+                price: decodeURIComponent(item.giaTien),
+                status: decodeURIComponent(item.trangThai),
+            }));
+            setData(decodedData);
+        } catch (error) {
+            console.error('Error searching by name:', error);
         }
     }
     const fecthdata = async () => {
@@ -90,10 +105,8 @@ const RoomTypes = () => {
             <h3>Loại Phòng</h3>
             <i class="fa-solid fa-dollar-sign"></i>
             <input type="text" placeholder="Giá tiền" value={price} onChange={(e) => setPrice(e.target.value)} />
-            <i class="fa-solid fa-filter"></i>
-            <input type="text" placeholder="Số người" />
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search" />
+            <input type="text" placeholder="Search" value={name} onChange={(e) => setName(e.target.value)} />
             <Button type="primary" onClick={handleSearchPrice}>
                 Tìm kiếm
             </Button>

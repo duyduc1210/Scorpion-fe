@@ -73,7 +73,7 @@ export const Content = () => {
                 <p>Tên Loại phòng</p>
                 <input  style={{ width: "339px" }}  type="text" />
                 </div>
-                <SelectComponent />
+                {/* <SelectComponent /> */}
                
                 <Table
                     rowSelection={{
