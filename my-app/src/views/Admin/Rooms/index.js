@@ -81,6 +81,8 @@ const Rooms = () => {
             console.error("Error occurred while deleting room:", error);
         }
     }
+    const apiAddRoom = 'http://localhost:8080/admin/phong/add';
+
     return (<>
         <h3>Phòng</h3>
 
