@@ -16,6 +16,7 @@ export const SelectComponent = ({ onChangeData }) => {
         const apiGet = 'http://localhost:8080/admin/loai-phong/list';
         try {
             const response = await axios.get(apiGet);
+            console.log(response.data);
             const filterData = response.data.map(item => ({
                 value: item.id,
                 label: item.tenLoaiPhong,

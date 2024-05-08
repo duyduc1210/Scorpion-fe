@@ -21,8 +21,9 @@ export const getListRoom = async() => {
     return res;
 }
 
-export const updateRoom = async(id) => {
-const res = await axios.put(`http://localhost:8080/admin/phong/sua/${id}`);
+export const updateRoom = async(id, body) => {
+    console.log(id, "id");
+const res = await axios.put(`http://localhost:8080/admin/phong/sua/${id}`, body);
     return res;
 }
 

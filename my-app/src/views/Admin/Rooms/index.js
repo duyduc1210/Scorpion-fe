@@ -1,146 +1,97 @@
-import React, { useState, useEffect } from 'react';
-import { Table, Switch, Button, Flex, Tooltip, Popconfirm, Modal } from 'antd';
-import { SelectComponent } from '../../../components/Selectcomponent/SelectComponent'
-import { EditOutlined, RestOutlined } from '@ant-design/icons';
-import { Content } from "../../../pages/Loaiphong/AddRoom"
-import { Content1 } from "../../../pages/Loaiphong/EditRoom"
-import axios from 'axios';
-import * as api from '../../../services/RoomService';
+import { EditOutlined, RestOutlined } from "@ant-design/icons"
+import { Button, Flex, Switch, Table, Tooltip } from "antd"
+import { useContext, useState } from "react"
+import { AppContext } from "../../../App"
+import ModalCreate from "./components/modal/ModalCreate"
+import ModalDelete from "./components/modal/ModalDelete"
+import ModalEdit from "./components/modal/ModalEdit"
+import useGetListRooms from "./hooks/useGetListRooms"
 
 const Rooms = () => {
-    const [data, setData] = useState([]);
+    //! state
+    const { loading } = useContext(AppContext)
+    const [openModalDelete, setOpenModalDelete] = useState(false)
+    const [openModalCreate, setOpenModalCreate] = useState("")
+    const [openModalEdit, setOpenModalEdit] = useState(false)
+    const [itemTarget, setItemTarget] = useState()
 
-    console.log("data", data);
-    const [loading, setLoading] = useState(false);
+    console.log("openModalEdit", openModalEdit);
 
-    const [modal1Open, setModal1Open] = useState(false);
-    const [modal2Open, setModal2Open] = useState(false);
-    const { Column } = Table;
-    const handleStatusChange = (record, status) => {
-        const cloneData = [...data]
-        const indexItem = cloneData.findIndex(item => item.id === record.id)
-        cloneData[indexItem].status = status;
-        setData(cloneData)
-    }
+    const { data: listRooms, refresh: refreshGetListRooms } = useGetListRooms()
 
-    const fecthdata = async (value) => {
-        const res = await api.getRoom(value);
+    //! function 
+    const columns = [
+        {
+            title: 'STT',
+            render: (text, record, index) => <span>{index + 1}</span>
+        },
+        {
+            title: 'Tên phòng',
+            dataIndex: 'soPhong',
+        },
+        {
+            title: 'Tầng',
+            dataIndex: 'soTang',
+        },
+        {
+            title: 'Loại phòng',
+            render: (text, record) => <span>{record?.loaiPhongIdLoaiPhong?.tenLoaiPhong}</span>
+        },
+        {
+            title: 'Trạng thái',
+            render: (text, record) => <Switch checked={record.trangThai} onChange={(checked) => { }} />
+        },
+        {
+            title: 'Thao tác',
+            render: (text, record) => {
+                return (
+                    <Flex justify={"flex-start"}>
+                        <Tooltip title={"Sửa"}>
+                            <Button type="text" icon={<EditOutlined />}
+                                onClick={() => {
+                                    setOpenModalEdit(true)
+                                }} />
 
-        const decodedData = res.data.map((item) => {
-            console.log("item", item);
-            return {
-                id: item.id,
-                name: item.soPhong,
-                tang: item.soTang,
-                type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
-                status: item.trangThai,
+                        </Tooltip>
+                        <Tooltip title={"Xóa"}>
 
+                            <Button type="text" icon={<RestOutlined />} onClick={() => {
+                                setOpenModalDelete(true)
+                                setItemTarget(record)
+                            }} />
+
+                        </Tooltip>
+                    </Flex>
+                )
             }
-        });
-
-        setData(decodedData)
-        console.log(decodedData)
-    }
-    useEffect(() => {
-        fecthdata()
-    }, []);
-
-    const editRoomType = (props) => {
-        console.log(props.id)
-    }
-    const apiDeleteRoom = 'http://localhost:8080/admin/phong/xoa/';
-    const deleteRoomtype = async (props) => {
-        // console.log(data)
-        // const filterData = data.filter(item => item.id !== props.id);
-        // setData(filterData);
-        try {
-            const response = axios.delete(`${apiDeleteRoom}${props.id}`);
-            if (response.status === 200) {
-                console.log("Room deleted successfully");
-                // Reload data after successful deletion
-                const res = await api.getRoom(null);
-
-                const decodedData = res.data.map((item) => {
-                    console.log("item", item);
-                    return {
-                        id: item.id,
-                        name: item.soPhong,
-                        tang: item.soTang,
-                        type: item.loaiPhongIdLoaiPhong.tenLoaiPhong,
-                        status: item.trangThai,
-
-                    }
-                });
-
-                setData(decodedData)
-                console.log(decodedData)
-            } else {
-                console.error("Failed to delete room");
-            }
-        } catch (error) {
-            console.error("Error occurred while deleting room:", error);
         }
-    }
-    return (<>
-        <h3>Phòng</h3>
 
-        <SelectComponent onChangeData={fecthdata} />
+    ]
 
-        <Button type="primary" onClick={() => setModal1Open(true)}>
-            Thêm
-        </Button>
-        <Modal title="Thêm phòng" open={modal1Open} onOk={() => setModal1Open(false)}
-            onCancel={() => setModal1Open(false)} width={600}>
-            <Content />
-        </Modal>
-        <>
-            <Table dataSource={data} loading={loading}>
-                <Column
-                    title="STT"
-                    dataIndex="index"
-                    key="index"
-                    render={(text, record, index) => <span>{index + 1}</span>}
-                />
-                <Column title="Tên phòng" dataIndex="name" key="name" />
-                <Column title="Tầng" dataIndex="tang" key="tang" />
-                <Column title="Loại Phòng" dataIndex="type" key="type" />
-                <Column
-                    title="Trạng thái"
-                    dataIndex="status"
-                    key="status"
-                    render={(text, record) => (
-                        <Switch
-                            checked={record.status} // Assuming status is stored as string 'true' or 'false'
-                            onChange={(checked) => handleStatusChange(record, checked)}
-                        />
-                    )}
-                />
-                <Column title="Thao tác" render={(props) => (
-                    <>
-                        <Flex justify={"flex-start"}>
-                            <Tooltip title={"Sửa"}>
-                                <Button type="text" onClick={() => setModal2Open(true)}>
-                                    {<EditOutlined />}
-                                </Button>
-                                <Modal title="Sửa loại phòng" open={modal2Open} onOk={() => setModal2Open(false)}
-                                    onCancel={() => setModal2Open(false)} width={600}>
-                                    <Content1 />
-                                </Modal>
+    //! useEffect
 
-                            </Tooltip>
-                            <Tooltip title={"Xóa"}>
-                                <Popconfirm title="Cảnh báo" description={props.name + " sẽ bị xóa, bạn muốn xác nhận không?"}
-                                    onConfirm={() => deleteRoomtype(props)}
-                                >
-                                    <Button type="text" icon={<RestOutlined />}></Button>
-                                </Popconfirm>
-                            </Tooltip>
-                        </Flex>
-                    </>
-                )} />
-            </Table>
-        </>
-    </>);
+    //! return 
+    return (
+        <div>
+            <h3>Phòng</h3>
+            <Button onClick={() => setOpenModalCreate("create")} >Thêm Phòng</Button>
+            <Table dataSource={listRooms} loading={loading} columns={columns} />
+            {openModalDelete && <ModalDelete openModalDelete={openModalDelete}
+                onClose={() => setOpenModalDelete(false)}
+                itemTarget={itemTarget}
+                setItemTarget={setItemTarget}
+                refreshGetListRooms={refreshGetListRooms} />}
+            {openModalCreate && <ModalCreate
+                onClose={() => setOpenModalCreate("")}
+                openModalCreate={openModalCreate}
+                refreshGetListRooms={refreshGetListRooms} />}
+            {openModalEdit && <ModalEdit
+                onClose={() => setOpenModalEdit(false)}
+                openModalEdit={openModalEdit}
+            />}
+
+        </div>
+    )
 }
 
-export default Rooms;
+export default Rooms

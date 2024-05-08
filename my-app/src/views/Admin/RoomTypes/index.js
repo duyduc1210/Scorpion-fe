@@ -4,8 +4,13 @@ import { EditOutlined, RestOutlined } from '@ant-design/icons';
 import { Content } from "../../../pages/Quanlyloaiphong/ModalRoom"
 import Content1 from "../../../pages/Quanlyloaiphong/EditRoom"
 import * as api from '../../../services/RoomService';
+import { useDispatch } from 'react-redux';
 const RoomTypes = () => {
+    const dispatch = useDispatch();
+
+
     const [data, setData] = useState([]);
+    console.log("");
     const [loading, setLoading] = useState(false);
     const [price, setPrice] = useState();
     const [name, setName] = useState();
@@ -13,6 +18,19 @@ const RoomTypes = () => {
     const [selectedId, setSelectedId] = useState(0);
     const [modal1Open, setModal1Open] = useState(false);
     const [modal2Open, setModal2Open] = useState(false);
+
+    const [infoRoom, setInfoRoom] = useState(
+        {
+            typeRoom: '',
+            view: '',
+            tienIch: '',
+            soNguoi: '',
+            dienTich: '',
+            giaTien: '',
+            moTa: '',
+            tenPhong: '',
+        }
+    )
 
 
     const { Column } = Table;
@@ -92,12 +110,16 @@ const RoomTypes = () => {
         setData(filterData);
     }
 
-   
 
-   
+
+
     const toolbar = () => (
-        <Button>Lưu</Button>
+        <Button type="text" onClick={() => handleSave(selectedId)}>
+            Lưu
+        </Button>
     )
+
+    
 
     //render
     return (<>
@@ -148,7 +170,7 @@ const RoomTypes = () => {
                                 </Button>
                                 <Modal title="Sửa loại phòng" open={modal2Open} onOk={handleSave}
                                     onCancel={() => setModal2Open(false)} width={800} footer={toolbar()}>
-                                    <Content1 roomId={selectedId} />
+                                    <Content1 id={selectedId} setInfoRoom={setInfoRoom} infoRoom={infoRoom} />
                                 </Modal>
 
                             </Tooltip>
