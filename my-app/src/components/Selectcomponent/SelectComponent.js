@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Select } from "antd";
 import axios from "axios";
 
-export const SelectComponent = ({ onChangeData }) => {
+export const SelectComponent = ({ onChangeData, value }) => {
     const [dataLoaiPhong, setDataLoaiPhong] = useState([]);
 
     const onChange = (value) => {
@@ -46,6 +46,7 @@ export const SelectComponent = ({ onChangeData }) => {
             onChange={onChange}
             options={dataLoaiPhong}
             filterOption={filterOption}
+            value={value}
         />
     );
 };
