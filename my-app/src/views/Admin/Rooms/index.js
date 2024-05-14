@@ -50,6 +50,7 @@ const Rooms = () => {
                             <Button type="text" icon={<EditOutlined />}
                                 onClick={() => {
                                     setOpenModalEdit(true)
+                                    setItemTarget(record)
                                 }} />
 
                         </Tooltip>
@@ -88,6 +89,9 @@ const Rooms = () => {
             {openModalEdit && <ModalEdit
                 onClose={() => setOpenModalEdit(false)}
                 openModalEdit={openModalEdit}
+                itemTarget={itemTarget}
+                setItemTarget={setItemTarget}
+                refreshGetListRooms={refreshGetListRooms}
             />}
 
         </div>

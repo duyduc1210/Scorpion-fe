@@ -6,13 +6,12 @@ const useEditRooms = () => {
     //! state
     const { setLoading } = useContext(AppContext)
 
-
     //! function
-    const editRoom = async (id, props) => {
+    const editRoom = async (props) => {
         const { body, onSuccess } = props
         setLoading(true)
         try {
-            const response = await axios.put(`http://localhost:8080/admin/phong/sua/${id}`, body);
+            const response = await axios.put(`http://localhost:8080/admin/phong/sua/${body?.id}`, body);
             if (response.status === 200) {
                 onSuccess()
                 alert("Sửa thành công")
