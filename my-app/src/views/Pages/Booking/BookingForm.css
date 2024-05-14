@@ -12,7 +12,7 @@ checkInCss.form-container {
     display: block;
     margin-bottom: 10px;
   }
-  
+
   .customerNameCss, .emailCss, .phoneNumberCss, .hinhThucDatCss, .checkInCss, .checkOutCss {
     width: 100%;
     padding: 10px;

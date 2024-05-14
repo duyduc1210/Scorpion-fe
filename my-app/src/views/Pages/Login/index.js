@@ -67,6 +67,7 @@ const LoginPage = () => {
           <div className="logout">
             <input type="text" placeholder="Nhập số điện thoại..." {...validatorForm.soDienThoai} onChange={handleClearError} />
             {errors.soDienThoai && <span className="required">Không để trống</span>}
+            <br/>
             {errors.isLogin && <span className="required">{errors.isLogin.message}</span>}
           </div>
           
@@ -79,16 +80,19 @@ const LoginPage = () => {
           <div className="logout">
             <input type="password" placeholder="Nhập mật khẩu" {...validatorForm.password} onChange={handleClearError} />
             {errors.password && <span className="required">Không để trống</span>}
+      <br/>
+            <br/>
+
             {errors.isLogin && <span className="required">{errors.isLogin.message}</span>}
           </div>
           
         </form>
       </div>
+      <br/>
 
-      <div className="check">
-        <input type="checkbox" />
-        Nhớ mật khẩu
-      </div>
+      <br/>
+
+      <br/>
 
       <div >
         <button onClick={handleSubmit(onHandleLogin)} >Đăng Nhập</button>

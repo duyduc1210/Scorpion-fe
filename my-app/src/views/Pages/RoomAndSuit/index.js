@@ -6,14 +6,15 @@ import { Button, DatePicker, message } from "antd";
 import HotelRoom from "./HotelRoom";
 
 import { uuDais } from "../../../shared/db/dataRoom";
-
+import { chinhSach } from "../../../shared/db/dataRoom";
 import CsModal from "./CsModal";
 import UuDaiDetail from "./UuDaiDetail";
-import * as api from '../../../services/RoomService';
+import * as api from "../../../services/RoomService";
 
 import RoomTypeDetail from "./RoomTypeDetail";
 import RoomApi from "../../../shared/api/RoomApi";
 import moment from "moment";
+import ChinhSachDetail from "./ChinhSachDetai";
 
 const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
@@ -24,21 +25,22 @@ const RoomAndSuit = () => {
   const [getData, setData] = useState({});
   const [timeVao, setTimeVao] = useState();
   const [timeRa, setTimeRa] = useState();
-  
+
+  const [disabled, setDisabled] = useState(false);
+
+  const disabledDate = current => {
+    const today = new Date();
+    return current && current <= today;
+  };
   let content = null;
 
-  
   useEffect(() => {
     const getData = async () => {
-      
       try {
         const result = await RoomApi.getAll();
         setRoomTypes(result.data);
-        console.log(result.data)
-      } catch (error) {
-        
-      }
-      
+        console.log(result.data);
+      } catch (error) {}
     };
     getData();
   }, []);
@@ -59,45 +61,66 @@ const RoomAndSuit = () => {
   };
 
   const handleSearchDate = async () => {
-    try {
-        let body = {};
+    let x = { timeVao: timeVao, timeRa: timeRa };
+    localStorage.setItem("timeSearch", JSON.stringify(x));
 
-        if(!timeVao || !timeRa){
-          messageApi.open({
-            type: 'warning',
-            content: 'Vui lòng điền ngày',
-          });    
-          return
-        }else{
-          if (timeVao) {
-            body.thoiGianVao = `${timeVao} 12:00:00`;
+    try {
+      let body = {};
+      if (!timeRa && !timeVao) {
+        messageApi.open({
+          type: "warning",
+          content: "Vui lòng chọn ngày ",
+        });
+      } else if (timeVao > timeRa) {
+        messageApi.open({
+          type: "warning",
+          content: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc ",
+        });
+      } else if (timeVao === timeRa) {
+        messageApi.open({
+          type: "warning",
+          content: "Ngày bắt đầu và kết thúc không được trùng nhau",
+        });
+      } else if(!timeRa){
+
+        messageApi.open({
+          type: 'warning',
+          content: 'Vui lòng chọn ngày kết thúc',
+        });  
+      }else if(!timeVao){
+  
+        messageApi.open({
+          type: 'warning',
+          content: 'Vui lòng chọn ngày bắt đầu',
+        });  
+      } else {
+        if (timeVao) {
+          body.thoiGianVao = `${timeVao} 12:00:00`;
         }
         if (timeRa) {
-            body.thoiGianRa = `${timeRa} 12:00:00`;
+          body.thoiGianRa = `${timeRa} 12:00:00`;
         }
 
         const res = await api.searchDateCt(body);
-      
+
         setRoomTypes(res.data);
         messageApi.open({
-          type: 'success',
-          content: 'Tìm kiếm thành công vui lòng kiểm tra các phòng còn trống',
-        });  
+          type: "success",
+          content: "Tìm kiếm thành công vui lòng kiểm tra các phòng còn trống",
+        });
         console.log(res);
-        }
-       
+      }
+      
     } catch (error) {
-        console.error('Error:', error);
+      console.error("Error:", error);
     }
-}
+  };
 
   const showModalUuDai = (data = null) => {
     setIsModalOpen(true);
     setMode("uuDai");
 
-    let newData = {
-      title: "Ưu đãi đặc biệt",
-    };
+    let newData = {};
 
     if (data) {
       newData.param = data;
@@ -117,11 +140,13 @@ const RoomAndSuit = () => {
     content = <RoomTypeDetail data={getData} />;
   } else if (mode === "uuDai") {
     content = <UuDaiDetail data={getData} />;
+  } else if (mode === "chinhSach") {
+    content = <ChinhSachDetail data={getData} />;
   }
 
   return (
     <>
-    {contextHolder}
+      {contextHolder}
       <CsModal
         open={isModalOpen}
         title={getData.title}
@@ -134,7 +159,7 @@ const RoomAndSuit = () => {
       <main>
         <div className="container">
           <div className="page-header-container">
-            <h2 className="page-header">Các phòng của khách sạn Scorpion </h2>
+            <h2 className="page-header">Các phòng của khách sạn Scorpio </h2>
             <hr />
             <p className="page-sub-header">
               Tận dụng tối đa các ưu đãi đặc biệt của khách sạn chúng tôi. Tận
@@ -212,7 +237,7 @@ const RoomAndSuit = () => {
                     onClick={() => showModalUuDai(uuDai)}
                     className="btn btn-fill btn-large1"
                   >
-                    Xem Thêm
+                    Chính sách đặt phòng
                   </Button>
                 </div>
               ))}
@@ -220,32 +245,48 @@ const RoomAndSuit = () => {
           </section>
 
           <center>
-         <div style={{marginBottom: 16 }}>
-         <h2> Tìm kiếm</h2>
-         <hr />
-         <br/>
-                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu' />
-                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
-                <Button style={{ marginLeft: "10px" }} type="primary" onClick={handleSearchDate}>
-                    Tìm kiếm
-                </Button>
-            </div>
-            <br/>
+            <div style={{ marginBottom: 16 }}>
+              <h2> Tìm kiếm</h2>
+              <hr />
+              <br />
+              <DatePicker
+                style={{ marginRight: "10px" }}
+                onChange={(date, dateString) => setTimeVao(dateString)}
+                format="DD/MM/YYYY"
+                placeholder="Ngày bắt đầu"
+                disabledDate={disabledDate}
+              />
+              <DatePicker
+                style={{ marginRight: "10px" }}
+                onChange={(date, dateString) => setTimeRa(dateString)}
+                format="DD/MM/YYYY"
+                placeholder="Ngày kết thúc"
+                disabledDate={disabledDate}
+              />
+              <Button
+                style={{ marginLeft: "10px" }}
+                type="primary"
+                onClick={handleSearchDate}
             
+              >
+                Tìm kiếm
+              </Button>
+            </div>
+            <br />
           </center>
 
           <section className="rooms-section">
             <div className="row center-lg">
               {getRoomTypes.map((roomType) => (
-               <span key={roomType.id}>
-               <HotelRoom
-                  mode={"RoomAndSuit"}
-                  roomType={roomType}
-                  onClick={() => showRoomType(roomType)}
-                  timeVao={timeVao}
-                  timeRa={timeRa}
-                />
-               </span>
+                <span key={roomType.id}>
+                  <HotelRoom
+                    mode={"RoomAndSuit"}
+                    roomType={roomType}
+                    onClick={() => showRoomType(roomType)}
+                    timeVao={timeVao}
+                    timeRa={timeRa}
+                  />
+                </span>
               ))}
             </div>
           </section>

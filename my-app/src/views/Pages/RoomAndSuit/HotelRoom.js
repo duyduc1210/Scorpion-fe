@@ -83,14 +83,9 @@ const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
         <p className="room-text">{roomType.moTa}</p>
         <div>
           <div className="details-container">
-            <img
-              src="assets/img/check-square.svg"
-              alt="tick"
-              className="list-icon"
-            />
-            <p className="list-text">{roomType.soLuongNguoiO} người</p>
+            <p className="amount-text">Số lượng người tối đa : {roomType.soLuongNguoiO} người</p>
             {roomType.soLuongTrong > 0 ? 
-              <><br/><p className="amount-text">Số lượng phòng trống : {roomType.soLuongTrong} / {roomType.soLuongTrong} phòng </p></>  : null}  
+              <><p className="amount-text">Số lượng phòng trống : {roomType.soLuongTrong} / {roomType.soLuongTrong} phòng </p></>  : null}  
           </div>
           {/* <div className="details-container">
             <img src="assets/img/bed.png" alt="tick" className="list-icon" />

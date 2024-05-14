@@ -16,8 +16,9 @@ const ModalEdit = (props) => {
 
 
     const toolBar = () => (
+
         <>
-            <Button  >Lưu</Button>
+            <Button>Lưu</Button>
             <Button onClick={onClose}>Hủy</Button>
         </>
     )

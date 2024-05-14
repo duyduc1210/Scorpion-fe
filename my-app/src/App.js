@@ -16,17 +16,13 @@ import RoomAndSuit from "./views/Pages/RoomAndSuit";
 
 import Facilities from "./views/Pages/Facilities";
 import Contact from "./views/Pages/Contact";
-import Reservationlist from "./views/Admin/Reservationlist";
-import Createtransaction from "./views/Admin/CreateTransaction"
-import Guestinformation from "./views/Admin/GuestInformation"
-import RoomDiagram from "./views/Admin/RoomDiagram"
-import { Content } from "antd/es/layout/layout";
+
 import HotelBookingForm from "./views/Pages/Booking";
-import UtilityService from "./views/Admin/UtilityService/UtilityService";
 import CheckOut from "./views/Pages/Booking/CheckOut";
 import HistoryBook from "./views/Pages/HistoryBook";
 import { createContext, useState } from "react";
 import { Provider } from "react-redux";
+import PayPal from "./views/Pages/Booking/PayPal";
 
 const initContext = {
   loading: false,
@@ -47,10 +43,10 @@ function App() {
           <Routes>
             <Route path="/dang-nhap" element={<LoginPage />} />
             <Route path="/register" element={<PageRegister />} />
+{/* 
+            <Route path="/loginAdmin" element={<LoginAdmin />} /> */}
 
-            <Route path="/loginAdmin" element={<LoginAdmin />} />
-
-            <Route path="/admin" element={<LayoutAdmin />}>
+            {/* <Route path="/admin" element={<LayoutAdmin />}>
               <Route path="rooms" element={<Rooms />} />
               <Route path="room-types" element={<RoomTypes />} />
               <Route path="thong-ke" element={<ThongKe />} />
@@ -63,7 +59,7 @@ function App() {
               <Route path="utility-service" element={<UtilityService />} />
 
 
-            </Route>
+            </Route> */}
 
             <Route path="/" element={<HomePage />} />
             <Route path="transaction" element={<Transaction />} />
@@ -74,6 +70,9 @@ function App() {
             <Route path="historyBook" element={<HistoryBook />} />
 
             <Route path="contact" element={<Contact />} />
+
+            <Route path="paypal" element={<PayPal/>}/>
+            
           </Routes>
         </BrowserRouter>
       </AppContext.Provider>

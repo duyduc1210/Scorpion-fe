@@ -10,7 +10,13 @@ import STATUS from "../../../shared/store";
 import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
-  const { register, handleSubmit, setValue, watch, formState: { errors }} = useForm();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm();
 
   const [getCurrentUser, setCurrentUser] = useState({});
   const [getCurrentUserId, setCurrentUserId] = useState(null);
@@ -18,12 +24,10 @@ const CheckOut = () => {
 
   const [getRoomTypes, setRoomTypes] = useState([]);
 
-  const [getData, setData] = useState({});
   const navigate = useNavigate();
   const [getTotal, setTotal] = useState(0);
 
   useEffect(() => {
-
     const getGioHang = async () => {
       try {
         const result = await RoomApi.getAll();
@@ -74,34 +78,31 @@ const CheckOut = () => {
     };
 
     const guest_id = JSON.parse(localStorage.getItem("guest_id"));
-    console.log(guest_id)
+    console.log(guest_id);
     setCurrentUserId(guest_id.idThongTinKhachDat);
     getGioHang();
-    
   }, []);
-
-
 
   useEffect(() => {
     const getDataKhach = async () => {
-      if(getCurrentUserId !== null){
+      if (getCurrentUserId !== null) {
         try {
           const result = await KhachApi.get(getCurrentUserId);
-          console.log(result.data)
+          console.log(result.data);
           setCurrentUser(result.data);
 
-          const { hoTen, email, soDienThoai } = result.data.thongTinKhachDatIdKhachDat;
+          const { hoTen, email, soDienThoai } =
+            result.data;
 
           setValue("customerName", hoTen);
           setValue("email", email);
           setValue("phoneNumber", soDienThoai);
         } catch (error) {}
       }
-     
     };
 
     getDataKhach();
-  }, [getCurrentUserId])
+  }, [getCurrentUserId]);
 
   const formatNumber = (number) => {
     if (number !== undefined) {
@@ -150,80 +151,107 @@ const CheckOut = () => {
     }
   };
 
-  const convertDateString = (dateString) =>{
-    const parts = dateString.split('/'); // Tách chuỗi thành các phần tử dựa trên dấu "/"
+  const convertDateString = (dateString) => {
+    const parts = dateString.split("/"); // Tách chuỗi thành các phần tử dựa trên dấu "/"
     let day = parseInt(parts[0], 10); // Lấy ngày và chuyển đổi sang số nguyên
     let month = parseInt(parts[1], 10); // Lấy tháng và chuyển đổi sang số nguyên (0-indexed)
     let year = parseInt(parts[2], 10); // Lấy năm và chuyển đổi sang số nguyên
 
     if (month < 10) {
-      month = '0' + month;
+      month = "0" + month;
     }
     if (day < 10) {
-      day = '0' + day;
+      day = "0" + day;
     }
 
     const convertDate = `${year}-${month}-${day} 12:00:00`;
 
     return convertDate;
-  }
+  };
 
   const onHandleBooking = async (data) => {
-    
-      let loaiPhongDat = getRoomTypes.map(x => {
-        return {
-          loaiPhongIdLoaiPhong: {id: x.id},
-          soLuong: x.soluong
-        }
-      })
+    let loaiPhongDat = getRoomTypes.map((x) => {
+      return {
+        loaiPhongIdLoaiPhong: { id: x.id },
+        soLuong: x.soluong,
+     
+      };
+    });
     let newData = {
-
       thongTinKhachDatIdKhachDat: {
-        id: data.currentUserId 
+        id: data.currentUserId,
       },
       hinhThucDatIdHinhThucDat: {
-        id: data.hinhThucDat
+        id: data.hinhThucDat,
       },
-      thoiGianVao:`${data.checkIn} 12:00:00`,
-      thoiGianRa:`${data.checkOut} 11:00:00` ,
+      thoiGianVao: `${data.checkIn} 12:00:00`,
+      thoiGianRa: `${data.checkOut} 11:00:00`,
       tongTien: data.total,
       trangThai: STATUS.success,
-      loaiPhongDatDto: loaiPhongDat
-      
-    }
-
-    try {
-      
-      await BookingApi.add(newData);
-      localStorage.removeItem("gioHang");
-      localStorage.removeItem("newGioHang")
-
-      messageApi.open({
-        type: 'success',
-        content: 'Đặt phòng thành công',
-      });     
-  
-      setTimeout(() => {
-        navigate('/');
-      }, 3000);
-    } catch (error) {
-      console.log(error)
-    }
+      loaiPhongDatDto: loaiPhongDat,
+      ghiChu: data.ghiChu
     
+  
+    };
+
+    localStorage.setItem("gioHangThanhToan", JSON.stringify(newData));
+    navigate("/Paypal");
+    console.log(newData)
   };
 
   setValue("totalPrice", 0);
   setValue("quantity", 0);
   setValue("hinhThucDat", 1);
+  setValue("ghiChu");
+  
   setValue("currentUserId", getCurrentUserId);
-  setValue("total", calculatePrice( convertDate(watch("checkIn")), convertDate(watch("checkOut")), getTotal))
+  setValue(
+    "total",
+    calculatePrice(
+      convertDate(watch("checkIn")),
+      convertDate(watch("checkOut")),
+      getTotal
+    )
+  );
 
   return (
     <>
-    {contextHolder}
+      {contextHolder}
       <center>
         <h2>Thông tin đặt phòng</h2>
         <hr />
+        <h4>🏨 Chính sách đặt phòng 🏨</h4>
+        <p className="list-text">
+          - Khách hàng vui lòng thanh toán trước 100% số tiền để đặt phòng. Đây
+          được coi là tiền cọc và là tiền thanh toán trước của khách hàng, số
+          tiền này sẽ được trừ khi khách hàng trả phòng.
+        </p>
+        <br />
+        <p className="list-text">
+          - Khách hàng vui lòng đến nhận phòng tại khách sạn đúng giờ có thể đến
+          sớm 20p hoặc nếu đến muộn vui lòng liên lạc thông báo trước với khách
+          sạn.
+        </p>
+        <br />
+        <br />
+
+        <h4>🛎️ Chính sách hủy phòng 🛎️</h4>
+        <p className="list-text">
+          - Số tiền cọc sẽ được hoàn từ 2-7 ngày kể từ khi đơn của khách hàng
+          được hủy thành công.
+        </p>
+        <br />
+        <p className="list-text">
+          - Nếu khách hàng muốn hủy phòng vui lòng liên hệ với phía khách sạn
+          trước 1 ngày.
+        </p>
+        <br />
+        <p className="list-text">
+          - Với trường hợp hủy phòng không thông báo trước 1 ngày với khách sạn
+          hay không đến nhận phòng sẽ không được hoàn lại tiền cọc.
+        </p>
+        <br />
+        <br />
       </center>
       <div style={{ display: "flex", gap: "20px" }}>
         <div style={{ flex: "1", marginRight: "20px", marginLeft: "10px" }}>
@@ -237,7 +265,12 @@ const CheckOut = () => {
             />
 
             <label>Email: </label>
-            <input className="emailCss" type="email" {...register("email", { required: true })}  disabled/>
+            <input
+              className="emailCss"
+              type="email"
+              {...register("email", { required: true })}
+              disabled
+            />
 
             <label>Số điện thoại: </label>
             <input
@@ -257,27 +290,33 @@ const CheckOut = () => {
               disabled
             />
 
-<label>Ngày check in:</label>
+            <label>Thời gian nhận phòng:</label>
             <input
               type="text"
               name="thoiGianVao"
               className="checkInCss"
               {...register("checkIn", { required: true })}
-
               disabled
             />
 
-<label>Ngày check out:</label>
+            <label>Thời gian trả phòng:</label>
             <input
               type="text"
               name="thoiGianRa"
               className="checkOutCss"
               {...register("checkOut", { required: true })}
-             
               disabled
             />
 
-            
+            <label>Ghi chú:</label>
+            <input
+              type="text"
+              name="ghiChu"
+              className="checkOutCss"
+              {...register("ghiChu", { required: false })}
+              
+            />
+
             <div />
           </form>
         </div>
@@ -296,7 +335,7 @@ const CheckOut = () => {
               render={(roomType) => <>{roomType.soluong}</>}
             />
             <Column
-              title="Thành tiền"
+              title="Tiền phòng / ngày"
               key="gia_tien"
               render={(roomType) => (
                 <>
@@ -313,11 +352,13 @@ const CheckOut = () => {
       <center>
         <label className="tongTien">
           Tổng tiền:{" "}
-          {formatNumber(calculatePrice(
-            convertDate(watch("checkIn")),
-            convertDate(watch("checkOut")),
-            getTotal
-          ))}
+          {formatNumber(
+            calculatePrice(
+              convertDate(watch("checkIn")),
+              convertDate(watch("checkOut")),
+              getTotal
+            )
+          )}
           <span> VNĐ</span>
         </label>
         <br />
@@ -325,12 +366,10 @@ const CheckOut = () => {
           className="buttonDatPhong"
           onClick={handleSubmit(onHandleBooking)}
         >
-          Đặt phòng
+          Thanh Toán
         </button>
         <br />
       </center>
-
-      
     </>
   );
 };

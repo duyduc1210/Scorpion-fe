@@ -5,7 +5,7 @@ const FooterPage = () => {
           <div className="footer-container">
             <nav className="footer-nav">
               <div className="footer-description">
-                <h3 className="footer-description-title">Scorpion Hotels</h3>
+                <h3 className="footer-description-title">Scorpio Hotels</h3>
                 <p>Sự hiếu khách và thoải mái được đặt lên hàng đầu</p>
               </div>
               <div className="footer-contact-us">
@@ -41,7 +41,10 @@ const FooterPage = () => {
                     </a>
                   </li>
                 </ul>
+                <br/>
+              
               </div>
+              
             </nav>
           </div>
 	      </footer>

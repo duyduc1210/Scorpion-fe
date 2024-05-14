@@ -70,7 +70,7 @@ const Contact = () => {
                     value={messageContent}
                     onChange={(e) => setMessageContent(e.target.value)}
                   ></textarea>
-                  <button type="button" className="btn" onClick={onClickCT} >Gửi tin nhắn</button>
+                  <button type="button" className="btn-guiTinNhan" onClick={onClickCT} >Gửi tin nhắn</button>
                 </form>
               </div>
               <div className="contact-us">

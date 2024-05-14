@@ -11,7 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
+.btn-paypalh2{
+  margin-left: 200px;
+ 
+}
 .required{
   color: rgb(218, 1, 1);
 }

@@ -9,7 +9,7 @@ const Facilities = () => {
         <div className="container" />
 
         <div className="page-header-container">
-          <h2 className="page-header">Cơ sở vật chất của khách sạn Scorpion</h2>
+          <h2 className="page-header">Cơ sở vật chất của khách sạn Scorpio</h2>
           <hr />
           <p className="page-sub-header">
             Tận dụng tối đa các cơ sở khách sạn của chúng tôi. Tận hưởng các
@@ -37,7 +37,7 @@ const Facilities = () => {
                 bằng giọng nói từ nhà hoặc doanh nghiệp của bạn.
               </p>
               <br />
-              <h3>Thêm chi tiết</h3>
+   
               <ul className="facilities-list">
                 <li>
                   <div>
@@ -70,9 +70,7 @@ const Facilities = () => {
                   </div>
                 </li>
               </ul>
-              <a href="#" className="btn btn-fill btn-large">
-                Chi tiết
-              </a>
+             
             </div>
           </div>
         </section>

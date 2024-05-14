@@ -7,17 +7,18 @@ const UuDaiDetail = (props) => {
 
 console.log(data)
   return (
-    <>
+    <>   <h4>{data.param.title2}</h4>
         <p>{data.param.welcome}</p>
+  
+        
         <p>{data.param.number_stay}</p>
+        <br/>
+        <h4>{data.param.title3}</h4>
         <p>{data.param.content1}</p>
         <p>{data.param.content2}</p>
         <p>{data.param.content3}</p>
-        <p>{data.param.content4}</p>
-        <p>{data.param.wifi}</p>
-        <p>{data.param.price}</p>
-        <p>{data.param.detail}</p>
-        <p>{data.param.content5}</p>
+
+    
         
 
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, message } from "antd"; // Import các thư viện cần thiết
+import { Button, Input, message } from "antd"; // Import các thư viện cần thiết
 import { Table, InputNumber, DatePicker } from "antd";
 import "./HotelBookingForm.css"; // Import CSS cho form (bạn có thể tạo file CSS riêng)
 import Column from "antd/es/table/Column";
@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import HeaderPage from "../../../components/Pages/HeaderPage";
 import * as api from '../../../services/RoomService';
 import FooterPage from "../../../components/Pages/FooterPage";
+
 const HotelBookingForm = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const {
@@ -43,6 +44,21 @@ const HotelBookingForm = () => {
 
   useEffect(() => {
     getDatapage();
+
+    const getAllDate = () => {
+      let abc = localStorage.getItem("timeSearch")
+      let x = JSON.parse(abc)
+      if(x){
+        setTimeVao(x.timeVao);
+
+        setTimeRa(x.timeRa);
+      }
+     
+
+    }
+    getAllDate();
+
+
   }, []);
   
   const getDatapage = async () => {
@@ -204,6 +220,10 @@ const HotelBookingForm = () => {
   }
   }
 
+  const inputStyle = {
+    width: '150px' // Thiết lập chiều rộng theo ý bạn
+    
+};
   return (
     <>
       <HeaderPage />
@@ -213,14 +233,13 @@ const HotelBookingForm = () => {
         
     
         <hr />
-        <p >
-                Chọn ngày
-            </p>
+   
         <div style={{marginBottom: 16, marginTop : 16 }} >
-        
-                <DatePicker  style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeVao(dateString)} format='DD/MM/YYYY' placeholder='Ngày bắt đầu'  />
-                <DatePicker style={{ marginRight: "10px" }} onChange={(date, dateString) => setTimeRa(dateString)} format='DD/MM/YYYY' placeholder="Ngày kết thúc" />
-              
+
+        <span>Thời gian vào : <Input style={inputStyle} disabled  value={timeVao ? timeVao : null} />  </span>
+       <span> Thời gian ra : <Input style={inputStyle}  disabled  value={timeRa ? timeRa : null} /> </span>
+
+                    
             </div>
            
       </center>
