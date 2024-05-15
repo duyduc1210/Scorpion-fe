@@ -4,8 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button, DatePicker, message } from 'antd';
 
 
-const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
+const HotelRoom = ({searched , roomType, onClick, mode = null, timeVao, timeRa }) => {
 
+  
   const [messageApi, contextHolder] = message.useMessage();
 
   const navigate = useNavigate();
@@ -66,11 +67,11 @@ const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
   };
   
   
-  if (mode === "RoomAndSuit") {
+  if (mode === "RoomAndSuit" ) {
   btn = ( 
     <span className="btn btn-fill cursor" onClick={onClickDP}>
     
-      Thêm vào giỏ hàng
+      Thêm vào danh sách đặt
     </span>
   );
   }
@@ -87,10 +88,7 @@ const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
             {roomType.soLuongTrong > 0 ? 
               <><p className="amount-text">Số lượng phòng trống : {roomType.soLuongTrong} / {roomType.soLuongTrong} phòng </p></>  : null}  
           </div>
-          {/* <div className="details-container">
-            <img src="assets/img/bed.png" alt="tick" className="list-icon" />
-            <p className="list-text">1 giường đôi lớn</p>
-          </div> */}
+      
         </div>
         <p className="amount-text">
           {formatNumber(roomType.giaTien)} VNĐ / ngày
@@ -118,8 +116,11 @@ const HotelRoom = ({ roomType, onClick, mode = null, timeVao, timeRa }) => {
           <span className="btn btn-ghost cursor" onClick={onClick}>
             Xem thêm
           </span>
-          {btn}
+
+          {(roomType.soLuongTrong === 0 || searched ? null : btn)}
+  
         </div>
+
       </div>
   
     </>

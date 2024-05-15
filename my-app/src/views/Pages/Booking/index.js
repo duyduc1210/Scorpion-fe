@@ -13,7 +13,7 @@ import RoomApi from "../../../shared/api/RoomApi";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import HeaderPage from "../../../components/Pages/HeaderPage";
-import * as api from '../../../services/RoomService';
+import * as api from "../../../services/RoomService";
 import FooterPage from "../../../components/Pages/FooterPage";
 
 const HotelBookingForm = () => {
@@ -34,7 +34,7 @@ const HotelBookingForm = () => {
       alert("Vui lòng chọn ngày và giờ để tìm kiếm.");
     }
   };
-  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [getRoomTypes, setRoomTypes] = useState([]);
   const [mode, setMode] = useState("");
@@ -46,21 +46,17 @@ const HotelBookingForm = () => {
     getDatapage();
 
     const getAllDate = () => {
-      let abc = localStorage.getItem("timeSearch")
-      let x = JSON.parse(abc)
-      if(x){
+      let abc = localStorage.getItem("timeSearch");
+      let x = JSON.parse(abc);
+      if (x) {
         setTimeVao(x.timeVao);
 
         setTimeRa(x.timeRa);
       }
-     
-
-    }
+    };
     getAllDate();
-
-
   }, []);
-  
+
   const getDatapage = async () => {
     try {
       const result = await RoomApi.getAll();
@@ -70,7 +66,6 @@ const HotelBookingForm = () => {
       let gioHangStore = localStorage.getItem("gioHang");
       if (gioHangStore) {
         gioHang = JSON.parse(gioHangStore);
-
       }
 
       //dataNew = dataRaw.filter(i=> gioHang.some(g=>g.id === i.id));
@@ -80,7 +75,7 @@ const HotelBookingForm = () => {
           dataNew.push({
             ...i,
             soluong: giohangdata.soluong,
-            soLuongTrong: giohangdata.soLuongTrong
+            soLuongTrong: giohangdata.soLuongTrong,
           });
         }
       }
@@ -98,7 +93,6 @@ const HotelBookingForm = () => {
     };
 
     console.log(data);
-
 
     if (data) {
       newData.title = data.tenLoaiPhong;
@@ -164,84 +158,83 @@ const HotelBookingForm = () => {
   };
 
   const bookNow = async () => {
-    if (!timeRa && !timeVao){
+    if (!timeRa && !timeVao) {
       messageApi.open({
-        type: 'warning',
-        content: 'Vui lòng chọn ngày ',
-      });  
-    }
-    else if(timeVao > timeRa){
-
+        type: "warning",
+        content: "Vui lòng chọn ngày ",
+      });
+    } else if (timeVao > timeRa) {
       messageApi.open({
-        type: 'warning',
-        content: 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc ',
-      });  
-    }
-     else if(timeVao === timeRa){
-
+        type: "warning",
+        content: "Ngày bắt đầu phải nhỏ hơn ngày kết thúc ",
+      });
+    } else if (timeVao === timeRa) {
       messageApi.open({
-        type: 'warning',
-        content: 'Ngày bắt đầu và kết thúc không được trùng nhau',
-      });  
-    }else{
-    if(timeVao && timeRa){
+        type: "warning",
+        content: "Ngày bắt đầu và kết thúc không được trùng nhau",
+      });
+    } else {
+      if (timeVao && timeRa) {
+        let gioHang = [];
+        let gioHangStore = localStorage.getItem("gioHang");
+        if (gioHangStore) {
+          gioHang = JSON.parse(gioHangStore);
+        }
 
-      let gioHang = [];
-      let gioHangStore = localStorage.getItem("gioHang");
-      if (gioHangStore) {
-        gioHang = JSON.parse(gioHangStore);
+        let newGioHang = {
+          thoiGianVao: timeVao,
+          thoiGianRa: timeRa,
+          params: gioHang,
+        };
+
+        await localStorage.setItem("newGioHang", JSON.stringify(newGioHang));
+
+        navigate("/check-out");
+      } else if (!timeRa) {
+        messageApi.open({
+          type: "warning",
+          content: "Vui lòng chọn ngày kết thúc",
+        });
+      } else if (!timeVao) {
+        messageApi.open({
+          type: "warning",
+          content: "Vui lòng chọn ngày bắt đầu",
+        });
       }
-
-      let newGioHang = {
-        thoiGianVao: timeVao,
-        thoiGianRa: timeRa,
-        params: gioHang
-      };
-
-      await localStorage.setItem("newGioHang", JSON.stringify(newGioHang));
-
-      navigate('/check-out')
     }
-    else if(!timeRa){
-
-      messageApi.open({
-        type: 'warning',
-        content: 'Vui lòng chọn ngày kết thúc',
-      });  
-    }else if(!timeVao){
-
-      messageApi.open({
-        type: 'warning',
-        content: 'Vui lòng chọn ngày bắt đầu',
-      });  
-    }
-   
-  
-  }
-  }
+  };
 
   const inputStyle = {
-    width: '150px' // Thiết lập chiều rộng theo ý bạn
-    
-};
+    width: "150px", // Thiết lập chiều rộng theo ý bạn
+  };
   return (
     <>
       <HeaderPage />
       {contextHolder}
       <center>
         <h2>Giỏ hàng</h2>
-        
-    
+
         <hr />
-   
-        <div style={{marginBottom: 16, marginTop : 16 }} >
 
-        <span>Thời gian vào : <Input style={inputStyle} disabled  value={timeVao ? timeVao : null} />  </span>
-       <span> Thời gian ra : <Input style={inputStyle}  disabled  value={timeRa ? timeRa : null} /> </span>
-
-                    
-            </div>
-           
+        <div style={{ marginBottom: 16, marginTop: 16 }}>
+          <span>
+            Thời gian vào :{" "}
+            <Input
+              style={inputStyle}
+              disabled
+              value={timeVao ? timeVao : null}
+            />{" "}
+          </span>
+          <span>
+            {" "}
+            Thời gian ra :{" "}
+            <Input
+              style={inputStyle}
+              disabled
+              value={timeRa ? timeRa : null}
+            />{" "}
+          </span>
+        </div>
       </center>
 
       <CsModal
@@ -287,6 +280,16 @@ const HotelBookingForm = () => {
         />
 
         <Column
+          title="Số lượng trống"
+          key="so_luong_trong"
+          render={(roomType) => (
+            <>
+              {roomType.soLuongTrong} <span>Phòng</span>
+            </>
+          )}
+        />
+
+        <Column
           title="Chọn số lượng phòng"
           key="action"
           render={(roomType) => (
@@ -294,10 +297,8 @@ const HotelBookingForm = () => {
               <InputNumber
                 min={1}
                 max={roomType.soLuongTrong}
-               
                 value={roomType.soluong}
                 onChange={(event) => onChange(roomType, event)}
-                
               />
             </>
           )}
@@ -321,9 +322,9 @@ const HotelBookingForm = () => {
       </Table>
       <br />
       <center>
-        
-          <button type="primary" onClick={bookNow}>Đặt ngay</button>
-      
+        <button type="primary" onClick={bookNow}>
+          Đặt ngay
+        </button>
       </center>
       <br />
       <FooterPage />

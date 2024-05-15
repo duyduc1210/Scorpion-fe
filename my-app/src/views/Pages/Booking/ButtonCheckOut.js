@@ -63,7 +63,9 @@ export const ButtonCheckOut = () => {
       await BookingApi.add(getGioHangPayPal());
       localStorage.removeItem("gioHang");
       localStorage.removeItem("newGioHang");
-      localStorage.removeItem("gioHangThanhToan")
+      localStorage.removeItem("gioHangThanhToan");
+      localStorage.removeItem("timeSearch");
+
 
 
       messageApi.open({

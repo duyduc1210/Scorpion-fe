@@ -20,6 +20,7 @@ const RoomAndSuit = () => {
   const [getRoomTypes, setRoomTypes] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
+  const [searched, setSearched] = useState(true);
 
   const [mode, setMode] = useState("");
   const [getData, setData] = useState({});
@@ -28,9 +29,9 @@ const RoomAndSuit = () => {
 
   const [disabled, setDisabled] = useState(false);
 
-  const disabledDate = current => {
-    const today = new Date();
-    return current && current <= today;
+  const disabledDate = (current) => {
+
+    return current && current < moment().startOf('day');
   };
   let content = null;
 
@@ -43,6 +44,8 @@ const RoomAndSuit = () => {
       } catch (error) {}
     };
     getData();
+   
+
   }, []);
 
   const showRoomType = (data = null) => {
@@ -61,6 +64,8 @@ const RoomAndSuit = () => {
   };
 
   const handleSearchDate = async () => {
+
+  
     let x = { timeVao: timeVao, timeRa: timeRa };
     localStorage.setItem("timeSearch", JSON.stringify(x));
 
@@ -81,18 +86,16 @@ const RoomAndSuit = () => {
           type: "warning",
           content: "Ngày bắt đầu và kết thúc không được trùng nhau",
         });
-      } else if(!timeRa){
-
+      } else if (!timeRa) {
         messageApi.open({
-          type: 'warning',
-          content: 'Vui lòng chọn ngày kết thúc',
-        });  
-      }else if(!timeVao){
-  
+          type: "warning",
+          content: "Vui lòng chọn ngày kết thúc",
+        });
+      } else if (!timeVao) {
         messageApi.open({
-          type: 'warning',
-          content: 'Vui lòng chọn ngày bắt đầu',
-        });  
+          type: "warning",
+          content: "Vui lòng chọn ngày bắt đầu",
+        });
       } else {
         if (timeVao) {
           body.thoiGianVao = `${timeVao} 12:00:00`;
@@ -104,13 +107,15 @@ const RoomAndSuit = () => {
         const res = await api.searchDateCt(body);
 
         setRoomTypes(res.data);
+        setSearched(false);
         messageApi.open({
           type: "success",
           content: "Tìm kiếm thành công vui lòng kiểm tra các phòng còn trống",
         });
         console.log(res);
+
+        localStorage.removeItem("gioHang");
       }
-      
     } catch (error) {
       console.error("Error:", error);
     }
@@ -246,7 +251,7 @@ const RoomAndSuit = () => {
 
           <center>
             <div style={{ marginBottom: 16 }}>
-              <h2> Tìm kiếm</h2>
+              <h2> Tìm kiếm các phòng còn trống</h2>
               <hr />
               <br />
               <DatePicker
@@ -267,24 +272,26 @@ const RoomAndSuit = () => {
                 style={{ marginLeft: "10px" }}
                 type="primary"
                 onClick={handleSearchDate}
-            
               >
-                Tìm kiếm
+                Tìm kiếm 
+                
               </Button>
             </div>
             <br />
           </center>
 
+              
           <section className="rooms-section">
             <div className="row center-lg">
               {getRoomTypes.map((roomType) => (
                 <span key={roomType.id}>
                   <HotelRoom
-                    mode={"RoomAndSuit"}
+                    mode={"RoomAndSuit"}  
                     roomType={roomType}
                     onClick={() => showRoomType(roomType)}
                     timeVao={timeVao}
                     timeRa={timeRa}
+                    searched={searched}
                   />
                 </span>
               ))}

@@ -25,7 +25,7 @@ const HeaderPage = () => {
   if(guest_id){
     // eslint-disable-next-line react-hooks/exhaustive-deps
     btnAuth = (<>
-     <li className="header-nav-list"> <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/booking" activeClassName="header-active" > Giỏ hàng</NavLink></li>
+     <li className="header-nav-list"> <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/booking" activeClassName="header-active" > Danh sách phòng đặt</NavLink></li>
      <li className="header-nav-list"> <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/historyBook" activeClassName="header-active" >Lịch sử đặt</NavLink></li>
 
 <li className="header-nav-list"><Link className="header-btn header-btn-custom" onClick={handleLogOut} >Đăng Xuất</Link></li>
@@ -56,7 +56,7 @@ const HeaderPage = () => {
             </li>
             <li className="header-nav-list">
               <NavLink className={({isActive}) => isActive ? 'header-nav-link header-active' : 'header-nav-link'} to="/room-and-suit" >
-                Phòng và dãy phòng
+                Phòng 
               </NavLink>
             </li>
             <li className="header-nav-list">

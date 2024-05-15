@@ -91,8 +91,7 @@ const CheckOut = () => {
           console.log(result.data);
           setCurrentUser(result.data);
 
-          const { hoTen, email, soDienThoai } =
-            result.data;
+          const { hoTen, email, soDienThoai } = result.data;
 
           setValue("customerName", hoTen);
           setValue("email", email);
@@ -174,7 +173,6 @@ const CheckOut = () => {
       return {
         loaiPhongIdLoaiPhong: { id: x.id },
         soLuong: x.soluong,
-     
       };
     });
     let newData = {
@@ -189,21 +187,19 @@ const CheckOut = () => {
       tongTien: data.total,
       trangThai: STATUS.success,
       loaiPhongDatDto: loaiPhongDat,
-      ghiChu: data.ghiChu
-    
-  
+      ghiChu: data.ghiChu,
     };
 
     localStorage.setItem("gioHangThanhToan", JSON.stringify(newData));
     navigate("/Paypal");
-    console.log(newData)
+    console.log(newData);
   };
 
   setValue("totalPrice", 0);
   setValue("quantity", 0);
   setValue("hinhThucDat", 1);
   setValue("ghiChu");
-  
+
   setValue("currentUserId", getCurrentUserId);
   setValue(
     "total",
@@ -314,7 +310,6 @@ const CheckOut = () => {
               name="ghiChu"
               className="checkOutCss"
               {...register("ghiChu", { required: false })}
-              
             />
 
             <div />
@@ -366,7 +361,7 @@ const CheckOut = () => {
           className="buttonDatPhong"
           onClick={handleSubmit(onHandleBooking)}
         >
-          Thanh Toán
+          Đặt cọc
         </button>
         <br />
       </center>
