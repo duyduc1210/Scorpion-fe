@@ -114,7 +114,7 @@ const HotelRoom = ({searched , roomType, onClick, mode = null, timeVao, timeRa }
         {content}
         <div className="buttons-container">
           <span className="btn btn-ghost cursor" onClick={onClick}>
-            Xem thêm
+            Chi tiết
           </span>
 
           {(roomType.soLuongTrong === 0 || searched ? null : btn)}
